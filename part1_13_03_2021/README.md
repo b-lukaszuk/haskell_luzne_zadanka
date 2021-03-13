@@ -35,7 +35,7 @@ Choose highest and lowest values from the given array. [1,6,23,8,4,98,3,7,3,98,4
 
 ## Task 5
 
-Choose longest string from the array. [‘Karol’, ‘Adam’,’Rogowski’,’Politechnika’,’Super’,’Weekend’]. 
+Choose longest string from the array. [‘Karol’, ‘Adam’,’Rogowski’,’Politechnika’,’Super’,’Weekend’].
 
 tylko 1, czy kilka w przypadku remisow?! (wezme kilka)
 
