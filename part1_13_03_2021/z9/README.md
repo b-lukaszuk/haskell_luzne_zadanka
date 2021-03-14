@@ -12,14 +12,15 @@ Przeczytane 6 pierwszych rozdzialow z [Learn You a Haskell for Great Good!](http
 
 Dalsze rozdzialy beda czytane/przerabiane w miare mozliwosci.
 
-# Task 8
+# Task 9
 
-Calculate average value of items at even indexes.
-Zero is not considered to be even number. [1,6,23,8,4,98,3,7,3,98,4,98]
+With a given start value of 0.
+Iterate the array and add even items and subtract odd ones.
+[1,6,23,8,4,98,3,7,3,98,4,98]
 
 # Uruchomienie
 
-Wejsc do pliku `CalcAvgAtEvenIndexes.hs` z Emacsa, i `C-c C-l`
+Wejsc do pliku `AddEvenIndsSubtrOddInds.hs` z Emacsa, i `C-c C-l`
 
 Po pojawieniu sie REPL-a wpisac:
 
@@ -31,7 +32,7 @@ np.:
 
 
 ```
-getAvgOfEltsAtEvenIndexes nums
+addEvenIndsSubtrOddInds nums
 ```
 
 i voila.
