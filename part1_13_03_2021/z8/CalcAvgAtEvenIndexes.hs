@@ -10,18 +10,23 @@ nums = [1, 6, 23, 8, 4, 98, 3, 7, 3, 98, 4, 98]
 -------------------------------------------------------------------------------
 -- przyjmuje jakas tablice Int-ow
 -- zwraca liste tupli [(indeks, elt)]
--- indeksacja od 0 (incl) do (length someList) (exclusive)
+-- indeksacja od 1 (inclusive) do (length someList) (inclusive)
 myEnumerate :: [Int] -> [(Int, Int)]
-myEnumerate someList = zip [0..] someList
+myEnumerate nums = zip [1..] nums
 
 -- przyjmuje jakas tablice Int-ow
--- zwraca liste tupli [(indeks, maxElt)]
-getMaxesFromEnums :: [Int] -> [(Int, Int)]
-getMaxesFromEnums someList = [(a, b) | (a, b) <- myEnumerate someList,
-                               b == theMax]
-  where theMax = maximum someList
+-- zwraca tablice intow na z parzystych indeksow
+getEltsAtEvenIndexes :: [Int] -> [Int]
+getEltsAtEvenIndexes nums = [b | (a, b) <- myEnumerate nums, even a]
+
 
 -- przyjmuje jakas tablice Int-ow
--- zwraca liste ineksow maksow z zasiegu: 0 (incl) length someList (excl)
-getMaxesIds :: [Int] -> [Int]
-getMaxesIds someList = [a | (a, b) <- getMaxesFromEnums someList]
+-- zwraca srednia z Intow na parzystych indeksach
+-- zarowno sum jak i length zwracaja Inty
+-- w Haskell-u mozna Int `div` Int co zwraca Int
+-- lub jesli chcemy po przecinku to musimy konwertowac oba Int-y do Num-ow
+-- uzywamy wiec fromIntegral
+getAvgOfEltsAtEvenIndexes :: [Int] -> Double
+getAvgOfEltsAtEvenIndexes nums = fromIntegral (sum numsAtEvenIndexes) /
+  fromIntegral (length numsAtEvenIndexes)
+  where numsAtEvenIndexes = getEltsAtEvenIndexes nums
