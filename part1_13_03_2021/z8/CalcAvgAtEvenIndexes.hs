@@ -10,14 +10,15 @@ nums = [1, 6, 23, 8, 4, 98, 3, 7, 3, 98, 4, 98]
 -------------------------------------------------------------------------------
 -- przyjmuje jakas tablice Int-ow
 -- zwraca liste tupli [(indeks, elt)]
--- indeksacja od 1 (inclusive) do (length someList) (inclusive)
+-- indeksacja od 0 (inclusive) do (length someList) (exclusive)
 myEnumerate :: [Int] -> [(Int, Int)]
-myEnumerate nums = zip [1..] nums
+myEnumerate nums = zip [0..] nums
 
 -- przyjmuje jakas tablice Int-ow
 -- zwraca tablice intow na z parzystych indeksow
+-- "Zero is not considered to be even number."
 getEltsAtEvenIndexes :: [Int] -> [Int]
-getEltsAtEvenIndexes nums = [b | (a, b) <- myEnumerate nums, even a]
+getEltsAtEvenIndexes nums = [b | (a, b) <- myEnumerate nums, even a, a > 0]
 
 
 -- przyjmuje jakas tablice Int-ow
