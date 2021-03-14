@@ -81,7 +81,7 @@ Iterate the array and add even items and subtract odd ones.
 
 # Info dodatkowe
 
-## Do użytku własnego, nie powinno być używane przez nikogo innego.
+## Do użytku własnego, nie zalecane do użytku przez nikogo innego.
 
-## For personal use only, should not be used by anyone else.
+## For personal use only, not recommended to be used by anyone else.
 
