@@ -1,3 +1,23 @@
+---
+
+# Table of contents
+
+1. [Info](#info)
+2. [Moj obency background](#moj-obency-background)
+3. [Tasks](#tasks)
+   1. [Task 1](#task-1)
+   2. [Task 2](#task-2)
+   3. [Task 3](#task-3)
+   4. [Task 4](#task-4)
+   5. [Task 5](#task-5)
+   6. [Task 6](#task-6)
+   7. [Task 7](#task-7)
+   8. [Task 8](#task-8)
+   9. [Task 9](#task-9)
+4. [Info dodatkowe/zalecenia](#info-dodatkowe/zalecenia)
+
+---
+
 # Info
 
 Tresci zadan skopiowane z tych ktore dostalismy od Karola na podyplomowki JS Developer 2020/2021.
@@ -58,6 +78,8 @@ Zero is not considered to be even number. [1,6,23,8,4,98,3,7,3,98,4,98]
 With a given start value of 0.
 Iterate the array and add even items and subtract odd ones.
 [1,6,23,8,4,98,3,7,3,98,4,98]
+
+# Info dodatkowe/zalecenia
 
 ## Do użytku własnego, nie powinno być używane przez nikogo innego.
 
