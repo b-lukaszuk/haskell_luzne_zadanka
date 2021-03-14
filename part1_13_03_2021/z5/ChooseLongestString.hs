@@ -23,5 +23,5 @@ getLongestWords (w:ws)= foldl
      if length curWord > length (acc !! 0) then [curWord]
      else if length curWord == length (acc !! 0) then acc ++ [curWord]
      else acc)
-  [""] lstOfWords
+  [""] (w:ws)
 
