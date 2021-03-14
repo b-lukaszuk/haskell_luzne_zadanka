@@ -33,3 +33,13 @@ addEvenIndsSubtrOddInds nums = (sum atEvenIds) + (sum toSubtract)
   where atEvenIds = getEltsAtEvenIndexes nums
         atOddIds = getEltsAtOddIndexes nums
         toSubtract = map (*(-1)) atOddIds
+
+-- przyjmuje jakas tablice Int-ow
+-- dodaje wszytkie inty na parzystych indeksach
+-- odejmuje wszytskie inty na ujemnych indeksach
+-- zwraca wynik tej operacji
+addEvensSubtrOdds :: [Int] -> Int
+addEvensSubtrOdds nums = (sum theEvens) + (sum toSubtract)
+  where theEvens = filter even nums
+        theOdds = filter odd nums
+        toSubtract = map (*(-1)) theOdds

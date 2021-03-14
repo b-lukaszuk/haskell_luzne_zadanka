@@ -18,6 +18,9 @@ With a given start value of 0.
 Iterate the array and add even items and subtract odd ones.
 [1,6,23,8,4,98,3,7,3,98,4,98]
 
+Pytanie czy chodzi tu o cyfry parzyste/nieparzyste czy na indeksach parzystych/nieparzystych
+(raczej chodzi o to pierwsze)
+
 # Uruchomienie
 
 Wejsc do pliku `AddEvenIndsSubtrOddInds.hs` z Emacsa, i `C-c C-l`
@@ -26,13 +29,6 @@ Po pojawieniu sie REPL-a wpisac:
 
 ```
 desiredFunc [args]
-```
-
-np.:
-
-
-```
-addEvenIndsSubtrOddInds nums
 ```
 
 i voila.
