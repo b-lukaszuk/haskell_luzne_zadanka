@@ -12,14 +12,15 @@ Przeczytane 6 pierwszych rozdzialow z [Learn You a Haskell for Great Good!](http
 
 Dalsze rozdzialy beda czytane/przerabiane w miare mozliwosci.
 
-# Task 5
+# Task 6
 
 ARRAY: [1,6,23,8,4,8,3,7]
 
-Create a function that based on given array returns new array in pattern [a,b,c,d,e,f] -> [a+b, c+d, e+f]    [1,3,4,1,0,3] => [4,5,3] function(array)=>array
+For time of this example remove last element from the given array. Create a function that based on given array return new array in pattern [a,b,c,d,e] -> [a+b, c+d, e+e]
 
-Nie zdefiniowano co zrobic w przypadku tablicy o nieparzystej liczbie elementow.
-Sam wiec cos wymysle.
+Hmm, to mam usunac ostatni element, czy go dodac do sibie?
+Czy moze usunac ostatni element z [1,6,23,8,4,8,3,7] (powstanie nieparzysta liczba elementow) i potem aplikowac ten pattern?
+Zrobie tak i tak i tak.
 
 # Uruchomienie
 
@@ -28,7 +29,19 @@ Wejsc do pliku `addPairsOddsEvens.hs` z Emacsa, i `C-c C-l`
 Po pojawieniu sie REPL-a wpisac:
 
 ```
-addPairsOddsEvens someArray
+addPairsOddsEvens1 nums2
+```
+
+lub
+
+```
+addPairsOddsEvens2 nums2
+```
+
+lub
+
+```
+addPairsOddsEvens2 $ removeLastItem nums1
 ```
 
 i voila.
