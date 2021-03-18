@@ -35,8 +35,8 @@ addEvenIndsSubtrOddInds nums = (sum atEvenIds) + (sum toSubtract)
         toSubtract = map (*(-1)) atOddIds
 
 -- przyjmuje jakas tablice Int-ow
--- dodaje wszytkie inty na parzystych indeksach
--- odejmuje wszytskie inty na ujemnych indeksach
+-- dodaje wszytkie liczby (Int) parzyste z listy
+-- odejmuje wszytskie liczby (Int-y) nieparzyste z listy
 -- zwraca wynik tej operacji
 addEvensSubtrOdds :: [Int] -> Int
 addEvensSubtrOdds nums = (sum theEvens) + (sum toSubtract)

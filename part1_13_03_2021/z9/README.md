@@ -19,7 +19,10 @@ Iterate the array and add even items and subtract odd ones.
 [1,6,23,8,4,98,3,7,3,98,4,98]
 
 Pytanie czy chodzi tu o cyfry parzyste/nieparzyste czy na indeksach parzystych/nieparzystych
-(raczej chodzi o to pierwsze)
+(raczej chodzi o to pierwsze, ale zrobie oba).
+
+Kolejne pytanie, jak rozumiec: "With a given start value of 0"
+Czy to ma byc zmienna w ktorej trzymamy wynik calej operacji, zaczynajac liczyc od 0 (chyba tak).
 
 # Uruchomienie
 
