@@ -25,16 +25,8 @@ Create a function the return one random element from given array. // use random 
 
 # Uruchomienie
 
-Wejsc do pliku `getRandElt.hs` z Emacsa, i `C-c C-l`
-
-Po pojawieniu sie REPL-a wpisac:
-
-```
-getRandElt nums
+```bash
+runhaskell getRandEtl.hs
 ```
 
 i voila.
-
-# Wyjscie
-
-`M-x haskell-session-kill`

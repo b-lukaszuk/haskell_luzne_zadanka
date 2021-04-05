@@ -36,6 +36,12 @@ Przeczytane 6 pierwszych rozdzialow z [Learn You a Haskell for Great Good!](http
 
 Dalsze rozdzialy beda czytane/przerabiane w miare mozliwosci.
 
+## Update
+
+### 05-04-2021
+
+Doczytano rozdzialy 7-9. Rozdzial 9 potrzebny do random numbers (rozwiazanie niektorych zadan)
+
 # Tasks
 
 ARRAY: [1,6,23,8,4,8,3,7]
