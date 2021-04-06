@@ -2,6 +2,7 @@
 --                                  importy                                  --
 -------------------------------------------------------------------------------
 import System.Random
+import Data.List (union)
 
 -------------------------------------------------------------------------------
 --                              zmienne globalne                             --
@@ -9,12 +10,22 @@ import System.Random
 nums ::  [Int]
 nums = [1, 6, 23, 8, 4, 8, 3, 7]
 
-howManyElts :: Int
-howManyElts = 4
-
 -------------------------------------------------------------------------------
 --                                  funkcje                                  --
 -------------------------------------------------------------------------------
+-- as far as I know haskell is functional, so no changes inplace
+
+-- returns unique elts from a list
+unique :: (Eq a) => [a] -> [a]
+unique lst = union [] lst
+
+-- returns list of all Ints from a range
+-- the list of all Ints is in random order and w/o repetitions
+getRandIntsInRange :: (RandomGen g) => g -> Int -> Int -> [Int]
+getRandIntsInRange gen fromIncl toExcl =
+  let lstLen = toExcl - fromIncl
+  in take lstLen $ unique $ randomRs (fromIncl, toExcl-1) gen
+
 -- accepts two lists: lst and indexes
 -- gets list of elements at specific indexes
 getEltsByIds :: [a] -> [Int] -> [a]
@@ -22,23 +33,18 @@ getEltsByIds [] _ = []
 getEltsByIds _ [] = []
 getEltsByIds lst (ind:inds) = lst !! ind : getEltsByIds lst inds
 
--- gets a list of n rand elts from a list
--- draws with replacement
-getNrandElts :: RandomGen g => g -> [a] -> Int -> [a]
-getNrandElts _ _ 0 = []
-getNrandElts gen lst howMany =
-  let randInds = take howMany $ randomRs (0, length lst - 1) gen
-  in getEltsByIds lst randInds
-
 -------------------------------------------------------------------------------
 --                             wykonanie programu                            --
 -------------------------------------------------------------------------------
 main :: IO()
 main = do
   gen <- getStdGen
-  let randomElts = getNrandElts gen nums howManyElts
+  let randomInds = getRandIntsInRange gen 0 $ length nums
+      permutedList = getEltsByIds nums randomInds
   putStrLn $ "Initial list: " ++ show nums
-  putStr $ "The list of its " ++ show howManyElts ++ " random elements: "
-  putStrLn $ show randomElts
-  putStr "The lowest value of the random elements is: "
-  putStrLn $ show $ minimum randomElts
+  putStrLn $ "Randomly permuted list: " ++ show permutedList
+
+-- alternatywa
+-- funkcja permutations z Data.List
+-- zwraca liste list (wszystkie mozliwe permutacje)
+-- z ktorej bierzemy losowy element

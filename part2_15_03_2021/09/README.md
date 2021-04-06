@@ -12,14 +12,14 @@ Przeczytane 9 pierwszych rozdzialow z [Learn You a Haskell for Great Good!](http
 
 Dalsze rozdzialy beda czytane/przerabiane w miare mozliwosci.
 
-## Task 8
+## Task 9
 
-Create a function that takes two parameters: array and number off attempts. Based on number of attempts choose a random number from table that many times and return lowest one.
+Create a function that takes given array. Then takes a random element, removes it from the array and pushes it to result arrays. This takes place as long as there are elements in source array.
 
 # Uruchomienie
 
 ```bash
-runhaskell getLowestOfNRands.hs
+runhaskell permuteArray.hs
 ```
 
 i voila.
