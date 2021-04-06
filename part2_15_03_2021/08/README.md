@@ -22,16 +22,14 @@ Update 05-04-2021
 
 Doczytano rozdzialy 7-9.
 
-# Task 7
+## Task 8
 
-ARRAY: [1,6,23,8,4,8,3,7]
-
-Create a function the return one random element from given array. // use random function
+Create a function that takes two parameters: array and number off attempts. Based on number of attempts choose a random number from table that many times and return lowest one.
 
 # Uruchomienie
 
 ```bash
-runhaskell getRandEtl.hs
+runhaskell getLowestOfNRands.hs
 ```
 
 i voila.
