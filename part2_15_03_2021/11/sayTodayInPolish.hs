@@ -4,12 +4,15 @@
 import System.IO
 import System.Directory
 import System.Process
-import Data.List
 
 -------------------------------------------------------------------------------
 --                              zmienne globalne                             --
 -------------------------------------------------------------------------------
-
+engToPolDaysOfWeek :: [(String, String)]
+engToPolDaysOfWeek = [("Sun", "Niedziela"), ("Mon", "Poniedzialek"),
+                     ("Tue", "Wtorek"), ("Wed", "Sroda"),
+                     ("Thu", "Czwartek"), ("Fri", "Piatek"),
+                     ("Sat", "Sobota")]
 
 -------------------------------------------------------------------------------
 --                                  funkcje                                  --
@@ -17,15 +20,10 @@ import Data.List
 getDayOfWeek :: String -> String
 getDayOfWeek bashDateStr = words bashDateStr !! 0
 
-engToPolDaysOfWeek :: [(String, String)]
-engToPolDaysOfWeek = [("Sun", "Niedziela"), ("Mon", "Poniedzialek"),
-                     ("Tue", "Wtorek"), ("Wed", "Sroda"),
-                     ("Thu", "Czwartek"), ("Fri", "Piatek"),
-                     ("Sat", "Sobota")]
-
 getPolDayOfWeek :: String -> String
 getPolDayOfWeek dayOfWeekEng = [dPl | (dEn, dPl) <- engToPolDaysOfWeek,
                                 dEn == dayOfWeekEng] !! 0
+
 -------------------------------------------------------------------------------
 --                             wykonanie programu                            --
 -------------------------------------------------------------------------------
@@ -33,7 +31,6 @@ main :: IO()
 main = do
   -- creating empty tmp file (name tmpSthRandom)
   (tmpName, tmpHandle) <- openTempFile "." "temp"
-  hPutStr tmpHandle "that's all"
   hClose tmpHandle
   -- insert result of bash date command into that tmp file
   callCommand $ "date > " ++ tmpName
