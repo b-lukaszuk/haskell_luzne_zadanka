@@ -4,7 +4,7 @@ Robienie zadanek z Haskella w wolnej chwili/chwilach.
 
 # Moj obecny background
 
-Przeczytane 6 pierwszych rozdzialow z [Learn You a Haskell for Great Good!](http://learnyouahaskell.com/chapters).
+Przeczytane 9 pierwszych rozdzialow z [Learn You a Haskell for Great Good!](http://learnyouahaskell.com/chapters).
 
 Dalsze rozdzialy beda czytane/przerabiane w miare mozliwosci.
 
