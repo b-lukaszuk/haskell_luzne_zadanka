@@ -18,4 +18,15 @@ Create a function that take two numbers and return the object with 4 fields. Res
 
 Wykonanie tego zadania na chwile obecna jest raczej nie mozliwe, Haskell jest jezykiem funkcyjnym wiec nie ma obiektow.
 
-Moze z czasem przeczytam o czyms analogicznym w haskellu, to wtedy to zrobie
+Na szybko jednak doczytalem o Data.Map (odpowiednik Pythonowego slownika, czyli JS-owego obiektu pisanego z palca, cos jak: {a: 1, b: 2}).
+
+Wykorzystam wiec tu tego Data.Map-a jako niby taki obiekt.
+Moze z czasem jak poznam lepiej Haskell-a to zatapie to jakims innym tworem.
+
+# Uruchomienie
+
+```bash
+runhaskell fourMathOpers.hs
+```
+
+i voila.
