@@ -44,9 +44,10 @@ getKillingSpree xs declarations =
 -------------------------------------------------------------------------------
 main :: IO()
 main = do
-  putStrLn $ "At first there are " ++ (show $ length peopleInCave) ++
-    " in the cave:"
+  putStrLn $ "\nAt first there are " ++ (show $ length peopleInCave) ++
+    " people in the cave:"
   putStrLn $ show peopleInCave
+  putStrLn $ "Now, killing spree begins."
 -- unlines creates a string from an array of strings, it inserts new
 -- line characters between original strings
   putStrLn $ unlines $ getKillingSpree peopleInCave []
