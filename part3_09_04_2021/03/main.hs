@@ -14,9 +14,9 @@ peopleInCave = [1..7]
 -------------------------------------------------------------------------------
 --                                  funkcje                                  --
 -------------------------------------------------------------------------------
-moveToEnd :: [Int] -> [Int]
-moveToEnd [] = []
-moveToEnd (x:xs) = xs ++ [x]
+moveFirstEltToEnd :: [Int] -> [Int]
+moveFirstEltToEnd [] = []
+moveFirstEltToEnd (x:xs) = xs ++ [x]
 
 killFirst :: [Int] -> [Int]
 killFirst [] = []
@@ -34,7 +34,7 @@ getKillingSpree [] declarations = reverse declarations
 getKillingSpree xs declarations =
   let curDeclaration = declareSingleKill xs
       newDeclarations = curDeclaration : declarations
-      xsFirstToEnd = moveToEnd xs
+      xsFirstToEnd = moveFirstEltToEnd xs
       newXs = killFirst xsFirstToEnd
   in getKillingSpree newXs newDeclarations
 
