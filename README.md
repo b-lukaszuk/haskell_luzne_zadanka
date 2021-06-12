@@ -18,7 +18,15 @@ Po pojawieniu sie REPL-a wpisac:
 functionOfInterest [args]
 ```
 
+Alternatywnie
+
+```bash
+runhaskell *.hs
+```
+
 i voila.
+
+Najlepiej sprawdzic w pliku README.md danego zadania.
 
 # Wyjscie
 
