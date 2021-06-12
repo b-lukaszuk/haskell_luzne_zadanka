@@ -28,15 +28,15 @@ declareSingleKill (x:xs) = if null xs
                      then (show x) ++ " remains alive"
                      else (show x) ++ " kills " ++ (show $ head xs)
 
--- initial invocation getKillingSpree [1..5] []
+-- initial invocation: getKillingSpree [1..5] []
 getKillingSpree :: [Int] -> [String] -> [String]
 getKillingSpree [] declarations = reverse declarations
 getKillingSpree xs declarations =
   let curDeclaration = declareSingleKill xs
       newDeclarations = curDeclaration : declarations
-      xsFirstToEnd = moveFirstEltToEnd xs
-      newXs = killFirst xsFirstToEnd
-  in getKillingSpree newXs newDeclarations
+      xsFirstAtEnd = moveFirstEltToEnd xs
+      xsOneKilled = killFirst xsFirstAtEnd
+  in getKillingSpree xsOneKilled newDeclarations
 
 
 -------------------------------------------------------------------------------
