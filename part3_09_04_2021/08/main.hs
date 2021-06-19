@@ -8,7 +8,7 @@ import Data.Char (isNumber)
 --                              zmienne globalne                             --
 -------------------------------------------------------------------------------
 digitsAsStrings :: [String]
-digitsAsStrings = ["2342", "A243b"]
+digitsAsStrings = ["2342", "A243b", "ala ma kota", "exx7lL"]
 
 
 -------------------------------------------------------------------------------
