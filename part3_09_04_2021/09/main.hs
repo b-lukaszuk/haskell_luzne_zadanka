@@ -23,7 +23,7 @@ deLatenizedEng = map deLatenizeSentence pigLatenizedEng
 -------------------------------------------------------------------------------
 upCaseFirstLetRemLastLet :: String -> String
 upCaseFirstLetRemLastLet [] = ""
-upCaseFirstLetRemLastLet (x:xs) = (toUpper x): (init xs)
+upCaseFirstLetRemLastLet (x:xs) = (toUpper x) : (init xs)
 
 listOfStrToSentence :: [String] -> String
 listOfStrToSentence [] = ""
@@ -41,7 +41,7 @@ latenizeSentence xs = upCaseFirstLetRemLastLet $
 deLatenizeWord :: String -> String
 deLatenizeWord [] = ""
 deLatenizeWord (x:xs) =
-  let noAy = toLower x : take (length xs - 2) xs
+  let noAy = (toLower x) : take (length xs - 2) xs
       delatenized = last noAy : init noAy
   in delatenized
 
