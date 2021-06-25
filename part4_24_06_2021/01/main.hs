@@ -1,30 +1,42 @@
 -------------------------------------------------------------------------------
 --                                  importy                                  --
 -------------------------------------------------------------------------------
--- import qualified Morse.engMorseDict as morseDict
-import Morse
+import Morse (engMorseDict)
 import Data.Char (toUpper)
+import Data.List.Split (splitOn)
 
 
 -------------------------------------------------------------------------------
 --                              zmienne globalne                             --
 -------------------------------------------------------------------------------
-messages :: [String]
-messages  = ["Hello there", "General Kenobi", "SOS", "A"];
+msgsOrig :: [String]
+msgsOrig  = ["Hello there", "General Kenobi", "SOS", "Ala ma kota"];
+
+msgsMorse :: [String]
+msgsMorse  = map engSentenceToMorse msgsOrig
+
+msgsEng :: [String]
+msgsEng  = map morseSentenceToEng msgsMorse
 
 
 -------------------------------------------------------------------------------
 --                                  funkcje                                  --
 -------------------------------------------------------------------------------
-letterToMorse :: String -> String
-letterToMorse [] = ""
-letterToMorse x = head [b |
-                        (a, b) <- filter (\(a, b) -> a == [toUpper $ head x])
-                        engMorseDict]
+engLetterToMorse :: Char -> String
+engLetterToMorse x = snd $ head $
+                     filter (\(a, _) -> a == toUpper x) engMorseDict
 
--- strToMorse :: String -> String
--- strToMorse [] = ""
--- strToMorse (x:xs) =
+engSentenceToMorse :: String -> String
+engSentenceToMorse [] = ""
+engSentenceToMorse (x:[]) = engLetterToMorse x
+engSentenceToMorse (x:xs) = engLetterToMorse x ++ " " ++ engSentenceToMorse xs
+
+morseSymbToEng :: String -> Char
+morseSymbToEng x = fst $ head $ filter (\(_, b) -> b == x) engMorseDict
+
+morseSentenceToEng :: String -> String
+morseSentenceToEng [] = ""
+morseSentenceToEng morse = map morseSymbToEng $ splitOn " " morse
 
 
 -------------------------------------------------------------------------------
@@ -32,4 +44,10 @@ letterToMorse x = head [b |
 -------------------------------------------------------------------------------
 main :: IO()
 main = do
+  putStrLn "We got the following enghlish sentences:"
+  putStrLn $ unlines msgsOrig
+  putStrLn "After translating them to Morse code we got:"
+  putStrLn $ unlines msgsMorse
+  putStrLn "After rewriting them again to english we got:"
+  putStrLn $ unlines msgsEng
   putStrLn "That's it. Goodbye!"
