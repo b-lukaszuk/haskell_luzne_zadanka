@@ -12,12 +12,6 @@ import Data.List.Split (splitOn)
 msgsOrig :: [String]
 msgsOrig  = ["Hello there", "General Kenobi", "SOS", "Ala ma kota"];
 
-msgsMorse :: [String]
-msgsMorse  = map engSentenceToMorse msgsOrig
-
-msgsEng :: [String]
-msgsEng  = map morseSentenceToEng msgsMorse
-
 
 -------------------------------------------------------------------------------
 --                                  funkcje                                  --
@@ -38,16 +32,22 @@ morseSentenceToEng :: String -> String
 morseSentenceToEng [] = ""
 morseSentenceToEng morse = map morseSymbToEng $ splitOn " " morse
 
+declareTransformations :: String -> String
+declareTransformations msgOrig =
+  let sep = "========"
+      intro = "Original message: <<" ++ msgOrig ++ ">>"
+      codedMsg = engSentenceToMorse msgOrig
+      morseDeclar = "After coding into Morse code:\n" ++ codedMsg
+      decodedMsg = morseSentenceToEng codedMsg
+      demorseDeclar = "After decoding from Morse code:\n" ++ decodedMsg
+  in unlines $ [sep, intro, morseDeclar, demorseDeclar, sep]
+
 
 -------------------------------------------------------------------------------
 --                             wykonanie programu                            --
 -------------------------------------------------------------------------------
 main :: IO()
 main = do
-  putStrLn "We got the following enghlish sentences:"
-  putStrLn $ unlines msgsOrig
-  putStrLn "After translating them to Morse code we got:"
-  putStrLn $ unlines msgsMorse
-  putStrLn "After rewriting them again to english we got:"
-  putStrLn $ unlines msgsEng
+  putStrLn "Simple Morse coder/decoder in action:\n\n"
+  putStrLn $ unlines $ map declareTransformations msgsOrig
   putStrLn "That's it. Goodbye!"
