@@ -8,7 +8,6 @@
    + [Task 1](#task-1)
    + [Task 2](#task-2)
    + [Task 3](#task-3)
-   + [Task 3](#task-3)
    + [Task 4](#task-4)
 4. [Info dodatkowe](#info-dodatkowe)
 
