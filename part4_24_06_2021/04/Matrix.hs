@@ -12,6 +12,9 @@ getNcols :: [[Int]] -> [Int]
 getNcols [] = [0]
 getNcols xs = map length xs
 
+getDims :: [[Int]] -> [Int]
+getDims xs = [getNrow xs, head $ getNcols xs]
+
 areAllColsLensEq :: [[Int]] -> Bool
 areAllColsLensEq [] = False
 areAllColsLensEq xs = let colLens = getNcols xs
@@ -45,7 +48,11 @@ multMatr' (x:xs) ys = let resRow = zipWith dotProd (cycle [x]) $ getAllCols ys
 
 multMatr :: [[Int]] -> [[Int]] -> [[Int]]
 multMatr matr1 matr2 = if not $ areDimsOK matr1 matr2
-  then error "Incorrect matrices dimensions. Reqired [a, b] * [b, c]"
+  then let dims1 = show $ getDims matr1
+           dims2 = show $ getDims matr2
+           msg = "Incorrect matrices dimensions. Reqired [a, b] * [b, c]" ++
+             " but got: " ++ dims1 ++ " and " ++ dims2
+       in error msg
   else multMatr' matr1 matr2
 
 matrToListOfStr' :: [[Int]] -> [String]
