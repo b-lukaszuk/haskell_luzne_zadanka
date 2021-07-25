@@ -1,4 +1,4 @@
-module TreasureMap (treasureMap) where
+module TreasureMap (treasureMap, tresMapToString) where
 
 
 -------------------------------------------------------------------------------
@@ -43,8 +43,8 @@ tmToString' :: [[Int]] -> [String]
 tmToString' [] = []
 tmToString' (x:xs) = tmRowToString x : tmToString' xs
 
-tmToString :: [[Int]] -> String
-tmToString all@(x:xs) =
+tresMapToString :: [[Int]] -> String
+tresMapToString all@(x:xs) =
   let sep = "\n" ++ (getHorizSep x) ++ "\n"
       tresMap = tmToString' all
   in myConcatWith sep tresMap
