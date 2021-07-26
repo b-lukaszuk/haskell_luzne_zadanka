@@ -56,4 +56,3 @@ treasMapLoc :: [[Int]] -> [Int] -> Int
 treasMapLoc _ [] = 0
 treasMapLoc [] _ = 0
 treasMapLoc trMap loc = (trMap !! ((loc !! 0) - 1)) !! ((loc !! 1) -1)
-
