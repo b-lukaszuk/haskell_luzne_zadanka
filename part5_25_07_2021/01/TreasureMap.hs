@@ -1,4 +1,4 @@
-module TreasureMap (treasureMap, tresMapToString) where
+module TreasureMap (treasureMap, treasMapToString, treasMapLoc) where
 
 
 -------------------------------------------------------------------------------
@@ -39,12 +39,21 @@ tmRowToString xs = myConcatWith "|" $ map padDigit xs
 getHorizSep :: [Int] -> String
 getHorizSep xs = myConcatWith "+" $ replicate (length xs) cellHorizBound
 
+-- tm - treasure map
 tmToString' :: [[Int]] -> [String]
 tmToString' [] = []
 tmToString' (x:xs) = tmRowToString x : tmToString' xs
 
-tresMapToString :: [[Int]] -> String
-tresMapToString all@(x:xs) =
+treasMapToString :: [[Int]] -> String
+treasMapToString [] = ""
+treasMapToString xs@(x:_) =
   let sep = "\n" ++ (getHorizSep x) ++ "\n"
-      tresMap = tmToString' all
+      tresMap = tmToString' xs
   in myConcatWith sep tresMap
+
+-- 1 indexed not 0 indexed
+treasMapLoc :: [[Int]] -> [Int] -> Int
+treasMapLoc _ [] = 0
+treasMapLoc [] _ = 0
+treasMapLoc trMap loc = (trMap !! ((loc !! 0) - 1)) !! ((loc !! 1) -1)
+
