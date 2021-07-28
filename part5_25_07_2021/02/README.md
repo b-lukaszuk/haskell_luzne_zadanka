@@ -36,7 +36,7 @@ elem :: (Eq a) => a -> [a] -> Bool
 Napisz funkcje `nub` usuwajaca duplikaty z listy, sygnatura:
 
 ```haskell
-nub :: (Eq a) => [a] -> a
+nub :: (Eq a) => [a] -> [a]
 ```
 
 ### Task 2.3

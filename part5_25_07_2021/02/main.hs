@@ -2,9 +2,9 @@ myElem :: (Eq a) => a -> [a] -> Bool
 myElem _ [] = False
 myElem y (x:xs) = if y == x then True else myElem y xs
 
-nub :: (Eq a) => [a] -> a
+nub :: (Eq a) => [a] -> [a]
 nub [] = []
-nub (x:xs) = if myElem x xs then nub xs else x : nub xs
+nub (x:xs) = if myElem x xs then nub xs else x : (nub xs)
 
 isAsc :: [Int] -> Bool
 isAsc [] = True
