@@ -13,3 +13,5 @@ isAsc (x:y:xs) = if x < y then isAsc (y:xs) else False
 
 graph :: [(Int, Int)]
 graph = [(1, 2), (2, 3), (3, 2), (4, 3), (4, 5)]
+
+hasPath :: [(Int, Int)] -> Int -> Int -> Bool
