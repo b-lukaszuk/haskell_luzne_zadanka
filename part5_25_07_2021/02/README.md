@@ -22,6 +22,7 @@ Doczytano rozdzialy 7-9. Rozdzial 9 potrzebny do random numbers (rozwiazanie nie
 ## Task 2
 
 Zadania z [youtube](https://www.youtube.com/watch?v=Cxkqrg8FCt8&list=PLe7Ei6viL6jGp1Rfu0dil1JH1SHk9bgDV&index=5)
+Taken for personal use only!
 
 ### Task 2.1
 
