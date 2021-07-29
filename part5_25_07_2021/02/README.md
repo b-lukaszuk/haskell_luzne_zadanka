@@ -49,7 +49,7 @@ isAsc :: [Int] -> Bool
 
 ### Task 2.4
 
-Majac dany graf (polaczenia jedno-kierunkowe):
+Majac dany graf (directed-graph, polaczenia jedno-kierunkowe):
 
 ```haskell
 graph :: [(Int, Int)]
@@ -63,3 +63,13 @@ Sygnatura:
 ```haskell
 hasPath :: [(Int, Int)] -> Int -> Int -> Bool
 ```
+
+# Uruchomienie
+
+Otworzyc plik `main.hs` z Emacs-a, potem `C-c C-l`
+
+Testowac do woli po pojawieniu sie REPL-a.
+
+# Wyjscie
+
+`M-x haskell-session-kill`

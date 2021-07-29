@@ -88,7 +88,7 @@ isAsc :: [Int] -> Bool
 
 ### Task 2.4
 
-Majac dany graf (polaczenia jedno-kierunkowe):
+Majac dany graf (directed-graph, polaczenia jedno-kierunkowe):
 
 ```haskell
 graph :: [(Int, Int)]
