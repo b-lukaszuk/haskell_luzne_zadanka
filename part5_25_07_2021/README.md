@@ -7,6 +7,7 @@
 3. [Tasks](#tasks)
    + [Task 1](#task-1)
    + [Task 2](#task-2)
+   + [Task 3](#task-3)
 4. [Info dodatkowe](#info-dodatkowe)
 
 ---
@@ -61,6 +62,7 @@ Tu Karol mowil, ze styl dowolny.
 ## Task 2
 
 Zadania z [youtube](https://www.youtube.com/watch?v=Cxkqrg8FCt8&list=PLe7Ei6viL6jGp1Rfu0dil1JH1SHk9bgDV&index=5)
+Taken for personal use only!
 
 ### Task 2.1
 
@@ -102,6 +104,35 @@ Sygnatura:
 ```haskell
 hasPath :: [(Int, Int)] -> Int -> Int -> Bool
 ```
+
+## Task 3
+
+Zadania z [Real World Haskell](http://book.realworldhaskell.org/read/functional-programming.html)
+Taken for personal use only!
+
+### Task 3.1
+
+Write your own “safe” definitions of the standard partial list functions, but make sure that yours never fail. As a hint, you might want to consider using the following types.
+
+```haskell
+safeHead :: [a] -> Maybe a
+safeTail :: [a] -> Maybe [a]
+safeLast :: [a] -> Maybe a
+safeInit :: [a] -> Maybe [a]
+```
+
+### Task 3.2
+
+Write a function splitWith that acts similarly to words, but takes a predicate and a list of any type, and splits its input list on every element for which the predicate returns False.
+
+```haskell
+splitWith :: (a -> Bool) -> [a] -> [[a]]
+```
+
+### Task 3.3
+
+Write a program that transposes the text in a file. For instance, it should convert `"hello\nworld\n"` to `"hw\neo\nlr\nll\nod\n"`
+
 
 # Info dodatkowe
 
