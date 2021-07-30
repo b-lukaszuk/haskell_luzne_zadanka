@@ -21,8 +21,7 @@ Doczytano rozdzialy 7-9. Rozdzial 9 potrzebny do random numbers (rozwiazanie nie
 
 ## Task 3
 
-Zadania z [Real World Haskell](http://book.realworldhaskell.org/read/functional-programming.html)
-Taken for personal use only!
+Zadania z [Real World Haskell](http://book.realworldhaskell.org/read/functional-programming.html). Taken for personal use only!
 
 ### Task 3.1
 

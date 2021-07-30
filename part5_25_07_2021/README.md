@@ -61,8 +61,7 @@ Tu Karol mowil, ze styl dowolny.
 
 ## Task 2
 
-Zadania z [youtube](https://www.youtube.com/watch?v=Cxkqrg8FCt8&list=PLe7Ei6viL6jGp1Rfu0dil1JH1SHk9bgDV&index=5)
-Taken for personal use only!
+Zadania z [youtube](https://www.youtube.com/watch?v=Cxkqrg8FCt8&list=PLe7Ei6viL6jGp1Rfu0dil1JH1SHk9bgDV&index=5). Taken for personal use only!
 
 ### Task 2.1
 
@@ -107,8 +106,7 @@ hasPath :: [(Int, Int)] -> Int -> Int -> Bool
 
 ## Task 3
 
-Zadania z [Real World Haskell](http://book.realworldhaskell.org/read/functional-programming.html)
-Taken for personal use only!
+Zadania z [Real World Haskell](http://book.realworldhaskell.org/read/functional-programming.html). Taken for personal use only!
 
 ### Task 3.1
 
