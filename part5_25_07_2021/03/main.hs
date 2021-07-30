@@ -15,7 +15,11 @@ safeLast (x:xs) = if null xs then Just x else safeLast xs
 
 safeInit :: [a] -> Maybe [a]
 safeInit [] = Nothing
-safeInit (x:xs) = Just xs
+safeInit xs = Just $ safeInit' xs
+
+safeInit' :: [a] -> [a]
+safeInit' [] = []
+safeInit' (x:xs) = if null xs then [] else x : safeInit' xs
 
 
 -------------------------------------------------------------------------------
