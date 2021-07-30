@@ -40,3 +40,14 @@ splitWith predicate xs =
 ------------------------------------------------------------------------------
 --                                  task 3.3                                 --
 -------------------------------------------------------------------------------
+-- I'll skip the file part for now (it's not crucial here)
+textFromAfile :: String
+textFromAfile = "hello\nworld\n"
+
+-- https://stackoverflow.com/questions/2578930/understanding-this-matrix-transposition-function-in-haskell
+transpose :: [[a]] -> [[a]]
+transpose ([]:_) = []
+transpose xs = (map head xs) : transpose (map tail xs)
+
+transposeText :: String -> String
+transposeText someText = unlines $ transpose $ lines someText
