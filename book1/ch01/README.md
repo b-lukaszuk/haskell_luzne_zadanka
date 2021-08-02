@@ -61,3 +61,34 @@ z
 ((b)(b))
 (b)(b)
 bb
+
+### case 3
+
+`(\y.y)(\x.xx)(\z.zq)`
+[y:=(\x.xx)]
+((\x.xx)(\z.zq))
+[x:=(\z.zq)]
+((\z.zq)(\z.zq))
+[z:=(\z.zq)]
+((\z.zq)q)
+[z:=q]
+((qq))
+(qq)
+qq
+
+### case 4
+`(\z.z)(\z.zz)(\z.zy)`
+Hint: alpha equivalence
+(\a.a)(\b.bb)(\c.cy)
+[a:=(\b.bb)]
+((\b.bb)(\c.cy))
+[b:=(\c.cy)]
+(((\c.cy)(\c.cy)))
+[c:=(\c.cy)]
+((((\c.cy)y)))
+[c:=y]
+((((yy))))
+(((yy)))
+((yy))
+(yy)
+yy
