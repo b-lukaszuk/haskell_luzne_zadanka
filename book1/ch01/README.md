@@ -64,17 +64,17 @@ bb<br>
 
 ### case 3
 
-`(\y.y)(\x.xx)(\z.zq)`
-[y:=(\x.xx)]
-((\x.xx)(\z.zq))
-[x:=(\z.zq)]
-((\z.zq)(\z.zq))
-[z:=(\z.zq)]
-((\z.zq)q)
-[z:=q]
-((qq))
-(qq)
-qq
+`(\y.y)(\x.xx)(\z.zq)`<br>
+[y:=(\x.xx)]<br>
+((\x.xx)(\z.zq))<br>
+[x:=(\z.zq)]<br>
+((\z.zq)(\z.zq))<br>
+[z:=(\z.zq)]<br>
+((\z.zq)q)<br>
+[z:=q]<br>
+((qq))<br>
+(qq)<br>
+qq<br>
 
 ### case 4
 
