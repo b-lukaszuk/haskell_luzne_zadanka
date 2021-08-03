@@ -93,3 +93,52 @@ Hint: alpha equivalence<br>
 ((yy))<br>
 (yy)<br>
 yy<br>
+
+### case 5
+
+`(\x.\y.xyy)(\y.y)y`<br>
+-- Here I will also use alpha equivalence<br>
+(\x.\y.xyy)(\a.a)b<br>
+[x:=(\a.a)]<br>
+(\y.(\a.a)yy)b<br>
+[y:=b]<br>
+((\a.a)bb)<br>
+((\a.a)(b)(b))<br>
+[a:=b]<br>
+((b)(b))<br>
+(b)(b)<br>
+bb<br>
+
+### case 6
+
+`(\a.aa)(\b.ba)c`<br>
+-- Here I will also use alpha equivalence<br>
+(\a.aa)(\b.bd)c<br>
+[a:=(\b.bd)]<br>
+((\b.bd)(\b.bd))c<br>
+[b:=(\b.bd)]<br>
+(((\b.bd)d))c<br>
+[b:=d]<br>
+(((dd)))c<br>
+((dd))c<br>
+(dd)c<br>
+ddc<br>
+
+### case 7
+
+`(\xyz.xz(yz))(\x.z)(\x.a)`<br>
+-- Here I will also use alpha equivalence<br>
+(\xyz.xz(yz))(\b.c)(\d.e)<br>
+(\x.\y.\z.xz(yz))(\b.c)(\d.e)<br>
+[x:=(\b.c)]<br>
+(\y.\z.(\b.c)z(yz))(\d.e)<br>
+[y:=(\d.e)]<br>
+(\z.(\b.c)z((\d.e)z))<br>
+(\z.(\b.c)(z)((\d.e)z))<br>
+[b:=z]<br>
+(\z.(c)((\d.e)z))<br>
+(\z.(c)((\d.e)(z)))<br>
+[d:=z]<br>
+(\z.(c)((e)))<br>
+(\z.(c)(e))<br>
+(\z.ce)<br>
