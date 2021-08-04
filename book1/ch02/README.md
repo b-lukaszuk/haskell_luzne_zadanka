@@ -29,4 +29,4 @@ Which two pairs of expressions return the same result when evaluated?
 5. (2 * 5 + 18) /= ((2 * (5 + 18)))
 
 
-OK, I'll leave it here. It's too easy. I'm going to the next chapter.
+OK, I'll leave it here. It's too easy. I'm going to read the next chapter.
