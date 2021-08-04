@@ -6,29 +6,29 @@
 
 Assume those code lines were written in REPL. Are they correct?
 
-a) concat [[1, 2, 3], [4, 5, 6]]
-b) ++ [1, 2, 3] [4, 5, 6]
-c) (++) "hello" " world"
-d) ["hello" ++ " world]
-e) 4 !! "hello"
-f) (!!) "hello" 4
-g) take "4 lovely"
-h) take 3 "awesome"
+a) concat [[1, 2, 3], [4, 5, 6]]<br>
+b) ++ [1, 2, 3] [4, 5, 6]<br>
+c) (++) "hello" " world"<br>
+d) ["hello" ++ " world]<br>
+e) 4 !! "hello"<br>
+f) (!!) "hello" 4<br>
+g) take "4 lovely"<br>
+h) take 3 "awesome"<br>
 
 #### My answers
 
-a) correct
-b) incorrect, should be: `(++) [1,2,3] [4,5,6]` or `[1,2,3] ++ [4,5,6]`
-c) correct
-d) incorrect, the `world` is not defined (it is not a string)
-e) incorrect, should be: `"hello" !! 4`
-f) correct
-g) incorrect, the "4" is a part of string
-h) correct
+a) correct<br>
+b) incorrect, should be: `(++) [1,2,3] [4,5,6]` or `[1,2,3] ++ [4,5,6]`<br>
+c) correct<br>
+d) incorrect, the `world` is not defined (it is not a string)<br>
+e) incorrect, should be: `"hello" !! 4`<br>
+f) correct<br>
+g) incorrect, the "4" is a part of string<br>
+h) correct<br>
 
 ### Part 2
 
-Match code line with output
+Match the code lines with the output lines
 
 #### code lines
 
@@ -54,11 +54,11 @@ e) 10
 
 #### My answer
 
-a) - d)
-b) - c)
-c) - e)
-d) - a)
-e) - b)
+a) - d)<br>
+b) - c)<br>
+c) - e)<br>
+d) - a)<br>
+e) - b)<br>
 
 ## Building functions
 
