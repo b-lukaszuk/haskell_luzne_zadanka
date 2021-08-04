@@ -37,9 +37,7 @@ a) concat [[1 * 6], [2 * 6], [3 * 6]]
 b) "rain" ++ drop 2 "elbow"
 c) 10 * head [1, 2, 3]
 d) (take 3 "Julie") ++ (tail "yes")
-e) concat [tail [1, 2, 3],
-	       tail [4, 5, 6],
-           tail [7, 8, 9]]
+e) concat [tail [1, 2, 3], tail [4, 5, 6], tail [7, 8, 9]]
 </pre>
 
 #### output lines
