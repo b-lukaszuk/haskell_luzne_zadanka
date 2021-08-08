@@ -132,7 +132,7 @@ Main = do -- should be 'main' not 'Main'
 
 ## Type Kwon Do
 
-Manipulate termn in order to get the types to fit
+Manipulate terms in order to get the types to fit
 
 Rozwiazania taskow w pliku: `main.hs` (for a change)
 
