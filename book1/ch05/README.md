@@ -8,6 +8,7 @@ Choosen exercises (some were too easy, or not enough interesting) from Chapter 4
 
 1. [Write a type signature](#write-a-type-signature)
 2. [Given a type, write a the function](#given-a-type-write-the-function)
+2. [Fix it](#fix-it)
 
 ---
 
@@ -91,4 +92,39 @@ my answer
 ```haskell
 a :: (a -> b) -> a -> b
 a f x = f x
+```
+
+## Fix it
+
+### Task 1
+
+```haskell
+module sing where -- module names should start with [A..Z]
+
+fstString :: [Char] ++ [Char] -- there should be '->' instead of '++'
+fstString x = x ++ " in the rain"
+
+sndString :: [Char] -> Char -- there should be '[Char]' instead of 'Char'
+sndString x = x ++ " over the rainbow"
+
+-- missing type declaration for the function
+-- like: 'sing :: [Char]'
+sing = if (x > y) then fstString x or sndString y -- not 'or' but 'then'
+where x = "Singin"
+	  x = "Somewhere" -- should be: 'y = "Somewhere"'
+```
+
+### Task 3
+
+```haskell
+-- arith3broken.hs
+module Arith3Broken where
+
+main :: IO ()
+Main = do -- should be 'main' not 'Main'
+	print 1 + 2 -- should be 'print (1 + 2)
+	putStrLn 10 -- should be 'putStrLn $ show 10'
+	print (negate -1) -- should be (negate 1), now we have kind of double negation
+	print ((+) 0 blah)
+	where blah = negate 1
 ```
