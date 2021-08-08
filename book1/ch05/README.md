@@ -8,7 +8,8 @@ Choosen exercises (some were too easy, or not enough interesting) from Chapter 4
 
 1. [Write a type signature](#write-a-type-signature)
 2. [Given a type, write a the function](#given-a-type-write-the-function)
-2. [Fix it](#fix-it)
+3. [Fix it](#fix-it)
+4. [Type Kwon Do](#type-kwon-do)
 
 ---
 
@@ -128,3 +129,66 @@ Main = do -- should be 'main' not 'Main'
 	print ((+) 0 blah)
 	where blah = negate 1
 ```
+
+## Type Kwon Do
+
+Manipulate termn in order to get the types to fit
+
+Rozwiazania taskow w pliku: `main.hs` (for a change)
+
+### Task 1
+
+<pre>
+f :: Int -> String
+f = undefined
+
+g :: String -> Char
+g = undefined
+
+h :: Int -> Char
+h = ???
+</pre>
+
+### Task 2
+
+<pre>
+data A
+data B
+data C
+
+q :: A -> B
+q = undefined
+
+w :: B -> C
+w = undefined
+
+e :: A -> C
+e = ???
+</pre>
+
+### Task 3
+
+<pre>
+data X
+data Y
+data Z
+
+xz :: X -> Z
+xz = undefined
+
+yz :: Y -> Z
+yz = undefined
+
+xform :: (X, Y) -> (Z, Z)
+xform = ???
+</pre>
+
+### Task 4
+
+<pre>
+munge :: (x -> y)
+      -> (y -> (w, z))
+      -> x
+      -> w
+munge = ???
+</pre>
