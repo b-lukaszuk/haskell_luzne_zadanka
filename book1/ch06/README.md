@@ -13,7 +13,7 @@ Choosen exercises (some were too easy, or not enough interesting) from Chapter 6
 
 ## Eq Instances
 
-[Go to: Table of contents](#back-to-table-of-contents)
+[Go to: Table of contents](#table-of-contents)
 
 Write the Eq instances for the datatype provided
 (checked for correctness, by typing ':set -Wall' in GHCi)
@@ -68,7 +68,7 @@ data EitherOr a b = Hello a | Goodbye b
 
 ## Will they work
 
-[Go to: Table of contents](#back-to-table-of-contents)
+[Go to: Table of contents](#table-of-contents)
 
 if: Will those code snippets evaluate correctly in GHCi,
 then: what will be the result?
