@@ -1,6 +1,6 @@
 # Ch05
 
-Choosen exercises (some were too easy, or not enough interesting) from Chapter 4 (rest of the exercises were solved 'in head')
+Choosen exercises (some were too easy, or not enough interesting) from Chapter 5 (rest of the exercises were solved 'in head')
 
 ---
 
