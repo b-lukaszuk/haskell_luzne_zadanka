@@ -164,7 +164,8 @@ s1 = Sentence "dogs" "drool"
 s2 = Sentence "Julie" "loves" "dogs"
 </pre>
 
-my answer: It will compile. All three types (`Subject`, `Verb`, and `Object`) are synonymes of `String` (so they have string representation).<br>
+my answer:<br>
+It will compile. All three types (`Subject`, `Verb`, and `Object`) are synonymes of `String` (so they have string representation).<br>
 `s1` is incompletely applied sentence (it still requires `Object`, but it's OK, like that).<br>
 `s2` is a completely applied sentence.<br>
 `Sentence` got instance of `Show` derived (so, it should be OK).
