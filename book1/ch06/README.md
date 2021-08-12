@@ -8,6 +8,7 @@ Choosen exercises (some were too easy, or not enough interesting) from Chapter 6
 
 1. [Eq Instances](#eq-instances)
 2. [Will they work](#will-they-work)
+3. [Does it typecheck?](#does-it-typecheck?)
 
 ---
 
@@ -105,3 +106,42 @@ my answer: No, it won't. Args need to be of the same type, so `String -> String`
 ```
 
 my answer: Yes, it will. Result `False :: Bool`
+
+## Does it typecheck?
+
+### Case 1
+
+<pre>
+data Person = Person Bool
+printPerson :: Person -> IO ()
+printPerson person = putStrLn (show person)
+</pre>
+
+### Case 2
+
+<pre>
+data Mood = Blah | Woot deriving Show
+settleDown x = if x == Woot
+then Blah
+else x
+</pre>
+
+### Case 3
+
+If you were able to get settleDown to typecheck:
+a) What values are acceptable inputs to that function?
+b) What will happen if you try to run settleDown 9? Why?
+c) What will happen if you try to run Blah > Woot? Why?
+
+### Case 4
+
+<pre>
+type Subject = String
+type Verb = String
+type Object = String
+data Sentence =
+Sentence Subject Verb Object
+deriving (Eq, Show)
+s1 = Sentence "dogs" "drool"
+s2 = Sentence "Julie" "loves" "dogs"
+</pre>
