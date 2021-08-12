@@ -8,7 +8,7 @@ Choosen exercises (some were too easy, or not enough interesting) from Chapter 6
 
 1. [Eq Instances](#eq-instances)
 2. [Will they work](#will-they-work)
-3. [Does it typecheck?](#does-it-typecheck?)
+3. [Does it typecheck?](#does-it-typecheck)
 
 ---
 
@@ -141,13 +141,13 @@ I used `deriving` to fix that. Now it works.
 
 ### Case 3
 
-If you were able to get settleDown to typecheck:
-a) What values are acceptable inputs to that function?
-my answer: only `Mood` type (so: `Blah` and `Woot`)
-b) What will happen if you try to run settleDown 9? Why?
-my answer: I will get an error, because I cannot compare `9 :: Num` with `Woot` (see answer above)
-c) What will happen if you try to run Blah > Woot? Why?
-my answer: I will get an error, because originally it only had `Show` derived, and I added `Eq`, but `Ord` instance is still missing
+If you were able to get settleDown to typecheck:<br>
+a) What values are acceptable inputs to that function?<br>
+my answer: only `Mood` type (so: `Blah` and `Woot`)<br>
+b) What will happen if you try to run settleDown 9? Why?<br>
+my answer: I will get an error, because I cannot compare `9 :: Num` with `Woot` (see answer above)<br>
+c) What will happen if you try to run Blah > Woot? Why?<br>
+my answer: I will get an error, because originally it only had `Show` derived, and I added `Eq`, but `Ord` instance is still missing<br>
 
 ### Case 4
 
@@ -164,4 +164,7 @@ s1 = Sentence "dogs" "drool"
 s2 = Sentence "Julie" "loves" "dogs"
 </pre>
 
-my answer: It will compile. All three types (`Subject`, `Verb`, and `Object`) are synonymes of `String` (so they have string representation). `s1` is incompletely applied sentence (it still requires `Object`, but it's OK, like that). `s2` is a completely applied sentence. `Sentence` got instance of `Show` derived (so, it should be OK).
+my answer: It will compile. All three types (`Subject`, `Verb`, and `Object`) are synonymes of `String` (so they have string representation).<br>
+`s1` is incompletely applied sentence (it still requires `Object`, but it's OK, like that).<br>
+`s2` is a completely applied sentence.<br>
+`Sentence` got instance of `Show` derived (so, it should be OK).
