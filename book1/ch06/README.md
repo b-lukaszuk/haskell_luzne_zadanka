@@ -109,29 +109,45 @@ my answer: Yes, it will. Result `False :: Bool`
 
 ## Does it typecheck?
 
+[Go to: Table of contents](#table-of-contents)
+
+Dzialajace programy w pliku `doesItTypecheck.hs`
+
 ### Case 1
 
 <pre>
 data Person = Person Bool
+
 printPerson :: Person -> IO ()
 printPerson person = putStrLn (show person)
 </pre>
+
+my answer:
+
+It will fail. The `Person` has no instance of `Show`.
+I used `deriving` to fix that. Now it works.
 
 ### Case 2
 
 <pre>
 data Mood = Blah | Woot deriving Show
-settleDown x = if x == Woot
-then Blah
-else x
+settleDown x = if x == Woot then Blah else x
 </pre>
+
+my answer:
+
+It will fail. The `Mood` has no instance of `Eq`.
+I used `deriving` to fix that. Now it works.
 
 ### Case 3
 
 If you were able to get settleDown to typecheck:
 a) What values are acceptable inputs to that function?
+my answer: only `Mood` type (so: `Blah` and `Woot`)
 b) What will happen if you try to run settleDown 9? Why?
+my answer: I will get an error, because I cannot compare `9 :: Num` with `Woot` (see answer above)
 c) What will happen if you try to run Blah > Woot? Why?
+my answer: I will get an error, because originally it only had `Show` derived, and I added `Eq`, but `Ord` instance is still missing
 
 ### Case 4
 
@@ -139,9 +155,13 @@ c) What will happen if you try to run Blah > Woot? Why?
 type Subject = String
 type Verb = String
 type Object = String
+
 data Sentence =
-Sentence Subject Verb Object
-deriving (Eq, Show)
+	Sentence Subject Verb Object
+	deriving (Eq, Show)
+
 s1 = Sentence "dogs" "drool"
 s2 = Sentence "Julie" "loves" "dogs"
 </pre>
+
+my answer: It will compile. All three types (`Subject`, `Verb`, and `Object`) are synonymes of `String` (so they have string representation). `s1` is incompletely applied sentence (it still requires `Object`, but it's OK, like that). `s2` is a completely applied sentence. `Sentence` got instance of `Show` derived (so, it should be OK).
