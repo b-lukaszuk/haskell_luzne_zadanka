@@ -179,6 +179,8 @@ Electric Typealoo
 
 Similar ruls as before (previous chapter). Derive the implementation from the type information.
 
+The answers are in the file: `typeKwonDoTwo.hs`
+
 ### Case 1
 
 <pre>
