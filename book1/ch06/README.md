@@ -9,6 +9,7 @@ Choosen exercises (some were too easy, or not enough interesting) from Chapter 6
 1. [Eq Instances](#eq-instances)
 2. [Will they work](#will-they-work)
 3. [Does it typecheck?](#does-it-typecheck)
+4. [Type-Kwon-Do Two: Electric Typealoo](#type-kwon-do-two)
 
 ---
 
@@ -169,3 +170,27 @@ It will compile. All three types (`Subject`, `Verb`, and `Object`) are synonymes
 `s1` is incompletely applied sentence (it still requires `Object`, but it's OK, like that).<br>
 `s2` is a completely applied sentence.<br>
 `Sentence` got instance of `Show` derived (so, it should be OK).
+
+## Type Kwon Do Two
+
+[Go to: Table of contents](#table-of-contents)
+
+Electric Typealoo
+
+Similar ruls as before (previous chapter). Derive the implementation from the type information.
+
+### Case 1
+
+<pre>
+chk :: Eq b => (a -> b) -> a -> b -> Bool
+chk = ??
+</pre>
+
+### Case 2
+
+<pre>
+-- Hint: use some arithmetic operation to
+-- combine values of type 'b'. Pick one
+arith :: Num b => (a -> b) -> Integer -> a -> b
+arith = ??
+</pre>
