@@ -8,6 +8,7 @@ Choosen exercises (some were too easy, or not enough interesting) from Chapter 7
 
 1. [Grab Bag](#grab-bag)
 2. [Variety Pack](#variety-pack)
+3. [Case Practice](#case-practice)
 
 ---
 
@@ -86,4 +87,36 @@ Fill in the definition of the following function:
 <pre>
 f :: (a, b, c) -> (d, e, f) -> ((a, d), (c, f))
 f = undefined
+</pre>
+
+## Case Practice
+
+[Go to: Table of contents](#table-of-contents)
+
+Solutions are in the file: `casePractice.hs`
+
+### Case 1
+
+Rewrite to case of
+
+<pre>
+functionC x y = if (x > y) then x else y
+</pre>
+
+### Case 2
+
+Rewrite to case of
+
+<pre>
+ifEvenAdd2 n = if even n then (n+2) else n
+</pre>
+
+### Case 3
+
+Cover all the cases
+
+<pre>
+nums x = case compare x 0 of
+ LT -> -1
+ GT -> 1
 </pre>
