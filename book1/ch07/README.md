@@ -68,7 +68,7 @@ b) What is the type of k2? Is it the same type as k1 or k3?<br>
 `k2 :: Num a => a`<br>
 Only the types of `k2` and `k3` are the same.<br>
 Typing `3` into REPL gives broadest possible type, i.e. `Num`.<br>
-Regarding `(-)` it reguires two `Num` as arguments.<br>
+Regarding `(-)` it requires two `Num` as arguments.<br>
 So in both cases (k1 and k3) first elt of the tuple is `Num`<br>
 On the other hand, the type of `k2` is `String` or `[Char]`<br>
 <br>
