@@ -72,9 +72,9 @@ Regarding `(-)` it reguires two `Num` as arguments.<br>
 So in both cases (k1 and k3) first elt of the tuple is `Num`<br>
 On the other hand, the type of `k2` is `String` or `[Char]`<br>
 <br>
-Later comment:
-Here REPL shows `k1 :: Integer` and not `k1 :: Num` as I expexted (the same stands for k3).
-Reason: `Chapter 6.7 Type-defaulting typeclasses` ("Haskell. Programming from first principles", C. Allen, J. Moronuki, p. 183) says that `default Num Integer`
+Later comment:<br>
+Here REPL shows `k1 :: Integer` and not `k1 :: Num` as I expexted (the same stands for k3).<br>
+Reason: `Chapter 6.7 Type-defaulting typeclasses` ("Haskell. Programming from first principles", C. Allen, J. Moronuki, p. 183) says that `default Num Integer`<br>
 <br>
 c) Of k1, k2, k3, which will return the number 3 as the result?<br>
 Both `k1` and `k3` will return the number 3 (`Num`) as the result.<br>
