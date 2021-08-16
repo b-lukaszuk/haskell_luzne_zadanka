@@ -175,9 +175,9 @@ g = undefined
 
 ### Case 5
 
-Write a pointfree versions of the `roundTrip` function below.
-
 Solution is in the file: `arith4.hs`
+
+Write a pointfree versions of the `roundTrip` function below.
 
 <pre>
 -- arith4.hs
@@ -197,6 +197,6 @@ main = do
 
 ### Case 6
 
-Change the function `roundTrip` to `roundTrip :: (Show a, Read b) => a -> b` so that the expression `print (roundtrip 4)` works.
-
 Solution is in the file: `arith4.hs`
+
+Change the function `roundTrip` to `roundTrip :: (Show a, Read b) => a -> b` so that the expression `print (roundtrip 4)` works.
