@@ -192,4 +192,4 @@ main = do
 
 ### Case 6
 
-Change the function `roundTrip` to `roundTrip :: (Show a, Read b) => a -> b` so that the expression `pring (roundtrip 4)` works.
+Change the function `roundTrip` to `roundTrip :: (Show a, Read b) => a -> b` so that the expression `print (roundtrip 4)` works.
