@@ -136,12 +136,15 @@ The function returns the tens digit of an integral argument.
 tensDigit :: Integral a => a -> a
 tensDigit x = d
     where xLast = x `div` 10
-    d = xLast `mod` 10
+          d = xLast `mod` 10
 </pre>
 
 a) rewrite it using `divMod`<br>
+Done. See `letsWriteCode.hs`<br>
 b) Does the `divMod` version have the same type as the original version<br>
+It has the same type as the original version<br>
 c) change it to `hunsD`, a function that returns hundreds digits instead of the tens.<br>
+Done. See `letsWriteCode.hs`<br>
 
 ### Case 2
 
@@ -174,6 +177,8 @@ g = undefined
 
 Write a pointfree versions of the `roundTrip` function below.
 
+Solution is in the file: `arith4.hs`
+
 <pre>
 -- arith4.hs
 module Arith4 where
@@ -193,3 +198,5 @@ main = do
 ### Case 6
 
 Change the function `roundTrip` to `roundTrip :: (Show a, Read b) => a -> b` so that the expression `print (roundtrip 4)` works.
+
+Solution is in the file: `arith4.hs`
