@@ -9,6 +9,7 @@ Choosen exercises (some were too easy, or not enough interesting) from Chapter 7
 1. [Grab Bag](#grab-bag)
 2. [Variety Pack](#variety-pack)
 3. [Case Practice](#case-practice)
+4. [Let's write code](#lets-write-code)
 
 ---
 
@@ -120,3 +121,75 @@ nums x = case compare x 0 of
  LT -> -1
  GT -> 1
 </pre>
+
+## Let's write code
+
+[Go to: Table of contents](#table-of-contents)
+
+Solutions are in the file: `letsWriteCode.hs`
+
+### Case 1
+
+The function returns the tens digit of an integral argument.
+
+<pre>
+tensDigit :: Integral a => a -> a
+tensDigit x = d
+    where xLast = x `div` 10
+    d = xLast `mod` 10
+</pre>
+
+a) rewrite it using `divMod`<br>
+b) Does the `divMod` version have the same type as the original version<br>
+c) change it to `hunsD`, a function that returns hundreds digits instead of the tens.<br>
+
+### Case 2
+
+Implement the following function using:<br>
+a) case expression<br>
+b) using guards<br>
+
+<pre>
+foldBool :: a -> a -> Bool -> a
+</pre>
+
+here is pattern matching version to get you started:
+
+<pre>
+foldBool3 :: a -> a -> Bool -> a
+foldBool3 x _ False = x
+foldBool3 _ y True = y
+</pre>
+
+### Case 3
+
+Fill in the definition.
+
+<pre>
+g :: (a -> b) -> (a, c) -> (b, c)
+g = undefined
+</pre>
+
+### Case 5
+
+Write a pointfree versions of the `roundTrip` function below.
+
+<pre>
+-- arith4.hs
+module Arith4 where
+
+-- id is a build-in function from Prelude (BL)
+-- id :: a -> a
+-- id x = x
+
+roundTrip :: (Show a, Read a) => a -> a
+roundTrip a = read (show a)
+
+main = do
+    print (roundTrip 4)
+	print (id 4)
+</pre>
+
+### Case 6
+
+Change the function `roundTrip` to `roundTrip :: (Show a, Read b) => a -> b` so that the expression `pring (roundtrip 4)` works.
