@@ -8,6 +8,7 @@ Choosen exercises (some were too easy, or not enough interesting) from Chapter 8
 
 1. [Recursion](#Recursion)
 2. [Fixing dividedBy](#fixing-dividedBy)
+3. [McCarthy 91 function](#mccarthy-91-function)
 
 ---
 
@@ -54,3 +55,22 @@ dividedBy num denom = go num denom 0
 </pre>
 
 Rewrite it, so that it can handle division by 0, without throwing an error
+
+## McCarthy 91 function
+
+[Go to: Table of contents](#table-of-contents)
+
+Solutions are in the file: `mccarthy91.hs`
+
+Write recursive McCarthy 91 function based on formula:
+
+<pre>
+MC(n) = if n > 100 then n - 10 else MC(MC(n+11))
+</pre>
+
+use this to check its correctness:
+
+<pre>
+Prelude> map mc91 [95..110]
+[91,91,91,91,91,91,91,92,93,94,95,96,97,98,99,100]
+<pre>
