@@ -9,6 +9,7 @@ Choosen exercises (some were too easy, or not enough interesting) from Chapter 8
 1. [Recursion](#Recursion)
 2. [Fixing dividedBy](#fixing-dividedBy)
 3. [McCarthy 91 function](#mccarthy-91-function)
+4. [Numbers into words](#numbers-into-words)
 
 ---
 
@@ -74,3 +75,33 @@ use this to check its correctness:
 Prelude> map mc91 [95..110]
 [91,91,91,91,91,91,91,92,93,94,95,96,97,98,99,100]
 <pre>
+
+## Numbers into words
+
+[Go to: Table of contents](#table-of-contents)
+
+Solutions are in the file: `wordNumber.hs`
+
+Write a function that changes number into words separated by "-", like:
+
+<pre>
+Prelude> wordNumber 12324546
+"one-two-three-two-four-five-four-six"
+</pre>
+
+You may want to use the following scaffolding:
+
+<pre>
+module WordNumber where
+
+import Data.List (intersperse)
+
+digitToWord :: Int -> String
+digitToWord n = undefined
+
+digits :: Int -> [Int]
+digits n = undefined
+
+wordNumber :: Int -> String
+wordNumber n = undefined
+</pre>
