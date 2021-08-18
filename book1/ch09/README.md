@@ -9,6 +9,7 @@ Choosen exercises (some were too easy, or not enough interesting) from Chapter 9
 1. [EnumFromTo](#enumfromto)
 2. [The Fearful Symmetry](#the-fearful-symmetry)
 3. [Square Cube](#square-cube)
+4. [Filtering](#filtering)
 
 ---
 
@@ -81,3 +82,26 @@ Alter the expression above so x < 50 and y < 50
 ### Case 3
 
 How many tuples are in the list from the task above
+
+## Filtering
+
+[Go to: Table of contents](#table-of-contents)
+
+The solutions are in the file: `filtering.hs`
+
+### Case 1
+
+Write a function that gives us all the multiples of 3 from range 1-30
+
+### Case 2
+
+Use function composition to find how many digits were returned by the function above
+
+### Case 3
+
+Write a function `myFilter` that removes all articles (like 'a', "the") from a sentence, e.g.
+
+<pre>
+Prelude> myFilter "The brown dog was a goof"
+["brown", "dog", "was", "goof"]
+</pre>
