@@ -1,6 +1,6 @@
 # Ch09
 
-Choosen exercises (some were too easy, or not enough interesting) from Chapter 9 (rest of the exercises were solved 'in head')
+Choosen exercises (some were too easy, or not enough interesting) from Chapter 9 (rest of the exercises were solved 'in head' or not at all)
 
 ---
 
@@ -12,6 +12,7 @@ Choosen exercises (some were too easy, or not enough interesting) from Chapter 9
 4. [Filtering](#filtering)
 5. [Zippig](#zipping)
 6. [Ciphers](#ciphers)
+7. [Standard Functions](#standard-functions)
 
 ---
 
@@ -145,3 +146,11 @@ The solutions are in the file: `ciphers.hs`
 Write coder and decoder function for Cesar's cipher (right shift by 13)
 
 Hints: you may want to use `Data.Char(chr, ord)` and `mod` function.
+
+## Standard Functions
+
+[Go to: Table of contents](#table-of-contents)
+
+The solutions are in the file: `standardFunctions.hs`
+
+Write Your own versions of some Haskell's standard functions, e.g. `and`, `or`, `any`, `ele`, `reverse`, `squish` (flattens list of lists), `squishMap` (maps a function over a list and concatenates the results), `maximum` (returns maximum found in a list),
