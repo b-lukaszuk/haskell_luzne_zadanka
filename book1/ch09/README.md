@@ -16,7 +16,7 @@ Choosen exercises (some were too easy, or not enough interesting) from Chapter 9
 
 The solutions are in the file: `enumFromTo.hs`
 
-Based on your knowledge of `Enum` (`:i Enum`) write your own `enumFromTo` definitions for the types provided. Do not use range syntax to do so. It should return the same results as if you did [start..stop].
+Based on your knowledge of `Enum` (`:i Enum`) write your own `enumFromTo` definitions for the types provided. Do not use range syntax to do so. It should return the same results as if you did `[start..stop]` or `enumFromTo`.
 
 <pre>
 eftBool :: Bool -> Bool -> [Bool]
