@@ -11,6 +11,7 @@ Choosen exercises (some were too easy, or not enough interesting) from Chapter 9
 3. [Square Cube](#square-cube)
 4. [Filtering](#filtering)
 5. [Zippig](#zipping)
+6. [Ciphers](#ciphers)
 
 ---
 
@@ -134,3 +135,13 @@ zipWith = undefined
 ### Case 3
 
 Rewrite your `zip` in terms of the `zipWith` you wrote.
+
+## Ciphers
+
+[Go to: Table of contents](#table-of-contents)
+
+The solutions are in the file: `ciphers.hs`
+
+Write coder and decoder function for Cesar's cipher (right shift by 13)
+
+Hints: you may want to use `Data.Char(chr, ord)` and `mod` function.
