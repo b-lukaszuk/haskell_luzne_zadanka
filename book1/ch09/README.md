@@ -8,6 +8,7 @@ Choosen exercises (some were too easy, or not enough interesting) from Chapter 9
 
 1. [EnumFromTo](#enumfromto)
 2. [The Fearful Symmetry](#the-fearful-symmetry)
+3. [Square Cube](#square-cube)
 
 ---
 
@@ -55,3 +56,28 @@ Do the same but the function should be named `myLines` and separate words on "\n
 ### Case 3
 
 The two functions got a lot in common, write third function that takes a separator its argument.
+
+## Square Cube
+
+[Go to: Table of contents](#table-of-contents)
+
+The solutions are in the file: `squareCube.hs`
+
+Given the following:
+
+<pre>
+mySqr = [x^2 | x <- [1..5]]
+myCube = [x^3 | x <- [1..5]]
+</pre>
+
+### Case 1
+
+Write an expression that will make tuples of the outputs of mySqr and myCube
+
+### Case 2
+
+Alter the expression above so x < 50 and y < 50
+
+### Case 3
+
+How many tuples are in the list from the task above
