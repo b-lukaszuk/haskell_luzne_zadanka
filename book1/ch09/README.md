@@ -10,6 +10,7 @@ Choosen exercises (some were too easy, or not enough interesting) from Chapter 9
 2. [The Fearful Symmetry](#the-fearful-symmetry)
 3. [Square Cube](#square-cube)
 4. [Filtering](#filtering)
+5. [Zippig](#zipping)
 
 ---
 
@@ -105,3 +106,31 @@ Write a function `myFilter` that removes all articles (like 'a', "the") from a s
 Prelude> myFilter "The brown dog was a goof"
 ["brown", "dog", "was", "goof"]
 </pre>
+
+## Zipping
+
+[Go to: Table of contents](#table-of-contents)
+
+The solutions are in the file: `zipping.hs`
+
+### Case 1
+
+Write Your own version of zip
+
+<pre>
+zip :: [a] -> [b] -> [(a, b)]
+zip = undefined
+</pre>
+
+### Case 2
+
+Write Your own version of zipWith
+
+<pre>
+zipWith :: (a -> b -> c) -> [a] -> [b] -> [c]
+zipWith = undefined
+</pre>
+
+### Case 3
+
+Rewrite your `zip` in terms of the `zipWith` you wrote.
