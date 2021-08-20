@@ -21,7 +21,7 @@ Fix the mistakes in the code snippets below (check in in REPL):
 <pre>
 foldr (++) ["woot", "WOOT", "woot"]
 foldr (++) [] ["woot", "WOOT", "woot"] -- accumulator was missing
-<pre>
+</pre>
 
 ### Case 2
 
@@ -87,4 +87,4 @@ foldr (flip const) 0 "burritos" -- this one works
 foldl (flip const) 'z' [1..5]
 foldr (flip const) 'z' [1..5] -- this one works
 -- I don't know why
-<pre>
+</pre>
