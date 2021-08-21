@@ -50,10 +50,28 @@ foldr (||) False [False, True] -- the accumulator should be 'False'
 ### Case 5
 
 <pre>
-foldl ((++) . show) "" [1..5]
+foldl ((++) . show) "" [1..5] --  No instance for (Enum [Char])
+-- arising from the arithmetic sequence ‘1 .. 5’
 foldr ((++) . show) "" [1..5] -- this one works
 -- I don't know why, after all show type: 'show :: Show a => a -> String' so it accepts only single argument, not a pair
 </pre>
+
+Ok, after some digging in REPL, I came to this conclusion (Actually, solving and describing Case 6 below pushed me to solve Case 5 on my own).
+
+1) The type of: `(++) . show` is: `Show a => a -> [Char] -> [Char]`
+
+2) The type of: `foldl` is: `(b -> a -> b) -> b -> [a] -> b` [its acctually `t a` (`Foldable t`) not `[a]`, but I prefere to think of it as `[a]`]
+
+3) So `foldl` takes a function that takes `b` (`String`, accumulator on the left) and `a` (`Num`, current value on the right) and and returns `String`.
+
+4) `[1..5]` is a list of `Num` or `Enum` whereas based on point 3 we expect it to be `String`, i.e. `[Char]`, that is why we got the error:
+
+<pre>
+* No instance for (Enum [Char])
+arising from the arithmetic sequence ‘1 .. 5’
+</pre>
+
+Note: To better understand the answer to this case (Case 5) it might be helpful to first read a point-by-point answer to Case 6 below.
 
 ### Case 6
 
