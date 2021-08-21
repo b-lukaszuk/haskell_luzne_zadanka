@@ -26,8 +26,9 @@ foldr (++) [] ["woot", "WOOT", "woot"] -- accumulator was missing
 ### Case 2
 
 <pre>
-foldr max [] "fear is the little death"
-foldr max ' ' "fear is the little death" -- incorrect accumulator, now it is 'Char' with the lowest possible value for 'Char' (meaningful character in ASCII)
+foldr max [] "fear is the little death" -- incorrect accumulator/reducer,
+foldr max ' ' "fear is the little death" -- now it is 'Char'
+-- with the lowest possible value for 'Char' (meaningful character in ASCII)
 </pre>
 
 ### Case 3
@@ -83,14 +84,14 @@ due to the above (especially point 1.2) `a` (list) must be some `Num` and `b` is
 4.2) on the right the accumulator (so `b` == `Char`), because `foldr` sets accumulator on the right.<br>
 4.3) Based on the definition in `foldr`, i.e. `(a -> b -> b)` (point 1.1) we expect it (`const`) to return `b` which is `Char`<br>
 
-5) Next we use `const` as an argument to `foldr`. But `const` got type of its own:
-`const :: a -> b -> a`
+5) Next we use `const` as an argument to `foldr`. But `const` got type of its own:<br>
+`const :: a -> b -> a`<br>
 so it takes `a` (`Num`, point 4.1) and `b` (`Char`, point 4.2) and it must return `Num` (based on its own definition that we see in point 5)
 
 --
 
 So now we got a conflict:<br>
-`foldr` must return `Char` and expects a function that return `Char` (points 1-4)<br>
+`foldr` must return `Char` and expects a function that returns `Char` (points 1-4)<br>
 and<br>
 `const` returns `Num` (point 5)<br>
 
