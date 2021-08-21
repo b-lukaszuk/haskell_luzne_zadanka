@@ -7,6 +7,7 @@ Choosen exercises (some were too easy, or not enough interesting) from Chapter 1
 # Table of contents
 
 1. [Understanding Folds](#understanding-folds)
+2. [Database Processing](#database-processing)
 
 ---
 
@@ -124,3 +125,36 @@ then the function in it (`foldr`) got the following signature `(b -> a -> b)` wh
 here: `const a -> b -> a` is evoked with `Char` and `Num` and returns `Char`
 
 So, `foldr` expects `Char`, and `const` delivers `Char`, therefore everything is OK.
+
+
+## Database Processing
+
+[Go to: Table of contents](#table-of-contents)
+
+The solutions are in the file: `databaseProcessing.hs`
+
+Write teh following functions for processing this data
+
+<pre>
+import Data.Time
+
+data DatabaseItem = DbString String | DbNumber Integer | DbDate UTCTime
+	deriving (Eq, Ord, Show)
+
+theDatabase :: [DatabaseItem]
+
+theDatabase = [ DbDate (UTCTime (fromGregorian 1911 5 1) (secondsToDiffTime 34123))
+	, DbNumber 9001
+	, DbString "Hello, world!"
+	, DbDate (UTCTime (fromGregorian 1921 5 1) (secondsToDiffTime 34123))
+]
+</pre>
+
+### Case 1
+
+Write a function that filters for DbDate values and returns a list of the UTCTime values inside them.
+
+<pre>
+filterDbDate :: [DatabaseItem] -> [UTCTime]
+filterDbDate = undefined
+</pre>
