@@ -67,38 +67,38 @@ foldr (\x b -> const b x) 'a' [1..5] -- this one works as well
 
 Solution found at: [Stack Overflow](https://stackoverflow.com/questions/36047841/haskell-foldr-results-in-type-error-while-foldl-doesnt)
 
-Briefly (my words):<br>
-<br>
+Briefly (my words):
+
 1) We use `foldr` with the signature:<br>
 1.1) `foldr :: (a -> b -> b) -> b -> [a] -> b`<br>
 1.2) We evoke it with: `foldr const 'a' [1..5]`<br>
-due to the above (especially point 1.2) `a` (list) must be some `Num` and `b` is `Char`<br>
-<br>
-2) `foldr` must return `b` (`Char`)<br>
-<br>
-3) the function send as an argument to `foldr` must return `b` (`Char`)<br>
-<br>
-4) We use `const` sending it two arguments on the left current value of the list (so `a` == `Num`) and on the right the accumulator (so `b` == `Char`), because `foldr` sets accumulator on the right<br>
-<br>
-5) Next we use `const` as an argument to `foldr` and `const` got type:<br>
-`const :: a -> b -> a`<br>
-so it takes `a` (`Num`) and `b` (`Char`) and it must return `Num` (see point 4)<br>
-<br>
-So no we got conlict:<br>
-`foldr` that expects the function to return `Char` (see points 1-3)<br>
+due to the above (especially point 1.2) `a` (list) must be some `Num` and `b` is `Char`
+
+2) `foldr` must return `b` (`Char`)
+
+3) the function send as an argument to `foldr` must return `b` (`Char`)
+
+4) We use `const` sending it two arguments on the left current value of the list (so `a` == `Num`) and on the right the accumulator (so `b` == `Char`), because `foldr` sets accumulator on the right
+
+5) Next we use `const` as an argument to `foldr` and `const` got type:
+`const :: a -> b -> a`
+so it takes `a` (`Num`) and `b` (`Char`) and it must return `Num` (see point 4)
+
+--
+
+So now we got a conflict:<br>
+`foldr` expects the function to return `Char` (see points 1-3)<br>
 and<br>
 `const` returns `Num`<br>
-<br>
-And only after evaluating `[1..5]` (the last element on the right, so the first from the left) `const` will return `Num` which cannot be implicitly coerced to `Char` that is expected by `foldr`<br>
-<br>
-On the other hand, if we use: <br>
-`foldl const 'a' [1..5] -- this one works`<br>
-<br>
-then the function in it got signature `(b -> a -> b)` where `b` is `Char` (our accumulator `'a'`), `a` is `Num` (an element of the list: `[1..5]`) and `Char` is to be returned<br>
-<br>
-here: `const a -> b -> a` is evoked with `Char` and `Num` and returns `Char`<br>
-<br>
-So, `foldr` expects `Char`, and `const` delivers `Char`, therefore all is good.<br>
-<br>
---<br>
-Ok, I'll skip the rest of the cases because they seem similar (e.g. Case 7 looks very similar to Case 6)<br>
+
+And only after evaluating `[1..5]` (the last element on the right, so the first from the left) `const` will return `Num` which cannot be implicitly coerced to `Char` that is expected by `foldr`
+
+--
+
+On the other hand, if we use:<br>
+`foldl const 'a' [1..5]`<br>
+then the function in it (`foldr`) got the following signature `(b -> a -> b)` where `b` is `Char` (our accumulator `'a'`), `a` is `Num` (an element of the list: `[1..5]`) and `Char` is to be returned
+
+here: `const a -> b -> a` is evoked with `Char` and `Num` and returns `Char`
+
+So, `foldr` expects `Char`, and `const` delivers `Char`, therefore all is good.
