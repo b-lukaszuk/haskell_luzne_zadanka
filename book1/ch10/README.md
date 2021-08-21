@@ -78,18 +78,21 @@ due to the above (especially point 1.2) `a` (list) must be some `Num` and `b` is
 
 3) the function send as an argument to `foldr` must return `b` (`Char`)
 
-4) We use `const` sending it two arguments on the left current value of the list (so `a` == `Num`) and on the right the accumulator (so `b` == `Char`), because `foldr` sets accumulator on the right
+4) We use `const` as the function (point 3). We send it two arguments:<br>
+4.1) on the left the current value of the list (so `a` == `Num`)<br>
+4.2) on the right the accumulator (so `b` == `Char`), because `foldr` sets accumulator on the right.<br>
+4.3) Based on the definition in `foldr`, i.e. `(a -> b -> b)` (point 1.1) we expect it (`const`) to return `b` which is `Char`<br>
 
-5) Next we use `const` as an argument to `foldr` and `const` got type:
+5) Next we use `const` as an argument to `foldr`. But `const` got type of its own:
 `const :: a -> b -> a`
-so it takes `a` (`Num`) and `b` (`Char`) and it must return `Num` (see point 4)
+so it takes `a` (`Num`, point 4.1) and `b` (`Char`, point 4.2) and it must return `Num` (based on its own definition that we see in point 5)
 
 --
 
 So now we got a conflict:<br>
-`foldr` expects the function to return `Char` (see points 1-3)<br>
+`foldr` must return `Char` and expects a function that return `Char` (points 1-4)<br>
 and<br>
-`const` returns `Num`<br>
+`const` returns `Num` (point 5)<br>
 
 And only after evaluating `[1..5]` (the last element on the right, so the first from the left) `const` will return `Num` which cannot be implicitly coerced to `Char` that is expected by `foldr`
 
@@ -97,8 +100,8 @@ And only after evaluating `[1..5]` (the last element on the right, so the first 
 
 On the other hand, if we use:<br>
 `foldl const 'a' [1..5]`<br>
-then the function in it (`foldr`) got the following signature `(b -> a -> b)` where `b` is `Char` (our accumulator `'a'`), `a` is `Num` (an element of the list: `[1..5]`) and `Char` is to be returned
+then the function in it (`foldr`) got the following signature `(b -> a -> b)` where `b` is `Char` (our accumulator, the letter `'a'`), `a` is `Num` (an element of the list: `[1..5]`) and `Char` is to be returned
 
 here: `const a -> b -> a` is evoked with `Char` and `Num` and returns `Char`
 
-So, `foldr` expects `Char`, and `const` delivers `Char`, therefore all is good.
+So, `foldr` expects `Char`, and `const` delivers `Char`, therefore everything is OK.
