@@ -158,3 +158,42 @@ Write a function that filters for DbDate values and returns a list of the UTCTim
 filterDbDate :: [DatabaseItem] -> [UTCTime]
 filterDbDate = undefined
 </pre>
+
+### Case 2
+
+Write a function that filters for DbNumber values and returns a list of the Integer values inside them.
+
+<pre>
+filterDbNumber :: [DatabaseItem] -> [Integer]
+filterDbNumber = undefined
+</pre>
+
+### Case 3
+
+Write a function that gets the most recent date.
+
+<pre>
+mostRecent :: [DatabaseItem] -> UTCTime
+mostRecent = undefined
+</pre>
+
+### Case 4
+
+Write a function that sums all of the DbNumber values.
+
+<pre>
+sumDb :: [DatabaseItem] -> Integer
+sumDb = undefined
+</pre>
+
+### Case 5
+
+Write a function that gets the average of the DbNumber values.
+
+<pre>
+-- You'll probably need to use fromIntegral
+-- to get from Integer to Double.
+
+avgDb :: [DatabaseItem] -> Double
+avgDb = undefined
+</pre>
