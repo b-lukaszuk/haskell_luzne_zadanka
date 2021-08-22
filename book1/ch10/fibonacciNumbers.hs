@@ -1,5 +1,5 @@
 fibs :: [Integer]
-fibs = 1 : scanl (+) 1 fibs
+fibs = 1 : scanl (+) 1 fibs -- be careful, infinite list
 
 
 -- case 1
