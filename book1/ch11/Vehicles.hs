@@ -7,7 +7,9 @@ data Airline = PapuAir | CatapultsR'Us | TakeYOurChancesUnited deriving (Eq, Sho
 
 data Price = Price Integer deriving (Eq, Show)
 
-data Vehicle = Car Manufacturer Price | Plane Airline deriving (Eq, Show)
+data Size = Small | Medium | Big deriving (Eq, Show)
+
+data Vehicle = Car Manufacturer Price | Plane Airline Size deriving (Eq, Show)
 
 -- type instances
 myCar :: Vehicle
@@ -20,7 +22,7 @@ clownCar :: Vehicle
 clownCar = Car Tata (Price 7000)
 
 doge :: Vehicle
-doge = Plane PapuAir
+doge = Plane PapuAir Medium
 
 
 -- case 2
@@ -29,7 +31,7 @@ isCar (Car _ _) = True
 isCar _ = False
 
 isPlane :: Vehicle -> Bool
-isPlane (Plane _) = True
+isPlane (Plane _ _) = True
 isPlane _ = False
 
 areCars :: [Vehicle] -> [Bool]

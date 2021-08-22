@@ -56,3 +56,7 @@ Write a function to tell us the manufacturer of a piece of data:
 getManu :: Vehicle -> Manufacturer
 getManu = undefined
 </pre>
+
+### Case 5
+
+Add the size of the plane as an argument to the Plane constructor. Add the appropriate datatypes in the appropriate places.
