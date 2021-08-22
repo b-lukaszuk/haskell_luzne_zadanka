@@ -10,6 +10,7 @@ Choosen exercises (some were too easy, or not enough interesting) from Chapter 1
 2. [Database Processing](#database-processing)
 3. [Fibonacci numbers](#fibonacci-numbers)
 4. [Warm up and review](#warm-up-and-review)
+5. [Rewrite functions using folds](#rewrite-functions-using-folds)
 
 ---
 
@@ -243,3 +244,71 @@ Write a function that takes inputs from `stops` and `vowels` and makes tuples of
 ### Case 2
 
 Modify the function from Case 1 that it only returns the combinations that contain `'a'` or `'p'`
+
+## Rewrite functions using folds
+
+[Go to: Table of contents](#table-of-contents)
+
+The solutions are in the file: `rewriteWithFolds.hs`
+
+As in the section title, try to (re)write the following functions with fold.
+
+### Case 1
+
+<pre>
+myOr :: [Bool] -> Bool
+myOr = undefined
+</pre>
+
+### Case 2
+
+<pre>
+myAny :: (a -> Bool) -> [a] -> Bool
+myAny = undefined
+</pre>
+
+### Case 3
+
+<pre>
+myElem :: Eq a => a -> [a] -> Bool
+myElem = undefined
+</pre>
+
+### Case 4
+
+<pre>
+myReverse :: [a] -> [a]
+myReverse = undefined
+</pre>
+
+### Case 5
+
+<pre>
+myMap :: (a -> b) -> [a] -> [b]
+myMap = undefined
+</pre>
+
+### Case 6
+
+<pre>
+myFilter :: (a -> Bool) -> [a] -> [a]
+myFilter = undefined
+</pre>
+
+### Case 7
+
+`squish` flattens a list of lists into a list
+
+<pre>
+squish :: [[a]] -> [a]
+squish = undefined
+</pre>
+
+### Case 8
+
+`squishMap` maps a function over a list and concatenates the results
+
+<pre>
+squishMap :: (a -> [b]) -> [a] -> [b]
+squishMap = undefined
+</pre>
