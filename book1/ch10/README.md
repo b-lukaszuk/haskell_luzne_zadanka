@@ -8,6 +8,7 @@ Choosen exercises (some were too easy, or not enough interesting) from Chapter 1
 
 1. [Understanding Folds](#understanding-folds)
 2. [Database Processing](#database-processing)
+3. [Fibonacci numbers](#fibonacci-numbers)
 
 ---
 
@@ -196,3 +197,27 @@ Write a function that gets the average of the DbNumber values.
 avgDb :: [DatabaseItem] -> Double
 avgDb = undefined
 </pre>
+
+## Fibonacci Numbers
+
+[Go to: Table of contents](#table-of-contents)
+
+The solutions are in the file: `fibonacciNumbers.hs`
+
+Given a function:
+
+<pre>
+fibs = 1 : scanl (+) 1 fibs
+</pre>
+
+### Case 1
+
+Modify it to return the first 20 Fibonacci numbers
+
+### Case 2
+
+Modify it to return the Fibonacci numbers smaller than 100
+
+### Case 3
+
+Write the `factorial` function using `scanl`
