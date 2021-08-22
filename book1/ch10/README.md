@@ -1,6 +1,6 @@
 # Ch10
 
-Choosen exercises (some were too easy, or not enough interesting) from Chapter 10 (rest of the exercises were solved 'in head' or not at all)
+Choosen exercises (some were too easy, or not enough interesting) from Chapter 10 (rest of the exercises were solved 'in head' or not at all). Some commands were slightly modified.
 
 ---
 
@@ -9,6 +9,7 @@ Choosen exercises (some were too easy, or not enough interesting) from Chapter 1
 1. [Understanding Folds](#understanding-folds)
 2. [Database Processing](#database-processing)
 3. [Fibonacci numbers](#fibonacci-numbers)
+4. [Warm up and review](#warm-up-and-review)
 
 ---
 
@@ -221,3 +222,24 @@ Modify it to return the Fibonacci numbers smaller than 100
 ### Case 3
 
 Write the `factorial` function using `scanl`
+
+## Warm up and review
+
+[Go to: Table of contents](#table-of-contents)
+
+The solutions are in the file: `warmUpAndReview.hs`
+
+Given the following:
+
+<pre>
+stops = "pbtdkg"
+vowels = "aeiou"
+</pre>
+
+### Case 1
+
+Write a function that takes inputs from `stops` and `vowels` and makes tuples of all possible combinations.
+
+### Case 2
+
+Modify the function from Case 1 that it only returns the combinations that contain `'a'` or `'p'`
