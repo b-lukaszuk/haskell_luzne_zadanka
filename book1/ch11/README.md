@@ -53,6 +53,6 @@ areCars = undefined
 Write a function to tell us the manufacturer of a piece of data:
 
 <pre>
-getmanu :: Vehicle -> Manufacturer
-getmanu = undefined
+getManu :: Vehicle -> Manufacturer
+getManu = undefined
 </pre>
