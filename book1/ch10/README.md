@@ -297,18 +297,25 @@ myFilter = undefined
 
 ### Case 7
 
-`squish` flattens a list of lists into a list
+`mySquish` flattens a list of lists into a list
 
 <pre>
-squish :: [[a]] -> [a]
-squish = undefined
+mySquish :: [[a]] -> [a]
+mySquish = undefined
 </pre>
 
 ### Case 8
 
-`squishMap` maps a function over a list and concatenates the results
+`mySquishMap` maps a function over a list and concatenates the results
 
 <pre>
-squishMap :: (a -> [b]) -> [a] -> [b]
-squishMap = undefined
+mySquishMap :: (a -> [b]) -> [a] -> [b]
+mySquishMap = undefined
+
+-- usage
+Prelude> mySquishMap (\x -> [1, x, 3]) [2]
+[1,2,3]
+Prelude> let f x = "WO " ++ [x] ++ " OT "
+Prelude> mySquishMap f "blah"
+WO l OT WO a OT WO h OT "
 </pre>
