@@ -26,7 +26,7 @@ instance TooMany Int where
 --   tooMany (Goats (n, "billies")) = n > 20
 --   tooMany (Goats (n, "does")) = n > 43
 --   tooMany (Goats (n, "nannies")) = n > 43
---   tooMany (Goats (_, _)) = error "Goats must be male or female"
+--   tooMany (Goats (_, _)) = error "Goats must be males or females"
 
 
 -- case 2
