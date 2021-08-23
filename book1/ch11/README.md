@@ -7,6 +7,7 @@ Choosen exercises (some were too easy, or not enough interesting) from Chapter 1
 # Table of contents
 
 1. [Vehicles](#vehicles)
+2. [Logic Goats](#logic-goats)
 
 ---
 
@@ -60,3 +61,36 @@ getManu = undefined
 ### Case 5
 
 Add the size of the plane as an argument to the Plane constructor. Add the appropriate datatypes in the appropriate places.
+
+## Logic Goats
+
+[Go to: Table of contents](#table-of-contents)
+
+The solutions are in the file `LogicGoats.hs`
+
+Given that:
+
+<pre>
+newtype Goats = Goats Int deriving Show
+
+class TooMany a where
+	tooMany :: a -> Bool
+
+instance TooMany Int where
+	tooMany n = n > 42
+
+instance TooMany Goats where
+	tooMany (Goats n) = n > 43
+</pre>
+
+### Case 1
+
+Reuse TooMany typeclass, write an instance of it for the type (Int, String). Add pragma `FlexibleInstances`
+
+### Case 2
+
+Make another TooMany instance for (Int, Int). Sum the values together and then compare (like comparing a count of goats from two different fields)
+
+### Case 3
+
+Make another TooMany instance for (Num a, TooMany a) => (a, a). It can mean whatever you want (like summing the two numbers together).
