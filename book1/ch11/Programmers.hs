@@ -7,7 +7,7 @@ data ProgLang = Haskell | Agda | Idris | PureScript deriving (Eq, Show)
 data Programmer = Programmer { os :: OS , lang :: ProgLang } deriving (Eq, Show)
 
 allOSs :: [OS]
-allOSs = [ GnuPlusLinux , OpenBSD, Mac , Windows]
+allOSs = [GnuPlusLinux , OpenBSD, Mac , Windows]
 
 allProgLangs:: [ProgLang]
 allProgLangs = [Haskell, Agda, Idris, PureScript]
