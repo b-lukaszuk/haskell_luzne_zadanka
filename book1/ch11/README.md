@@ -10,6 +10,7 @@ Choosen exercises (some were too easy, or not enough interesting) from Chapter 1
 2. [Logic Goats](#logic-goats)
 3. [Programmers](#programmers)
 4. [Binay Tree](#binary-tree)
+4. [Binay Tree2](#binary-tree2)
 
 ---
 
@@ -156,4 +157,49 @@ Write a function `mapTree` with the following type signature:
 mapTree :: (a -> b) -> BinaryTree a -> BinaryTree b
 mapTree _ Leaf = Leaf
 mapTree f (Node left a right) = Node undefined undefined undefined
+</pre>
+
+## Binary Tree2
+
+[Go to: Table of contents](#table-of-contents)
+
+The solutions are in the file `BinaryTree2.hs`
+
+Write a function to convert `BinaryTree` to list.
+
+Here is some helpful scafollding
+
+<pre>
+preorder :: BinaryTree a -> [a]
+preorder = undefined
+
+inorder :: BinaryTree a -> [a]
+inorder = undefined
+
+postorder :: BinaryTree a -> [a]
+postorder = undefined
+
+testTree :: BinaryTree Integer
+testTree = Node (Node Leaf 1 Leaf) 2 (Node Leaf 3 Leaf)
+
+testPreorder :: IO ()
+testPreorder = if preorder testTree == [2, 1, 3]
+	then putStrLn "Preorder fine!"
+	else putStrLn "Bad news bears."
+
+testInorder :: IO ()
+testInorder = if inorder testTree == [1, 2, 3]
+	then putStrLn "Inorder fine!"
+	else putStrLn "Bad news bears."
+
+testPostorder :: IO ()
+testPostorder = if postorder testTree == [1, 3, 2]
+	then putStrLn "Postorder fine!"
+	else putStrLn "postorder failed check"
+
+main :: IO ()
+main = do
+	testPreorder
+	testInorder
+	testPostorder
 </pre>
