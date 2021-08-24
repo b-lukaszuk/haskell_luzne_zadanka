@@ -12,6 +12,7 @@ Choosen exercises (some were too easy, or not enough interesting) from Chapter 1
 4. [Binay Tree](#binary-tree)
 5. [Binay Tree2](#binary-tree2)
 6. [Binay Tree3](#binary-tree3)
+7. [Ciphers](#ciphers)
 
 ---
 
@@ -217,3 +218,25 @@ Write foldr for BinaryTree. Below you will find the function's signature.
 -- any traversal order is fine
 foldTree :: (a -> b -> b) -> b -> BinaryTree a -> b
 </pre>
+
+## Ciphers
+
+[Go to: Table of contents](#table-of-contents)
+
+The solutions are in the file `Ciphers.hs`
+
+Modify your Caesar cipher (Chapter 09). And Build Vigenere cipher.
+
+> So, for example, if you want to encode the message “meet at
+> dawn,” the first step is to pick a keyword that will determine which
+> Caesar cipher to use. We’ll use the keyword “ALLY” here. You repeat
+> the keyword for as many characters as there are in your original
+> message:
+> MEET AT DAWN
+> ALLY AL LYAL
+> Now the number of rightward shifts to make to encode each
+> character is set by the character of the keyword that lines up with it.
+> The ’A’ means a shift of 0, so the initial M will remain M. But the ’L’
+> for our second character sets a rightward shift of 11, so ’E’ becomes
+> ’P’. And so on, so “meet at dawn” encoded with the keyword “ALLY”
+> becomes “MPPR AE OYWY.”
