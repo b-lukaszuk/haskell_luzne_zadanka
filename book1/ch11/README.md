@@ -8,6 +8,7 @@ Choosen exercises (some were too easy, or not enough interesting) from Chapter 1
 
 1. [Vehicles](#vehicles)
 2. [Logic Goats](#logic-goats)
+3. [Programmers](#programmers)
 
 ---
 
@@ -94,3 +95,34 @@ Make another TooMany instance for (Int, Int). Sum the values together and then c
 ### Case 3
 
 Make another TooMany instance for (Num a, TooMany a) => (a, a). It can mean whatever you want (like summing the two numbers together).
+
+## Programmers
+
+[Go to: Table of contents](#table-of-contents)
+
+The solutions are in the file `Programmers.hs`
+
+Given that:
+
+<pre>
+data OS = GnuPlusLinux | OpenBSD | Mac | Windows deriving (Eq, Show)
+
+data ProgLang = Haskell | Agda | Idris | PureScript deriving (Eq, Show)
+
+data Programmer = Programmer { os :: OS , lang :: ProgLang } deriving (Eq, Show)
+</pre>
+
+Write a function that generates all possible valeus of Programmer. Use the code snippet below:
+
+<pre>
+allOSs :: [OS]
+allOSs = [ GnuPlusLinux , OpenBSD, , Mac , Windows]
+
+allProgLangs:: [ProgLang]
+allProgLangs = [Haskell, Agda, Idris, PureScript]
+
+allProgrammers :: [Programmer]
+allProgrammers = undefined
+</pre>
+
+The `length` of allProgrammers should be equal to `length allOSs * length allProgLangs`
