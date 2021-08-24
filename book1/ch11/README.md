@@ -10,7 +10,8 @@ Choosen exercises (some were too easy, or not enough interesting) from Chapter 1
 2. [Logic Goats](#logic-goats)
 3. [Programmers](#programmers)
 4. [Binay Tree](#binary-tree)
-4. [Binay Tree2](#binary-tree2)
+5. [Binay Tree2](#binary-tree2)
+6. [Binay Tree3](#binary-tree3)
 
 ---
 
@@ -202,4 +203,17 @@ main = do
 	testPreorder
 	testInorder
 	testPostorder
+</pre>
+
+## Binary Tree3
+
+[Go to: Table of contents](#table-of-contents)
+
+The solutions are in the file `BinaryTree3.hs`
+
+Write foldr for BinaryTree. Below you will find the function signature.
+
+<pre>
+-- any traversal order is fine
+foldTree :: (a -> b -> b) -> b -> BinaryTree a -> b
 </pre>
