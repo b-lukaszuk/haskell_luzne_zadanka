@@ -9,6 +9,7 @@ Choosen exercises (some were too easy, or not enough interesting) from Chapter 1
 1. [Vehicles](#vehicles)
 2. [Logic Goats](#logic-goats)
 3. [Programmers](#programmers)
+4. [Binay Tree](#binary-tree)
 
 ---
 
@@ -126,3 +127,33 @@ allProgrammers = undefined
 </pre>
 
 The `length` of allProgrammers should be equal to `length allOSs * length allProgLangs`
+
+## Binary Tree
+
+[Go to: Table of contents](#table-of-contents)
+
+The solutions are in the file `BinaryTree.hs`
+
+Given that:
+
+<pre>
+data BinaryTree a = Leaf | Node (BinaryTree a) a (BinaryTree a) deriving (Eq, Ord, Show)
+
+testTree' :: BinaryTree Integer
+testTree' = Node (Node Leaf 3 Leaf) 1 (Node Leaf 4 Leaf)
+
+mapExpected = Node (Node Leaf 4 Leaf) 2 (Node Leaf 5 Leaf)
+
+-- acceptance test for mapTree
+mapOkay = if mapTree (+1) testTree' == mapExpected
+	then print "yup okay!"
+	else error "test failed!"
+</pre>
+
+Write a function `mapTree` with the following type signature:
+
+<pre>
+mapTree :: (a -> b) -> BinaryTree a -> BinaryTree b
+mapTree _ Leaf = Leaf
+mapTree f (Node left a right) = Node undefined undefined undefined
+</pre>
