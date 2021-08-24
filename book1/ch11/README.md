@@ -119,7 +119,7 @@ Write a function that generates all possible valeus of Programmer. Use the code 
 
 <pre>
 allOSs :: [OS]
-allOSs = [ GnuPlusLinux , OpenBSD, , Mac , Windows]
+allOSs = [GnuPlusLinux , OpenBSD, , Mac , Windows]
 
 allProgLangs:: [ProgLang]
 allProgLangs = [Haskell, Agda, Idris, PureScript]
@@ -211,7 +211,7 @@ main = do
 
 The solutions are in the file `BinaryTree3.hs`
 
-Write foldr for BinaryTree. Below you will find the function signature.
+Write foldr for BinaryTree. Below you will find the function's signature.
 
 <pre>
 -- any traversal order is fine
