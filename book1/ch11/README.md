@@ -15,6 +15,7 @@ Choosen exercises (some were too easy, or not enough interesting) from Chapter 1
 7. [Ciphers](#ciphers)
 8. [As Patterns](#as-patterns)
 9. [Language Exercises](#language-exercises)
+10. [Phone Exercises](#phone-exercises)
 
 ---
 
@@ -327,3 +328,11 @@ Prelude> capitalizeParagraph s
 </pre>
 
 Hints: Recognize a new sentence by checking for periods. Reuse the `capitalizeWord` function from above.
+
+## Phone Exercises
+
+[Go to: Table of contents](#table-of-contents)
+
+The solutions are in the file `PhoneExercises.hs`
+
+Wrtie functions dealing with the old fashioned phone inputs (used for writing SMS-es).
