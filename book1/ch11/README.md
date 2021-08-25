@@ -336,3 +336,105 @@ Hints: Recognize a new sentence by checking for periods. Reuse the `capitalizeWo
 The solutions are in the file `PhoneExercises.hs`
 
 Wrtie functions dealing with the old fashioned phone inputs (used for writing SMS-es).
+
+<pre>
+---------------------------
+| 1      | 2 ABC | 3 DEF  |
+___________________________
+| 4 GHI  | 5 JKL | 6 MNO  |
+---------------------------
+| 7 PQRS | 8 TUV | 9 WXYZ |
+---------------------------
+| * ^    | 0 + _ | # .,   |
+---------------------------
+</pre>
+
+Info:
+
+- star (*) key gives you capitalization of the letter you’re writing
+- 0 key is your space bar
+- to represent the digit itself, you press that digit once more than the letters it represents.
+- too many key presses wrap the queue, e.g.
+
+<pre>
+2 -> 'A'
+22 -> 'B'
+222 -> 'C'
+2222 -> '2'
+22222 -> 'A'
+</pre>
+
+### Case 1
+
+Create a data structure that captures the phone layout above, e.g.
+
+<pre>
+-- fill in the rest.
+data DaPhone = DaPhone
+</pre>
+
+### Case 2
+
+Convert the following conversations into the keypresses required to express them.
+You may use the following scaffolding.
+
+<pre>
+convo :: [String]
+convo = ["Wanna play 20 questions",
+	"Ya",
+	"U 1st haha",
+	"Lol ok. Have u ever tasted alcohol",
+	"Lol ya",
+	"Wow ur cool haha. Ur turn",
+	"Ok. Do u think I am pretty Lol",
+	"Lol ya",
+	"Just making sure rofl ur turn"]
+
+-- validButtons = "1234567890*#"
+type Digit = Char
+
+-- Valid presses: 1 and up
+type Presses = Int
+
+reverseTaps :: DaPhone -> Char -> [(Digit, Presses)]
+reverseTaps = undefined
+-- assuming the default phone definition
+-- 'a' -> [('2', 1)]
+-- 'A' -> [('*', 1), ('2', 1)]
+
+cellPhonesDead :: DaPhone -> String -> [(Digit, Presses)]
+cellPhonesDead = undefined
+</pre>
+
+### Case 3
+
+How many times do digits need to be pressed for each message?
+
+<pre>
+fingerTaps :: [(Digit, Presses)] -> Presses
+fingerTaps = undefined
+</pre>
+
+### Case 4
+
+Determine:
+- the most popular letter for each message
+- its cost
+
+<pre>
+mostPopularLetter :: String -> Char
+mostPopularLetter = undefined
+</pre>
+
+### Case 5
+
+Determine:
+- the most popular letter overall
+- the most popular word
+
+<pre>
+coolestLtr :: [String] -> Char
+coolestLtr = undefined
+coolestWord :: [String] -> String
+coolestWord = undefined
+</pre>
