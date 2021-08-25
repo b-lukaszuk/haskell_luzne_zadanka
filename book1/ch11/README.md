@@ -259,23 +259,17 @@ isSubseqOf :: (Eq a) => [a] -> [a] -> Bool
 
 -- usage:
 
-Prelude>
- isSubseqOf "blah" "blahwoot"
+Prelude> isSubseqOf "blah" "blahwoot"
 True
-Prelude>
- isSubseqOf "blah" "wootblah"
+Prelude> isSubseqOf "blah" "wootblah"
 True
-Prelude>
- isSubseqOf "blah" "wboloath"
+Prelude> isSubseqOf "blah" "wboloath"
 True
-Prelude>
- isSubseqOf "blah" "wootbla"
+Prelude> isSubseqOf "blah" "wootbla"
 False
-Prelude>
- isSubseqOf "blah" "halbwoot"
+Prelude> isSubseqOf "blah" "halbwoot"
 False
-Prelude>
- isSubseqOf "blah" "blawhoot"
+Prelude> isSubseqOf "blah" "blawhoot"
 True
 </pre>
 
