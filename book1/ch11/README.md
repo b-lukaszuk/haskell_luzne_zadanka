@@ -14,6 +14,7 @@ Choosen exercises (some were too easy, or not enough interesting) from Chapter 1
 6. [Binay Tree3](#binary-tree3)
 7. [Ciphers](#ciphers)
 8. [As Patterns](#as-patterns)
+9. [Language Exercises](#language-exercises)
 
 ---
 
@@ -248,7 +249,7 @@ Modify your Caesar cipher (Chapter 09). And Build Vigenere cipher.
 
 The solutions are in the file `AsPatterns.hs`
 
-Write the following function using as-pattern:
+Write the following functions using as-patterns:
 
 ### Case 1
 
@@ -284,8 +285,45 @@ The sub-sequence has to be in the original order!
 <pre>
 capitalizeWords :: String -> [(String, String)]
 
--- usage
+-- usage:
 
 Prelude> capitalizeWords "hello world"
 [("hello", "Hello"), ("world", "World")]
 </pre>
+
+## Language Exercises
+
+[Go to: Table of contents](#table-of-contents)
+
+The solutions are in the file `LanguageExercises.hs`
+
+Write the following functions
+
+### Case 1
+
+<pre>
+capitalizeWord :: String -> String
+capitalizeWord = undefined
+
+-- usage:
+
+Prelude> capitalizeWord "Chortle"
+"Chortle"
+Prelude> capitalizeWord "chortle"
+"Chortle
+</pre>
+
+### Case 2
+
+<pre>
+capitalizeParagraph :: String -> String
+capitalizeParagraph = undefined
+
+-- usage:
+
+Prelude> let s = "blah. woot ha."
+Prelude> capitalizeParagraph s
+"Blah. Woot ha."
+</pre>
+
+Hints: Recognize a new sentence by checking for periods. Reuse the `capitalizeWord` function from above.
