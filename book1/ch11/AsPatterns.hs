@@ -28,13 +28,24 @@ isSubseqOf (x:xs) ys =
 
 
 -- case 2
+acceptableChars :: String
+acceptableChars = ['a'..'z'] ++ ['A'..'Z']
+
+-- the fn words leaves, e.g. ",", ".", "!", etc.
+-- so we got this
+getAZsOnly :: String -> String
+getAZsOnly [] = []
+getAZsOnly (x:xs) = if elem x acceptableChars
+  then x : getAZsOnly xs
+  else getAZsOnly xs
+
 capitalizeWord :: String -> String
 capitalizeWord [] = []
 capitalizeWord (x:xs) = (toUpper x) : xs
 
 capitalizeWords :: String -> [(String, String)]
 capitalizeWords text =
-  let lstOfWords = words text
+  let lstOfWords = map getAZsOnly $ words text
       lstOfCapWords = map capitalizeWord lstOfWords
       in zip lstOfWords lstOfCapWords
 
