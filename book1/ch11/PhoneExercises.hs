@@ -2,6 +2,9 @@ module PhoneExercises where
 
 import Data.Char (toLower)
 
+
+-- case 1
+
 -- validButtons = "1234567890*#"
 type Digit = Char
 
@@ -58,6 +61,8 @@ phoneDial = DaPhone [one, two, three, four, five, six, seven, eight,
               hash = Button ('#', ".,#")
 
 
+-- case 2
+
 convo :: [String]
 convo = ["Wanna play 20 questions",
          "Ya",
@@ -84,3 +89,52 @@ cellPhonesDead phone phrase =
 
 convoTaps :: [[(Digit, Presses)]]
 convoTaps = map (\msg -> cellPhonesDead phoneDial msg) convo
+
+
+-- case 3
+
+fingerTaps :: [(Digit, Presses)] -> Presses
+fingerTaps xs = length xs
+
+digitsForEachMsg :: [Presses]
+digitsForEachMsg = map fingerTaps convoTaps
+
+
+-- case 4
+
+strToLower :: String -> String
+strToLower [] = []
+strToLower (x:xs) = toLower x : strToLower xs
+
+strRemChar :: Char -> String -> String
+strRemChar x ys = filter (\a -> a /= x) ys
+
+strCountChars :: String -> [(Char, Int)]
+strCountChars xs =
+  let strNoSpaces = strRemChar ' ' xs
+  in strCountChars' strNoSpaces []
+
+strCountChars' :: String -> [(Char, Int)] -> [(Char, Int)]
+strCountChars' [] acc = acc
+strCountChars' xs acc =
+  let first = head xs
+      strWithoutX = strRemChar first xs
+      noOfX = (length xs) - length strWithoutX
+  in strCountChars' strWithoutX $ (first, noOfX) : acc
+
+-- in python it would be like: {'a': 5, 'b': 3}, here [('a', 5), ('b', 3)]
+-- if tie, one of the winners is returned
+maxOfDict :: (Char, Int) -> (Char, Int) -> (Char, Int)
+maxOfDict (c1, i1) (c2, i2) = if i1 > i2 then (c1, i1) else (c2, i2)
+
+-- modified: returns (Char, Int) instead of Char (for me it's better this way)
+mostPopularLetter :: String -> (Char, Int)
+mostPopularLetter [] = ('?', 0)
+mostPopularLetter text =
+  let charCounts = strCountChars text
+      first = head charCounts
+      rest = tail charCounts
+  in foldr maxOfDict first rest
+
+mostPopLetters :: [String] -> [(Char, Int)]
+mostPopLetters paragraphs = map mostPopularLetter paragraphs
