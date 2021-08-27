@@ -16,11 +16,6 @@ testBtn = Button ('2', "abc2")
 -- Valid presses: 1 and up
 type Presses = Int
 
-press :: Button -> Presses -> Char
-press (Button (_, options)) times =
-  let adjTimes = mod (times - 1) $ length options
-  in options !! adjTimes
-
 -- returns -2 if the element was not found on the list
 eltPosInList :: (Eq a) => a -> [a] -> Int
 eltPosInList y xs = eltPosInList' y xs 0
