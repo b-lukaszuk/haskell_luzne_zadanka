@@ -106,21 +106,19 @@ strToLower :: String -> String
 strToLower [] = []
 strToLower (x:xs) = toLower x : strToLower xs
 
-strRemChar :: Char -> String -> String
-strRemChar x ys = filter (\a -> a /= x) ys
+remFromList :: Eq a => a -> [a] -> [a]
+remFromList toRem aList = filter (\a -> a /= toRem) aList
 
-strCountChars :: String -> [(Char, Int)]
-strCountChars xs =
-  let strNoSpaces = strRemChar ' ' xs
-  in strCountChars' strNoSpaces []
+countLstElts :: Eq a => [a] -> [(a, Int)]
+countLstElts xs = countLstElts' xs []
 
-strCountChars' :: String -> [(Char, Int)] -> [(Char, Int)]
-strCountChars' [] acc = acc
-strCountChars' xs acc =
+countLstElts' :: Eq a => [a] -> [(a, Int)] -> [(a, Int)]
+countLstElts' [] acc = acc
+countLstElts' xs acc =
   let first = head xs
-      strWithoutX = strRemChar first xs
+      strWithoutX = remFromList first xs
       noOfX = (length xs) - length strWithoutX
-  in strCountChars' strWithoutX $ (first, noOfX) : acc
+  in countLstElts' strWithoutX $ (first, noOfX) : acc
 
 -- in python it would be like: {'a': 5, 'b': 3}, here [('a', 5), ('b', 3)]
 -- if tie, one of the winners is returned
