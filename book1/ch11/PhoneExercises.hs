@@ -129,13 +129,17 @@ maxOfDict (c1, i1) (c2, i2) = if i1 > i2 then (c1, i1) else (c2, i2)
 mostPopularLetter :: String -> (Char, Int)
 mostPopularLetter [] = ('?', 0)
 mostPopularLetter text =
-  let charCounts = strCountChars text
+  let transformedTxt = filter (\x -> elem x ['a'..'z']) $ strToLower text
+      charCounts = countLstElts transformedTxt
       first = head charCounts
       rest = tail charCounts
   in foldr maxOfDict first rest
 
 mostPopLetters :: [String] -> [(Char, Int)]
 mostPopLetters paragraphs = map mostPopularLetter paragraphs
+
+mostPopLettersConvo :: [(Char, Int)]
+mostPopLettersConvo = mostPopLetters convo
 
 
 -- case 5
@@ -145,7 +149,7 @@ coolestLtr :: [String] -> (Char, Int)
 coolestLtr texts =
   let txtConcat = foldr (\cur acc -> cur ++ acc) [] texts
       txtLower = filter (\x -> elem x ['a'..'z']) $ strToLower txtConcat
-      ltrDict = strCountChars txtLower
+      ltrDict = countLstElts txtLower
   in foldr maxOfDict (head ltrDict) (tail ltrDict)
 
 coolestLtrConvo :: (Char, Int)
