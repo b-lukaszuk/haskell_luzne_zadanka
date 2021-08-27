@@ -155,5 +155,18 @@ coolestLtr texts =
 coolestLtrConvo :: (Char, Int)
 coolestLtrConvo = coolestLtr convo
 
-coolestWord :: [String] -> String
-coolestWord = undefined
+mostPopWord :: String -> (String, Int)
+mostPopWord text =
+  let modifTxt = filter (\x -> elem x $ ['a'..'z'] ++ " ") $ strToLower text
+      lstOfWords = words modifTxt
+      dictOfCounts = countLstElts lstOfWords
+  in foldr maxOfDict (head dictOfCounts) (tail dictOfCounts)
+
+coolestWord :: [String] -> (String, Int)
+coolestWord paragraphs =
+  let singleString = foldr (\cur acc -> cur ++ " " ++ acc) [] paragraphs
+      textLower = strToLower singleString
+  in mostPopWord textLower
+
+coolestWordConvo :: (String, Int)
+coolestWordConvo = coolestWord convo
