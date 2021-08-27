@@ -124,7 +124,7 @@ strCountChars' xs acc =
 
 -- in python it would be like: {'a': 5, 'b': 3}, here [('a', 5), ('b', 3)]
 -- if tie, one of the winners is returned
-maxOfDict :: (Char, Int) -> (Char, Int) -> (Char, Int)
+maxOfDict :: (a, Int) -> (a, Int) -> (a, Int)
 maxOfDict (c1, i1) (c2, i2) = if i1 > i2 then (c1, i1) else (c2, i2)
 
 -- modified: returns (Char, Int) instead of Char (for me it's better this way)
@@ -138,3 +138,20 @@ mostPopularLetter text =
 
 mostPopLetters :: [String] -> [(Char, Int)]
 mostPopLetters paragraphs = map mostPopularLetter paragraphs
+
+
+-- case 5
+
+-- modified: returns (Char, Int) instead of Char (for me it's better this way)
+coolestLtr :: [String] -> (Char, Int)
+coolestLtr texts =
+  let txtConcat = foldr (\cur acc -> cur ++ acc) [] texts
+      txtLower = filter (\x -> elem x ['a'..'z']) $ strToLower txtConcat
+      ltrDict = strCountChars txtLower
+  in foldr maxOfDict (head ltrDict) (tail ltrDict)
+
+coolestLtrConvo :: (Char, Int)
+coolestLtrConvo = coolestLtr convo
+
+coolestWord :: [String] -> String
+coolestWord = undefined
