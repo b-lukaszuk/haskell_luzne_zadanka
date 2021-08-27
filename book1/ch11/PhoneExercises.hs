@@ -51,7 +51,7 @@ phoneDial = DaPhone [one, two, three, four, five, six, seven, eight,
               seven = Button ('7', "pqrs7")
               eight = Button ('8', "tuv8")
               nine = Button ('9', "wxyz")
-              asterix = Button ('*', "")
+              asterix = Button ('*', "*")
               zero = Button ('0', "+ 0")
               hash = Button ('#', ".,#")
 
