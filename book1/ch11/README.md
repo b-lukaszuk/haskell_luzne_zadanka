@@ -16,6 +16,7 @@ Choosen exercises (some were too easy, or not enough interesting) from Chapter 1
 8. [As Patterns](#as-patterns)
 9. [Language Exercises](#language-exercises)
 10. [Phone Exercises](#phone-exercises)
+11. [Hutton's Razor](#huttons-razor)
 
 ---
 
@@ -431,4 +432,26 @@ coolestLtr :: [String] -> Char
 coolestLtr = undefined
 coolestWord :: [String] -> String
 coolestWord = undefined
+</pre>
+
+## Hutton's Razor
+
+[Go to: Table of contents](#table-of-contents)
+
+The solutions are in the file `HuttonsRazor.hs`
+
+Write Hutton's Razor (trivial language with constants and addition) given that:
+
+<pre>
+data Expr = Lit Integer | Add Expr Expr
+
+eval :: Expr -> Integer
+eval = error "do it to it"
+</pre>
+
+example of usage:
+
+<pre>
+Prelude> eval (Add (Lit 1) (Lit 9001))
+9002
 </pre>
