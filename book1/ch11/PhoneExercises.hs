@@ -120,15 +120,16 @@ countLstElts' xs acc =
 maxOfDict :: (a, Int) -> (a, Int) -> (a, Int)
 maxOfDict (c1, i1) (c2, i2) = if i1 > i2 then (c1, i1) else (c2, i2)
 
+maximumOfDict :: [(a, Int)] -> (a, Int)
+maximumOfDict dict = foldr maxOfDict (head dict) (tail dict)
+
 -- modified: returns (Char, Int) instead of Char (for me it's better this way)
 mostPopularLetter :: String -> (Char, Int)
 mostPopularLetter [] = ('?', 0)
 mostPopularLetter text =
   let transformedTxt = filter (\x -> elem x ['a'..'z']) $ strToLower text
       charCounts = countLstElts transformedTxt
-      first = head charCounts
-      rest = tail charCounts
-  in foldr maxOfDict first rest
+  in maximumOfDict charCounts
 
 mostPopLetters :: [String] -> [(Char, Int)]
 mostPopLetters paragraphs = map mostPopularLetter paragraphs
@@ -145,7 +146,7 @@ coolestLtr texts =
   let txtConcat = foldr (\cur acc -> cur ++ acc) [] texts
       txtLower = filter (\x -> elem x ['a'..'z']) $ strToLower txtConcat
       ltrDict = countLstElts txtLower
-  in foldr maxOfDict (head ltrDict) (tail ltrDict)
+  in maximumOfDict ltrDict
 
 coolestLtrConvo :: (Char, Int)
 coolestLtrConvo = coolestLtr convo
@@ -155,7 +156,7 @@ mostPopWord text =
   let modifTxt = filter (\x -> elem x $ ['a'..'z'] ++ " ") $ strToLower text
       lstOfWords = words modifTxt
       dictOfCounts = countLstElts lstOfWords
-  in foldr maxOfDict (head dictOfCounts) (tail dictOfCounts)
+  in maximumOfDict dictOfCounts
 
 coolestWord :: [String] -> (String, Int)
 coolestWord paragraphs =
