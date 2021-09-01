@@ -9,6 +9,7 @@ Choosen exercises (some were too easy, or not enough interesting) from Chapter 1
 1. [String Processing](#string-processing)
 2. [Validate the Word](#validate-the-word)
 3. [It's only normal](#its-only-normal)
+4. [Small library for Maybe](#small-library-for-maybe)
 
 ---
 
@@ -136,4 +137,100 @@ natToInteger = undefined
 
 integerToNat :: Integer -> Maybe Nat
 integerToNat = undefined
+</pre>
+
+## Small library for Maybe
+
+[Go to: Table of contents](#table-of-contents)
+
+The solutions are in the file `smallLibraryForMaybe.hs`
+
+Write the following functions.
+
+### Case 1
+
+Checks for `Maybe`
+
+<pre>
+-- >>> isJust (Just 1)
+-- True
+-- >>> isJust Nothing
+-- False
+isJust :: Maybe a -> Bool
+
+-- >>> isNothing (Just 1)
+-- False
+-- >>> isNothing Nothing
+-- True
+isNothing :: Maybe a -> Bool
+</pre>
+
+### Case 2
+
+Write `Maybe` catamorphism to turn `Maybe` value into anything else.
+
+<pre>
+-- >>> mayybee 0 (+1) Nothing
+-- 0
+-- >>> mayybee 0 (+1) (Just 1)
+-- 2
+mayybee :: b -> (a -> b) -> Maybe a -> b
+</pre>
+
+### Case 3
+
+Fallback value for `Maybe`.
+
+<pre>
+-- >>> fromMaybe 0 Nothing
+-- 0
+-- >>> fromMaybe 0 (Just 1)
+-- 1
+
+fromMaybe :: a -> Maybe a -> a
+-- Try writing it in terms
+-- of the maybe catamorphism
+</pre>
+
+### Case 4
+
+Conversion between `Maybe` and list.
+
+<pre>
+-- >>> listToMaybe [1, 2, 3]
+-- Just 1
+-- >>> listToMaybe []
+-- Nothing
+listToMaybe :: [a] -> Maybe a
+
+-- >>> maybeToList (Just 1)
+-- [1]
+-- >>> maybeToList Nothing
+-- []
+maybeToList :: Maybe a -> [a]
+</pre>
+
+### Case 5
+
+Drop `Nothing` from list.
+
+<pre>
+-- >>> catMaybes [Just 1, Nothing, Just 2]
+-- [1, 2]
+-- >>> let xs = take 3 $ repeat Nothing
+-- >>> catMaybes xs
+-- []
+catMaybes :: [Maybe a] -> [a]
+</pre>
+
+### Case 6
+
+Flip `Maybe` according to the example:
+
+<pre>
+-- >>> flipMaybe [Just 1, Just 2, Just 3]
+-- Just [1, 2, 3]
+-- >>> flipMaybe [Just 1, Nothing, Just 3]
+-- Nothing
+flipMaybe :: [Maybe a] -> Maybe [a]
 </pre>
