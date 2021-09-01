@@ -10,6 +10,7 @@ Choosen exercises (some were too easy, or not enough interesting) from Chapter 1
 2. [Validate the Word](#validate-the-word)
 3. [It's only normal](#its-only-normal)
 4. [Small library for Maybe](#small-library-for-maybe)
+5. [Small library for Either](#small-library-for-either)
 
 ---
 
@@ -233,4 +234,56 @@ Flip `Maybe` according to the example:
 -- >>> flipMaybe [Just 1, Nothing, Just 3]
 -- Nothing
 flipMaybe :: [Maybe a] -> Maybe [a]
+</pre>
+
+## Small library for Either
+
+[Go to: Table of contents](#table-of-contents)
+
+The solutions are in the file `SmallLibraryForEither.hs`
+
+Write the following functions for `Either`
+
+### Case 1
+
+Try to arrive at a solution that uses `foldr`.
+
+<pre>
+lefts' :: [Either a b] -> [a]
+</pre>
+
+### Case 2
+
+Again. Try to use `foldr`
+
+<pre>
+rights' :: [Either a b] -> [b]
+</pre>
+
+### Case 3
+
+<pre>
+partitionEithers' :: [Either a b] -> ([a], [b])
+</pre>
+
+### Case 4
+
+<pre>
+eitherMaybe' :: (b -> c) -> Either a b -> Maybe c
+</pre>
+
+### Case 5
+
+General catamorphism for `Either` values:
+
+<pre>
+either' :: (a -> c) -> (b -> c) -> Either a b -> c
+</pre>
+
+### Case 6
+
+Same as before, but use the `either'` function you just wrote.
+
+<pre>
+eitherMaybe'' :: (b -> c) -> Either a b -> Maybe c
 </pre>
