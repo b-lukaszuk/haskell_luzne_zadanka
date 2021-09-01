@@ -12,6 +12,7 @@ Choosen exercises (some were too easy, or not enough interesting) from Chapter 1
 4. [Small library for Maybe](#small-library-for-maybe)
 5. [Small library for Either](#small-library-for-either)
 6. [Unfolds](#unfolds)
+7. [Binary Trees](#binary-trees)
 
 ---
 
@@ -330,4 +331,52 @@ Rewrite `myIterate` into `betterIterate` using `myUnfoldr`
 <pre>
 betterIterate :: (a -> a) -> a -> [a]
 betterIterate f x = myUnfoldr ...?
+</pre>
+
+## Binary Trees
+
+[Go to: Table of contents](#table-of-contents)
+
+The solutions are in the file `BinaryTree.hs`
+
+Given the datatype:
+
+<pre>
+data BinaryTree a = Leaf | Node (BinaryTree a) a (BinaryTree a) deriving (Eq, Ord, Show)
+</pre>
+
+### Case 1
+
+Write `unfold` for `BinaryTree`
+
+<pre>
+unfold :: (a -> Maybe (a,b,a)) -> a -> BinaryTree b
+unfold = undefined
+</pre>
+
+### Case 2
+
+Make a tree builder using the `unfold` function you wrote before.
+
+<pre>
+treeBuild :: Integer -> BinaryTree Integer
+treeBuild n = undefined
+
+-- example
+Prelude> treeBuild 0
+Leaf
+Prelude> treeBuild 1
+Node Leaf 0 Leaf
+Prelude> treeBuild 2
+Node (Node Leaf 1 Leaf)
+     0
+     (Node Leaf 1 Leaf)
+Prelude> treeBuild 3
+Node (Node (Node Leaf 2 Leaf)
+           1
+		   (Node Leaf 2 Leaf))
+     0
+	 (Node (Node Leaf 2 Leaf)
+	       1
+		   (Node Leaf 2 Leaf))
 </pre>
