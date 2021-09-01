@@ -11,6 +11,7 @@ Choosen exercises (some were too easy, or not enough interesting) from Chapter 1
 3. [It's only normal](#its-only-normal)
 4. [Small library for Maybe](#small-library-for-maybe)
 5. [Small library for Either](#small-library-for-either)
+6. [Unfolds](#unfolds)
 
 ---
 
@@ -286,4 +287,47 @@ Same as before, but use the `either'` function you just wrote.
 
 <pre>
 eitherMaybe'' :: (b -> c) -> Either a b -> Maybe c
+</pre>
+
+## Unfolds
+
+[Go to: Table of contents](#table-of-contents)
+
+The solutions are in the file `Unfolds.hs`
+
+### Case 1
+
+Write the function `myIterate` using direct recursion.
+
+<pre>
+myIterate :: (a -> a) -> a -> [a]
+myIterate = undefined
+
+-- example
+-- we must use take because the list is infinite
+Prelude> take 10 $ myIterate (+1) 0
+[0,1,2,3,4,5,6,7,8,9]
+</pre>
+
+### Case 2
+
+Write the function `myUnfoldr` using direct recursion.
+
+<pre>
+myUnfoldr :: (b -> Maybe (a, b)) -> b -> [a]
+myUnfoldr = undefined
+
+-- example
+-- we must use take because the list is infinite
+Prelude> take 10 $ myUnfoldr (\b -> Just (b, b+1)) 0
+[0,1,2,3,4,5,6,7,8,9]
+</pre>
+
+### Case 3
+
+Rewrite `myIterate` into `betterIterate` using `myUnfoldr`
+
+<pre>
+betterIterate :: (a -> a) -> a -> [a]
+betterIterate f x = myUnfoldr ...?
 </pre>
