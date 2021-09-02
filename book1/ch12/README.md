@@ -64,7 +64,7 @@ Scafollding:
 -- >>> countTheBeforeVowel "the evil cow"
 -- 1
 
-countTheBeforeVowel :: String -> Integer
+countTheBeforeVowel :: String -> Integer -- why not Int (it is returned by length)
 countTheBeforeVowel = undefined
 </pre>
 
