@@ -146,7 +146,7 @@ integerToNat = undefined
 
 [Go to: Table of contents](#table-of-contents)
 
-The solutions are in the file `smallLibraryForMaybe.hs`
+The solutions are in the file `SmallLibraryForMaybe.hs`
 
 Write the following functions.
 
@@ -337,7 +337,7 @@ betterIterate f x = myUnfoldr ...?
 
 [Go to: Table of contents](#table-of-contents)
 
-The solutions are in the file `BinaryTree.hs`
+The solutions are in the file `BinaryTrees.hs`
 
 Given the datatype:
 
