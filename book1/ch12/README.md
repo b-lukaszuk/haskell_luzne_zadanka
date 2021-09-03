@@ -108,7 +108,7 @@ mkWord = undefined
 
 [Go to: Table of contents](#table-of-contents)
 
-The solutions are in the file `itsOnlyNormal.hs`
+The solutions are in the file `ItsOnlyNormal.hs`
 
 Write a small program converting (both ways) between natural numbers (0 and positive Integers) and Integers.
 
