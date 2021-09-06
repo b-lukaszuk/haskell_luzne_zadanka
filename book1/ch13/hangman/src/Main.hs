@@ -42,6 +42,9 @@ type CharsFilledSoFar = [Maybe Char]
 type LettersGuessedSoFar = [Char]
 
 -- helper fn (my modif)
+-- ok, later there is a function to write:
+-- renderPUzzleChar :: Maybe Char -> Char
+-- so I guess I did that earlier
 getCharRepr :: Maybe Char -> Char
 getCharRepr Nothing = '_'
 getCharRepr (Just letter) = letter
@@ -60,6 +63,15 @@ instance Show Puzzle where
 test :: Puzzle
 test = (Puzzle "abc" [Just 'a', Nothing, Just 'b'] "kasic")
 
+freshPuzzle :: String -> Puzzle
+freshPuzzle aWord = Puzzle aWord (take wordLen $ repeat Nothing) []
+  where wordLen = length aWord
+
+charInWord :: Puzzle -> Char -> Bool
+charInWord (Puzzle wordToGuess _ _) guess = elem guess wordToGuess
+
+alreadyGuessed :: Puzzle -> Char -> Bool
+alreadyGuessed (Puzzle _ _ prevGuesses) guess = elem guess prevGuesses
 
 main :: IO ()
 main = do
