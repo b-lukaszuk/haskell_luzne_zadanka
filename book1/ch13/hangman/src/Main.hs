@@ -11,7 +11,7 @@ type WordList = [String]
 
 allWords :: IO WordList
 allWords = do
-  dict <- readFile "data/dict.txt"
+  dict <- readFile "../data/dict.txt"
   return (lines dict)
 
 minWordLength :: Int
@@ -61,7 +61,7 @@ instance Show Puzzle where
     " Guessed so far: " ++ guessed
 
 test :: Puzzle
-test = (Puzzle "abc" [Just 'a', Nothing, Just 'b'] "kasic")
+test = (Puzzle "abc" [Just 'a', Just 'b', Nothing] "kasie")
 
 freshPuzzle :: String -> Puzzle
 freshPuzzle aWord = Puzzle aWord (take wordLen $ repeat Nothing) []
@@ -73,6 +73,65 @@ charInWord (Puzzle wordToGuess _ _) guess = elem guess wordToGuess
 alreadyGuessed :: Puzzle -> Char -> Bool
 alreadyGuessed (Puzzle _ _ prevGuesses) guess = elem guess prevGuesses
 
+-- I split fillInCharacter into three separate functions
+-- 2 helpers (zipper and revealChar) and 1 main (fillInCharacter)
+zipper :: Char -> Char -> Maybe Char -> Maybe Char
+zipper curGuess wordChar charFilledSoFar =
+  if wordChar == curGuess
+  then Just wordChar
+  else charFilledSoFar
+
+revealChar :: Char -> WordToGuess -> CharsFilledSoFar -> CharsFilledSoFar
+revealChar aChar aWord uncovChars = zipWith (zipper aChar) aWord uncovChars
+
+fillInCharacter :: Puzzle -> Char -> Puzzle
+fillInCharacter (Puzzle word filledInSoFar s) c =
+  Puzzle word newFilledInSoFar (c : s)
+  where newFilledInSoFar = revealChar c word filledInSoFar
+
+handleGuess :: Puzzle -> Char -> IO Puzzle
+handleGuess puzzle guess = do
+  putStrLn $ "Your guess was: " ++ [guess]
+  case (charInWord puzzle guess, alreadyGuessed puzzle guess) of
+    (_, True) -> do
+      putStrLn "You already guessed that character, pick something else!"
+      return puzzle
+    (True, _) -> do
+      putStrLn "This character was in the word, filling in the word accordingly."
+      return (fillInCharacter puzzle guess)
+    (False, _) -> do
+      putStrLn "This character wasn't in the word, try again."
+      return (fillInCharacter puzzle guess)
+
+gameOver :: Puzzle -> IO ()
+gameOver (Puzzle wordToGuess _ guessed) =
+  if (length guessed) > 7 then
+    do putStrLn "You lose!"
+       putStrLn $ "The word was: " ++ wordToGuess
+       exitSuccess
+  else return ()
+
+gameWin :: Puzzle -> IO ()
+gameWin (Puzzle _ filledInSoFar _) =
+  if all isJust filledInSoFar then
+    do putStrLn "You win!"
+       exitSuccess
+  else return ()
+
+runGame :: Puzzle -> IO ()
+runGame puzzle = forever $ do
+  gameOver puzzle
+  gameWin puzzle
+  putStrLn $ "Current puzzle is: " ++ show puzzle
+  putStr "Guess a letter: "
+  guess <- getLine
+  case guess of
+    [c] -> handleGuess puzzle c >>= runGame
+    _ -> putStrLn "Your guess must be a single character"
+
 main :: IO ()
 main = do
-  putStrLn "hello world"
+  word <- randomWord'
+  let puzzle = freshPuzzle $ fmap toLower word
+  runGame puzzle
+
