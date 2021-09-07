@@ -15,3 +15,15 @@ ls /usr/share/dict/
 ```
 
 Nastepnie troche go skrocono (zostawiono slowa zaczynajace sie od A lub B)
+
+Nie rozgryzlem jeszcze jak to odpalac.
+
+Jak wpisze:
+
+```bash
+stack buil # to dostaje errora
+# stack init # tez nie pomaga
+# stack exec hangman wymaga najpier builda
+```
+
+Mozna zawsze wejsc w `src/` i odpalic `Main.hs` i dziala, ale to chyba nie o to chodzi.
