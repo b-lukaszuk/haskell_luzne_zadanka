@@ -30,6 +30,8 @@ Correct the following flaws in game logic:
 
 [Go to: Table of contents](#table-of-contents)
 
+The solutions are in the `ciphers/` directory
+
 Modify your Caesar and/or Vigenere ciphers to work with user input.
 
 ## Palindrome
