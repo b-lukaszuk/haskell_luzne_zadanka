@@ -57,7 +57,7 @@ palindrome = forever $ do
 
 [Go to: Table of contents](#table-of-contents)
 
-The solutions are in the `BetterPalindromeDetector.hs` file
+The solutions are in the `betterPalindromeDetector/Main.hs` file
 
 Modify the code above so that it correctly recognizes the sentence "Madam I'm Adam" as palindrome.
 
