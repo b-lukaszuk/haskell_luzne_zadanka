@@ -65,7 +65,7 @@ Modify the code above so that it correctly recognizes the sentence "Madam I'm Ad
 
 [Go to: Table of contents](#table-of-contents)
 
-The solutions are in the `Person.hs` file
+The solutions are in the `person/`
 
 Given the follwing code:
 
