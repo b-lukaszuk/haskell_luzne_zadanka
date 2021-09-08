@@ -38,7 +38,7 @@ Modify your Caesar and/or Vigenere ciphers to work with user input.
 
 [Go to: Table of contents](#table-of-contents)
 
-The solutions are in the `Palindrome.hs` file
+The solutions are in the `palindrome/Main.hs` file
 
 Modify the code below to exit successfully after a False result (right now it will run forever)
 
