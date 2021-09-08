@@ -6,6 +6,7 @@ import Data.Maybe (isJust)
 import Data.List (intersperse)
 import System.Exit (exitSuccess)
 import System.Random (randomRIO)
+import Data.List (sort)
 
 type WordList = [String]
 
@@ -20,8 +21,14 @@ minWordLength = 5
 maxWordLength :: Int
 maxWordLength = 9
 
+maxWrongGuesses :: Int
+maxWrongGuesses = 9
+
 isBetw :: Int -> Int -> Int -> Bool
 isBetw someNum minIncl maxIncl = someNum >= minIncl && someNum <= maxIncl
+
+rmdups :: (Eq a) => [a] -> [a]
+rmdups xs = foldr (\cur acc -> if elem cur acc then acc else cur : acc) [] xs
 
 gameWords :: IO WordList
 gameWords = do
@@ -39,11 +46,17 @@ randomWord' = gameWords >>= randomWord
 -- type synonyms (my modif)
 type WordToGuess = String
 type CharsFilledSoFar = [Maybe Char]
-type LettersGuessedSoFar = [Char]
+type WrongGuessesSoFar = [Char]
+
+maybeCharsToChars :: [Maybe Char] -> [Char]
+maybeCharsToChars [] = []
+maybeCharsToChars (x:xs) = case x of
+  (Just sth) -> sth : maybeCharsToChars xs
+  Nothing -> maybeCharsToChars xs
 
 -- helper fn (my modif)
 -- ok, later there is a function to write:
--- renderPUzzleChar :: Maybe Char -> Char
+-- renderPuzzleChar :: Maybe Char -> Char
 -- so I guess I did that earlier
 getCharRepr :: Maybe Char -> Char
 getCharRepr Nothing = '_'
@@ -53,15 +66,13 @@ getCharRepr (Just letter) = letter
 getCharsRepr :: [Maybe Char] -> String
 getCharsRepr text  = map getCharRepr text
 
-data Puzzle = Puzzle WordToGuess CharsFilledSoFar LettersGuessedSoFar
+data Puzzle = Puzzle WordToGuess CharsFilledSoFar WrongGuessesSoFar
 
 instance Show Puzzle where
-  show (Puzzle _ discovered guessed) =
-    (intersperse ' ' $ getCharsRepr discovered) ++
-    " Guessed so far: " ++ guessed
-
-test :: Puzzle
-test = (Puzzle "abc" [Just 'a', Just 'b', Nothing] "kasie")
+  show (Puzzle _ discovered wrongGuesses) =
+    let allGuessed = (maybeCharsToChars discovered) ++ wrongGuesses
+    in (intersperse ' ' $ getCharsRepr discovered) ++
+       " Guessed so far: " ++ (sort $ rmdups allGuessed)
 
 freshPuzzle :: String -> Puzzle
 freshPuzzle aWord = Puzzle aWord (take wordLen $ repeat Nothing) []
@@ -71,7 +82,9 @@ charInWord :: Puzzle -> Char -> Bool
 charInWord (Puzzle wordToGuess _ _) guess = elem guess wordToGuess
 
 alreadyGuessed :: Puzzle -> Char -> Bool
-alreadyGuessed (Puzzle _ _ prevGuesses) guess = elem guess prevGuesses
+alreadyGuessed (Puzzle _ uncovered wrongGuesses) guess =
+  let allGuesses = (maybeCharsToChars uncovered) ++ wrongGuesses
+  in elem guess allGuesses
 
 -- I split fillInCharacter into three separate functions
 -- 2 helpers (zipper and revealChar) and 1 main (fillInCharacter)
@@ -85,9 +98,13 @@ revealChar :: Char -> WordToGuess -> CharsFilledSoFar -> CharsFilledSoFar
 revealChar aChar aWord uncovChars = zipWith (zipper aChar) aWord uncovChars
 
 fillInCharacter :: Puzzle -> Char -> Puzzle
-fillInCharacter (Puzzle word filledInSoFar s) c =
-  Puzzle word newFilledInSoFar (c : s)
+fillInCharacter (Puzzle word filledInSoFar wg) c =
+  Puzzle word newFilledInSoFar wg
   where newFilledInSoFar = revealChar c word filledInSoFar
+
+addCharToWrongGuesses :: Puzzle -> Char -> Puzzle
+addCharToWrongGuesses (Puzzle word filledInSoFar prevWrongGuesses) c =
+  Puzzle word filledInSoFar (c : prevWrongGuesses)
 
 handleGuess :: Puzzle -> Char -> IO Puzzle
 handleGuess puzzle guess = do
@@ -101,27 +118,28 @@ handleGuess puzzle guess = do
       return (fillInCharacter puzzle guess)
     (False, _) -> do
       putStrLn "This character wasn't in the word, try again."
-      return (fillInCharacter puzzle guess)
+      return (addCharToWrongGuesses puzzle guess)
 
 gameOver :: Puzzle -> IO ()
-gameOver (Puzzle wordToGuess _ guessed) =
-  if (length guessed) > 7 then
+gameOver (Puzzle wordToGuess _ wrongGuesses) =
+  if (length wrongGuesses) > maxWrongGuesses then
     do putStrLn "You lose!"
        putStrLn $ "The word was: " ++ wordToGuess
        exitSuccess
   else return ()
 
 gameWin :: Puzzle -> IO ()
-gameWin (Puzzle _ filledInSoFar _) =
+gameWin (Puzzle wordToGuess filledInSoFar _) =
   if all isJust filledInSoFar then
     do putStrLn "You win!"
+       putStrLn $ "The word was: " ++ wordToGuess
        exitSuccess
   else return ()
 
 runGame :: Puzzle -> IO ()
 runGame puzzle = forever $ do
-  gameOver puzzle
   gameWin puzzle
+  gameOver puzzle
   putStrLn $ "Current puzzle is: " ++ show puzzle
   putStr "Guess a letter: "
   guess <- getLine
@@ -134,4 +152,3 @@ main = do
   word <- randomWord'
   let puzzle = freshPuzzle $ fmap toLower word
   runGame puzzle
-
