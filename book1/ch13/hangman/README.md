@@ -23,7 +23,9 @@ Jak wpisze:
 ```bash
 stack buil # to dostaje errora
 # stack init # tez nie pomaga
-# stack exec hangman wymaga najpier builda
+# stack exec hangman # wymaga najpierw builda
 ```
 
 Mozna zawsze wejsc w `src/` i odpalic `Main.hs` i dziala, ale to chyba nie o to chodzi.
+
+OK, okazuje sie, ze moj ISP blokuje to polaczenie (z komorki wszystko dziala)
