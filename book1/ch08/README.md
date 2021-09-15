@@ -74,7 +74,7 @@ use this to check its correctness:
 <pre>
 Prelude> map mc91 [95..110]
 [91,91,91,91,91,91,91,92,93,94,95,96,97,98,99,100]
-<pre>
+</pre>
 
 ## Numbers into words
 
