@@ -143,7 +143,7 @@ Rewrite your `zip` in terms of the `zipWith` you wrote.
 
 The solutions are in the file: `ciphers.hs`
 
-Write coder and decoder function for Cesar's cipher (right shift by 13)
+Write coder and decoder function for Caesar's cipher (right shift by 13)
 
 Hints: you may want to use `Data.Char(chr, ord)` and `mod` function.
 
