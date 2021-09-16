@@ -72,6 +72,24 @@ main = hspec $ do
             print "???"
 </pre>
 
+### Additional info
+
+Files created by me:
+- LICENSE
+- wordNumberTest.cabal
+- WordNumber.hs (a copy of my solution of the task from ch08)
+- WordNumberTest.hs (a copy of the scaffolding from this task)
+
+Then I typed:
+
+```bash
+stack init
+stack build
+stack ghci
+```
+
+It created additional files (they are ignored -> see .gitignore)
+
 ## Generators
 
 [Go to: Table of contents](#table-of-contents)
