@@ -114,6 +114,23 @@ data Fool = Fulse | Frue deriving (Eq, Show)
 data Fool = Fulse | Frue deriving (Eq, Show)
 </pre>
 
+### Additional info
+
+Files created by me:
+- LICENSE
+- generators.cabal
+- Case1.hs
+- Case2.hs
+- Test.hs
+
+Then I typed:
+
+```bash
+stack init
+stack build
+stack ghci
+```
+
 ## Ciphers
 
 [Go to: Table of contents](#table-of-contents)
