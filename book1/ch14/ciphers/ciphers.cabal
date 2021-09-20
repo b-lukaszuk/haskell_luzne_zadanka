@@ -1,0 +1,17 @@
+-- ciphers.cabal
+
+name:          ciphers
+version:       0.1.0.0
+license-file:  LICENSE
+author:        John Doe
+maintainer:    whatever@sth.org
+build-type:    Simple
+cabal-version: >=1.10
+
+library
+    exposed-modules:    Test, Caesar, Vigenere
+    ghc-options:        -Wall -fwarn-tabs
+    build-depends:      base >= 4.7 && <5
+                      , QuickCheck
+    hs-source-dirs:    .
+    default-language:  Haskell2010

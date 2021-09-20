@@ -9,3 +9,7 @@ book1/ch14/numbersIntoWords/stack.yaml.lock
 book1/ch14/generators/.stack-work
 book1/ch14/generators/stack.yaml
 book1/ch14/generators/stack.yaml.lock
+
+book1/ch14/ciphers/.stack-work
+book1/ch14/ciphers/stack.yaml
+book1/ch14/ciphers/stack.yaml.lock

@@ -138,3 +138,20 @@ stack ghci
 The solutions are in the folder `ciphers/`
 
 Create `QuickCheck` properties that verify your Caesar (Ch09) and/or Vigenere (Ch11) ciphers return the same data after encoding and decoding a string.
+
+### Additional info
+
+Files created by me:
+- LICENSE
+- ciphers.cabal
+- Caesar.hs (copied from ch09)
+- Vigenere.hs (copied from ch11)
+- Test.hs
+
+Then I typed:
+
+```bash
+stack init
+stack build
+stack ghci
+```
