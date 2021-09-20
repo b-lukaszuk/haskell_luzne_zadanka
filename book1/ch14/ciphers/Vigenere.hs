@@ -1,4 +1,4 @@
-module Vigenere where
+module Vigenere (codeMsg, decodeMsg) where
 
 import Data.Char (chr, ord, toLower)
 

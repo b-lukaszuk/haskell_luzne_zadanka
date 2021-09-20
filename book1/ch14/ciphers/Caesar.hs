@@ -1,4 +1,4 @@
-module Caesar where
+module Caesar (codeMsg, decodeMsg) where
 
 import Data.Char (chr, ord, toLower)
 
@@ -15,9 +15,6 @@ codeLetter :: Int -> Char -> Char
 codeLetter _ ' ' = ' '
 codeLetter shift letter = chr $ intReprWithinRange $
                           (+) shift $ ord $ toLower letter
-
-decodeLetter :: Int -> Char -> Char
-decodeLetter shift letter = codeLetter (negate shift) letter
 
 codeMsg :: Int -> String -> String
 codeMsg _ [] = []
