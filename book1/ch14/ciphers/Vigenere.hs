@@ -39,10 +39,12 @@ intReprWithinRange x
   | x > 122 = (mod x 122) + 97 - 1
   | otherwise = x
 
+-- codes only a-z, otherwise returns the character
 codeLetter :: Int -> Char -> Char
 codeLetter _ ' ' = ' '
-codeLetter shift letter = chr $ intReprWithinRange $
-                          (+) shift $ ord $ toLower letter
+codeLetter shift letter = if letter `elem` ['a'..'z']
+  then chr $ intReprWithinRange $ (+) shift $ ord letter
+  else letter
 
 decodeLetter :: Int -> Char -> Char
 decodeLetter shift letter = codeLetter (negate shift) letter
