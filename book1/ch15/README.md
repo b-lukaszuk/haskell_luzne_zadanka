@@ -7,6 +7,7 @@ Choosen exercises (some were too easy, or not enough interesting) from Chapter 1
 # Table of contents
 
 1. [Optional Monoid](#optional-monoid)
+2. [Refactoring with mconcat](#refactoring-with-mconcat)
 
 ---
 
@@ -43,4 +44,36 @@ Only [1]
 
 Prelude> Nada `mappend` Only (Sum 1)
 Only (Sum {getSum = 1})
+</pre>
+
+## Refactoring with mconcat
+
+[Go to: Table of contents](#table-of-contents)
+
+The solutions are in the folder `refactoringWithMconcat/`
+
+Given that:
+
+<pre>
+import Data.Monoid
+
+type Verb = String
+type Adjective = String
+type Adverb = String
+type Noun = String
+type Exclamation = String
+
+madlibbin' :: Exclamation -> Adverb -> Noun -> Adjective -> String
+madlibbin' e adv noun adj =
+e <> "! he said " <>
+adv <> " as he jumped into his car " <>
+noun <> " and drove off with his " <>
+adj <> " wife."
+</pre>
+
+Refactor the code a bit using `mconcat`
+
+<pre>
+madlibbinBetter' :: Exclamation -> Adverb -> Noun -> Adjective -> String
+madlibbinBetter' e adv noun adj = undefined
 </pre>
