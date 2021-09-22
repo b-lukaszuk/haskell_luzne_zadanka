@@ -9,6 +9,7 @@ Choosen exercises (some were too easy, or not enough interesting) from Chapter 1
 1. [Optional Monoid](#optional-monoid)
 2. [Refactoring with mconcat](#refactoring-with-mconcat)
 3. [Maybe Another Monoid](#maybe-another-monoid)
+4. [Semigroup Exercises](#semigroup-exercises)
 
 ---
 
@@ -125,4 +126,199 @@ First' {getFirst' = Only 2}
 
 Prelude> First' (Only 1) `mappend` First' (Only 2)
 First' {getFirst' = Only 1}
+</pre>
+
+## Semigroup Exercises
+
+[Go to: Table of contents](#table-of-contents)
+
+The solutions are in the folder `semigroupExercises/`
+
+Given a datatype, implement the `Semigroup` instance.
+Add type constraints where needed.
+The `<>` means `mappend` from the `Semigroup` typeclass
+
+### Case 1
+
+<pre>
+data Trivial = Trivial deriving (Eq, Show)
+
+instance Semigroup Trivial where
+	_ <> _ = undefined
+
+instance Arbitrary Trivial where
+	arbitrary = return Trivial
+
+semigroupAssoc :: (Eq m, Semigroup m) => m -> m -> m -> Bool
+semigroupAssoc a b c = (a <> (b <> c)) == ((a <> b) <> c)
+
+type TrivAssoc = Trivial -> Trivial -> Trivial -> Bool
+
+main :: IO ()
+main =
+	quickCheck (semigroupAssoc :: TrivAssoc)
+</pre>
+
+### Case 2
+
+<pre>
+newtype Identity a = Identity a
+</pre>
+
+
+### Case 3
+
+Hint: Ask for another Semigroup instance.
+
+<pre>
+ data Two a b = Two a b
+</pre>
+
+### Case 4
+
+<pre>
+data Three a b c = Three a b c
+</pre>
+
+### Case 5
+
+<pre>
+data Four a b c d = Four a b c d
+</pre>
+
+### Case 6
+
+<pre>
+newtype BoolConj = BoolConj Bool
+</pre>
+
+What it should do:
+
+<pre>
+Prelude> (BoolConj True) <> (BoolConj True)
+BoolConj True
+
+Prelude> (BoolConj True) <> (BoolConj False)
+BoolConj False
+</pre>
+
+### Case 7
+
+<pre>
+newtype BoolDisj = BoolDisj Bool
+</pre>
+
+What it should do:
+
+<pre>
+Prelude> (BoolDisj True) <> (BoolDisj True)
+BoolDisj True
+
+Prelude> (BoolDisj True) <> (BoolDisj False)
+BoolDisj True
+</pre>
+
+### Case 8
+
+<pre>
+data Or a b = Fst a | Snd b
+</pre>
+
+What it should do:
+
+<pre>
+Prelude> Fst 1 <> Snd 2
+Snd 2
+
+Prelude> Fst 1 <> Fst 2
+Fst 2
+
+Prelude> Snd 1 <> Fst 2
+Snd 1
+
+Prelude> Snd 1 <> Snd 2
+Snd 1
+</pre>
+
+It has a "sticky" `Snd` where it'll hold onto the first `Snd` value when and if one is passed as an argument.
+
+### Case 9
+
+<pre>
+newtype Combine a b = Combine { unCombine :: (a -> b) }
+</pre>
+
+What it should do:
+
+<pre>
+Prelude> let f = Combine $ \n -> Sum (n + 1)
+Prelude> let g = Combine $ \n -> Sum (n - 1)
+Prelude> unCombine (f <> g) $ 0
+Sum {getSum = 0}
+
+Prelude> unCombine (f <> g) $ 1
+Sum {getSum = 2}
+
+Prelude> unCombine (f <> f) $ 1
+Sum {getSum = 4}
+
+Prelude> unCombine (g <> f) $ 1
+Sum {getSum = 2}
+</pre>
+
+> Hint: This function will eventually be applied to a single value
+> of type a. But you’ll have multiple functions that can produce a
+> value of type b. How do we combine multiple values so we have
+> a single b? This one will probably be tricky! Remember that the
+> type of the value inside of Combine is that of a function. The type
+> of functions should already have an Arbitrary instance that you
+> can reuse for testing this instance.
+
+### Case 10
+
+<pre>
+newtype Comp a =
+Comp { unComp :: (a -> a) }
+</pre>
+
+> Hint: We can do something that seems a little more specific and
+> natural to functions now that the input and output types are the
+> same.
+
+### Case 11
+
+<pre>
+-- Look familiar?
+
+data Validation a b = Failure a | Success b
+	deriving (Eq, Show)
+
+instance Semigroup a => Semigroup (Validation a b) where
+	(<>) = undefined
+</pre>
+
+Given this code:
+
+<pre>
+main = do
+	let failure :: String
+		-> Validation String Int
+	failure = Failure
+	success :: Int
+		-> Validation String Int
+	success = Success
+print $ success 1 <> failure "blah"
+print $ failure "woot" <> failure "blah"
+print $ success 1 <> success 2
+print $ failure "woot" <> success 2
+</pre>
+
+You should get this output:
+
+<pre>
+Prelude> main
+Success 1
+Failure "wootblah"
+Success 1
+Success 2
 </pre>
