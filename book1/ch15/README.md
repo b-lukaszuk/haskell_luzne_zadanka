@@ -10,6 +10,7 @@ Choosen exercises (some were too easy, or not enough interesting) from Chapter 1
 2. [Refactoring with mconcat](#refactoring-with-mconcat)
 3. [Maybe Another Monoid](#maybe-another-monoid)
 4. [Semigroup Exercises](#semigroup-exercises)
+5. [Monoid Exercises](#monoid-exercises)
 
 ---
 
@@ -321,4 +322,151 @@ Success 1
 Failure "wootblah"
 Success 1
 Success 2
+</pre>
+
+## Monoid exercises
+
+[Go to: Table of contents](#table-of-contents)
+
+The solutions are in the folder `monoidExercises/`
+
+Given a datatype, implement the `Monoid` instance.
+Add `Monoid` constraints to type variables where needed.
+
+### Case 1
+
+<pre>
+data Trivial = Trivial deriving (Eq, Show)
+
+instance Semigroup Trivial where
+	(<>) = undefined
+
+instance Monoid Trivial where
+	mempty = undefined
+	mappend = (<>)
+
+type TrivAssoc =
+	Trivial -> Trivial -> Trivial -> Bool
+
+main :: IO ()
+main = do
+	let sa = semigroupAssoc
+		mli = monoidLeftIdentity
+		mlr = monoidRightIdentity
+	quickCheck (sa :: TrivAssoc)
+	quickCheck (mli :: Trivial -> Bool)
+	quickCheck (mlr :: Trivial -> Bool)
+</pre>
+
+### Case 2
+
+<pre>
+newtype Identity a =
+	Identity a deriving Show
+</pre>
+
+### Case 3
+
+<pre>
+data Two a b = Two a b deriving Show
+</pre>
+
+### Case 4
+
+<pre>
+newtype BoolConj =
+	BoolConj Bool
+</pre>
+
+What it should do:
+
+<pre>
+Prelude> (BoolConj True) `mappend` mempty
+BoolConj True
+
+Prelude> mempty `mappend` (BoolConj False)
+BoolConj False
+</pre>
+
+### Case 5
+
+<pre>
+newtype BoolDisj =
+	BoolDisj Bool
+</pre>
+
+What it should do:
+
+<pre>
+Prelude> (BoolDisj True) `mappend` mempty
+BoolDisj True
+
+Prelude> mempty `mappend` (BoolDisj False)
+BoolDisj False
+</pre>
+
+### Case 6
+
+<pre>
+newtype Combine a b =
+	Combine { unCombine :: (a -> b) }
+</pre>
+
+What it should do:
+
+<pre>
+Prelude> let f = Combine $ \n -> Sum (n + 1)
+Prelude> unCombine (mappend f mempty) $ 1
+Sum {getSum = 2}
+</pre>
+
+### Case 7
+
+<pre>
+newtype Comp a =
+	Comp (a -> a)
+</pre>
+
+Hint: We can do something that seems a little more specific and
+natural to functions now that the input and output types are the
+same.
+
+### Case 8
+
+<pre>
+newtype Mem s a =
+	Mem {
+		runMem :: s -> (a,s)
+	}
+
+instance Monoid a => Monoid (Mem s a) where
+	mempty = undefined
+	mappend = undefined
+</pre>
+
+Given the following code:
+
+<pre>
+f' = Mem $ \s -> ("hi", s + 1)
+
+main = do
+	let rmzero = runMem mempty 0
+		rmleft = runMem (f' <> mempty) 0
+		rmright = runMem (mempty <> f') 0
+	print $ rmleft
+	print $ rmright
+	print $ (rmzero :: (String, Int))
+	print $ rmleft == runMem f' 0
+	print $ rmright == runMem f' 0
+</pre>
+
+A correct `Monoid` for `Men` should, given the above code, get teh followin output
+
+<pre>
+Prelude> main
+("hi",1)
+("hi",1)
+("",0)
+True
+True
 </pre>
