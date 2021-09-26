@@ -26,8 +26,8 @@ Write the `Monoid` instance for our `Maybe` type renamed to `Optional`
 data Optional a = Nada | Only a deriving (Eq, Show)
 
 instance Monoid a => Monoid (Optional a) where
-mempty = undefined
-mappend = undefined
+	mempty = undefined
+	mappend = undefined
 </pre>
 
 Expected output:
