@@ -49,6 +49,31 @@ Prelude> Nada `mappend` Only (Sum 1)
 Only (Sum {getSum = 1})
 </pre>
 
+### Additional info
+
+My original solution was:
+
+<pre>
+instance Monoid a => Monoid (Optional a) where
+  mempty = Nada
+  mappend Nada Nada = Nada
+  mappend m Nada = m
+  mappend Nada m = m
+  mappend (Only x) (Only y) = Only (mappend x y)
+</pre>
+
+but I got:
+<pre>
+    • Could not deduce (Semigroup (Optional a))
+        arising from the superclasses of an instance declaration
+      from the context: Monoid a
+        bound by the instance declaration...
+</pre>
+
+Solution found at [Stackoverflow](https://stackoverflow.com/questions/52237895/could-not-deduce-semigroup-optional-a-arising-from-the-superclasses-of-an-in)
+
+Still, not sure why You need to declare Semigroup first?!
+
 ## Refactoring with mconcat
 
 [Go to: Table of contents](#table-of-contents)
