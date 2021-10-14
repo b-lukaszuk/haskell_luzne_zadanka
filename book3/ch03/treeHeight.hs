@@ -40,9 +40,9 @@ t6 :: Tree Int
 t6 = mkBinTree [1..6]
 
 -- is that it? it seems so
-count :: Tree a -> Integer
-count Empty = 0
-count (Node left y right) = 1 + max (count left) (count right)
+countNodes :: Tree a -> Integer
+countNodes Empty = 0
+countNodes (Node left y right) = 1 + max (countNodes left) (countNodes right)
 
 getHeight :: Tree a -> Integer
-getHeight aTree = count aTree
+getHeight aTree = countNodes aTree
