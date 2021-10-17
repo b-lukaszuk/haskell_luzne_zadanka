@@ -51,6 +51,25 @@ getDirection pt1 pt2 pt3 =
   else if dirVal > 0 then DirRight
   else DirStraight
 
+getTriple :: [a] -> (a, a, a)
+getTriple aLst = (head aLst, head $ drop 1 aLst, head $ drop 2 aLst)
+
+getTriples :: [a] -> [(a, a, a)]
+getTriples someLst = if length someLst < 3
+                     then []
+                     else (getTriple someLst) : getTriples (tail someLst)
+
+points :: [Point]
+points = [p1, p2, p3, p4, p5, p6, p7]
+
+getDirFromTriple :: (Point, Point, Point) -> Direction
+getDirFromTriple (pt1, pt2, pt3) = getDirection pt1 pt2 pt3
+
+getDirections :: [Point] -> [Direction]
+getDirections lstOfPoints =
+  let triples = getTriples lstOfPoints
+  in map getDirFromTriple triples
+
 main :: IO()
 main = do
   putStrLn "Testing directions between Points test points."
@@ -63,5 +82,9 @@ main = do
   putStrLn ""
   putStrLn $ "Direction: " ++ show p5 ++ ", " ++ show p6 ++ ", " ++ show p7
   putStrLn $ show $ getDirection p5 p6 p7
+  putStrLn ""
+  putStrLn "And now from list of points (we shift the frame of three points)"
+  putStrLn $ show points
+  putStrLn $ show $ getDirections points
   putStrLn ""
   putStrLn "That's it. Goodbye!"
