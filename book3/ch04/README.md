@@ -23,7 +23,7 @@ splitWith :: (a -> Bool) -> [a] -> [[a]]
 
 > Using the command framework from the section called “A simple command line framework”, write a program that prints the first word of each line of its input.
 
-A simple command line framework:
+Reminder. A simple command line framework:
 
 <pre>
 -- file: ch04/InteractWith.hs
@@ -45,6 +45,38 @@ main = mainWith myFunction
         -- replace "id" with the name of our function below
         myFunction = id
 </pre>
+
+Here I discarded it and used a framework from: [Learn You a Haskell for Great Good!](http://learnyouahaskell.com/input-and-output#files-and-streams).
+
+Used framework:
+
+<pre>
+main = do
+    line <- getLine
+    if null line
+        then return ()
+        else do
+            putStrLn $ reverseWords line
+            main
+
+reverseWords :: String -> String
+reverseWords = unwords . map reverse . words
+</pre>
+
+Usage:
+
+```bash
+cd tasks_1_4
+runhaskell task3.hs
+Hello. Type your text and press Enter and I'll print the first word
+Enter empty line to end the program
+> ala ma kota
+ala
+> tom i jerry
+tom
+>
+That's all. Goodbye!
+```
 
 # Task 4
 
