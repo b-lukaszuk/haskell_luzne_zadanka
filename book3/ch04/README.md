@@ -4,10 +4,10 @@ Some of the tasks from Chapter 3 of [Real World Haskell](http://book.realworldha
 
 # Table of contents
 
-1. [Task 1](#task1)
-2. [Task 2](#task2)
-3. [Task 3](#task3)
-4. [Task 4](#task4)
+1. [Task 1](#task-1)
+2. [Task 2](#task-2)
+3. [Task 3](#task-3)
+4. [Task 4](#task-4)
 
 ---
 
