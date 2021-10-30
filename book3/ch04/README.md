@@ -8,6 +8,8 @@ Some of the tasks from Chapter 3 of [Real World Haskell](http://book.realworldha
 2. [Task 2](#task-2)
 3. [Task 3](#task-3)
 4. [Task 4](#task-4)
+5. [Task 5](#task-5)
+6. [Task 6](#task-6)
 
 ---
 
@@ -100,3 +102,60 @@ That's all. Goodbye!
 [Go to: Table of contents](#table-of-contents)
 
 > Write a program that transposes the text in a file. For instance, it should convert "hello\nworld\n" to "hw\neo\nlr\nll\nod\n"
+
+# Task 5
+
+[Go to: Table of contents](#table-of-contents)
+
+> Use a fold (choosing the appropriate fold will make your code much simpler) to rewrite and improve upon the asInt function from the section called “Explicit recursion”
+
+Reminder (C function)
+
+<pre>
+int as_int(char *str)
+{
+    int acc; /* accumulate the partial result */
+
+    for (acc = 0; isdigit(*str); str++) {
+	acc = acc * 10 + (*str - '0');
+    }
+
+    return acc;
+}
+</pre>
+
+use:
+
+<pre>
+import Data.Char (digitToInt) -- we'll need ord shortly
+
+asInt :: String -> Int
+</pre>
+
+Expected behavior:
+
+<pre>
+ghci> asInt_fold "101"
+101
+ghci> asInt_fold "-31337"
+-31337
+ghci> asInt_fold "1798"
+1798
+
+ghci> asInt_fold ""
+0
+ghci> asInt_fold "-"
+0
+ghci> asInt_fold "-3"
+-3
+ghci> asInt_fold "2.7"
+*** Exception: Char.digitToInt: not a digit '.'
+ghci> asInt_fold "314159265358979323846"
+564616105916946374 -- not sure how to why it returns this output ?!
+</pre>
+
+# Task 6
+
+[Go to: Table of contents](#table-of-contents)
+
+> The asInt_fold function uses error, so its callers cannot handle errors. Rewrite it to fix this problem
