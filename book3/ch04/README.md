@@ -1,6 +1,19 @@
 Some of the tasks from Chapter 3 of [Real World Haskell](http://book.realworldhaskell.org/read/) by Bryan O'Sullivan, Don Stewart, and John Goerzen
 
+---
+
+# Table of contents
+
+1. [Task 1](#task1)
+2. [Task 2](#task2)
+3. [Task 3](#task3)
+4. [Task 4](#task4)
+
+---
+
 # Task 1
+
+[Go to: Table of contents](#table-of-contents)
 
 > Write your own “safe” definitions of the standard partial list functions, but make sure that yours never fail. As a hint, you might want to consider using the following types.
 
@@ -13,6 +26,8 @@ safeInit :: [a] -> Maybe [a]
 
 # Task 2
 
+[Go to: Table of contents](#table-of-contents)
+
 > Write a function splitWith that acts similarly to words, but takes a predicate and a list of any type, and splits its input list on every element for which the predicate returns False
 
 <pre>
@@ -20,6 +35,8 @@ splitWith :: (a -> Bool) -> [a] -> [[a]]
 </pre>
 
 # Task 3
+
+[Go to: Table of contents](#table-of-contents)
 
 > Using the command framework from the section called “A simple command line framework”, write a program that prints the first word of each line of its input.
 
@@ -79,5 +96,7 @@ That's all. Goodbye!
 ```
 
 # Task 4
+
+[Go to: Table of contents](#table-of-contents)
 
 > Write a program that transposes the text in a file. For instance, it should convert "hello\nworld\n" to "hw\neo\nlr\nll\nod\n"
