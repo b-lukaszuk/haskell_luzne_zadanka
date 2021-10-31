@@ -159,3 +159,5 @@ ghci> asInt_fold "31415926535897932384"
 [Go to: Table of contents](#table-of-contents)
 
 > The asInt_fold function uses error, so its callers cannot handle errors. Rewrite it to fix this problem
+
+Imprecise command, I will come up with something on my own, although it will not necessarily be what the authors had in mind.
