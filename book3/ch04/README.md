@@ -150,8 +150,8 @@ ghci> asInt_fold "-3"
 -3
 ghci> asInt_fold "2.7"
 *** Exception: Char.digitToInt: not a digit '.'
-ghci> asInt_fold "314159265358979323846"
-564616105916946374 -- not sure how to why it returns this output ?!
+ghci> asInt_fold "31415926535897932384"
+64616105916946374 -- not sure why it returns this output ?!
 </pre>
 
 # Task 6
