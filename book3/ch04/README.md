@@ -10,6 +10,10 @@ Some of the tasks from Chapter 3 of [Real World Haskell](http://book.realworldha
 4. [Task 4](#task-4)
 5. [Task 5](#task-5)
 6. [Task 6](#task-6)
+7. [Task 7](#task-7)
+8. [Task 8](#task-8)
+9. [Task 9](#task-9)
+10. [Task 10](#task-10)
 
 ---
 
@@ -161,3 +165,36 @@ ghci> asInt_fold "31415926535897932384"
 > The asInt_fold function uses error, so its callers cannot handle errors. Rewrite it to fix this problem
 
 Imprecise command, I will come up with something on my own, although it will not necessarily be what the authors had in mind.
+
+# Task 7
+
+[Go to: Table of contents](#table-of-contents)
+
+> Write your own definition of concat using foldr.
+
+# Task 8
+
+[Go to: Table of contents](#table-of-contents)
+
+> Write your own definition of the standard takeWhile function, first using explicit recursion, then foldr
+
+# Task 9
+
+[Go to: Table of contents](#table-of-contents)
+
+> Write your own definition of the groupBy function
+
+<pre>
+groupBy :: (a -> a -> Bool) -> [a] -> [[a]]
+</pre>
+
+# Task 10
+
+[Go to: Table of contents](#table-of-contents)
+
+Write the foloowing Prelude functions using `foldl'` or `foldr`
+
++ `any`
++ `cycle`
++ `words`
++ `unlines`
