@@ -1,4 +1,4 @@
-Some of the tasks from Chapter 3 of [Real World Haskell](http://book.realworldhaskell.org/read/) by Bryan O'Sullivan, Don Stewart, and John Goerzen
+Some of the tasks from Chapter 4 of [Real World Haskell](http://book.realworldhaskell.org/read/) by Bryan O'Sullivan, Don Stewart, and John Goerzen
 
 ---
 
