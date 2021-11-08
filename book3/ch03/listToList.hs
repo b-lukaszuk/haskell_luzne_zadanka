@@ -1,4 +1,16 @@
-data List a = Cons a (List a) | Nil deriving (Show)
+data List a = Cons a (List a) | Nil
+
+instance Show a => Show (List a) where
+  show Nil = "()"
+  show theLst =
+    let lstOfContents = listToHsList theLst
+        showedContents = addSeps " " $ map show lstOfContents
+    in "(" ++ showedContents ++  ")"
+
+addSeps :: [a] -> [[a]] -> [a]
+addSeps _ [] = []
+addSeps _ (x:[]) = x
+addSeps sep (x:xs) = x ++ sep ++ addSeps sep xs
 
 -- this fn is not required by the task, still I wanted to write it
 hsListToList :: [a] -> List a
