@@ -7,6 +7,7 @@ instance Show a => Show (List a) where
         showedContents = addSeps " " $ map show lstOfContents
     in "(" ++ showedContents ++  ")"
 
+-- adds separators between list elements (only between)
 addSeps :: [a] -> [[a]] -> [a]
 addSeps _ [] = []
 addSeps _ (x:[]) = x
@@ -68,15 +69,15 @@ main = do
   putStrLn $ show $ hsListToList hsL5
 
   putStrLn ""
-  putStr $ concat ["listToHsList (", show lsL1, ") = "]
+  putStr $ concat ["listToHsList ", show lsL1, " = "]
   putStrLn $ show $ listToHsList lsL1
-  putStr $ concat ["listToHsList (", show lsL2, ") = "]
+  putStr $ concat ["listToHsList ", show lsL2, " = "]
   putStrLn $ show $ listToHsList lsL2
-  putStr $ concat ["listToHsList (", show lsL3, ") = "]
+  putStr $ concat ["listToHsList ", show lsL3, " = "]
   putStrLn $ show $ listToHsList lsL3
-  putStr $ concat ["listToHsList (", show lsL4, ") = "]
+  putStr $ concat ["listToHsList ", show lsL4, " = "]
   putStrLn $ show $ listToHsList lsL4
-  putStr $ concat ["listToHsList (", show lsL5, ") = "]
+  putStr $ concat ["listToHsList ", show lsL5, " = "]
   putStrLn $ show $ listToHsList lsL5
 
   putStrLn ""
