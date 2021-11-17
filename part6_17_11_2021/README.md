@@ -2,9 +2,14 @@
 
 # Table of contents
 
-1. [Task 1](#task-1)
+1. [Info](#info)
+2. [Task 1](#task-1)
 
 ---
+
+# Info
+
+Tasks from [Rosetta Code. Category: Programming Tasks](https://rosettacode.org/wiki/Category:Programming_Tasks)
 
 # Task 1
 
