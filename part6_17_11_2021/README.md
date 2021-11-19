@@ -13,6 +13,8 @@ Tasks from [Rosetta Code. Category: Programming Tasks](https://rosettacode.org/w
 
 # Task 1
 
+[Go to: Table of contents](#table-of-contents)
+
 [100 doors](https://rosettacode.org/wiki/100_doors):
 
 There are 100 doors in a row that are all initially closed.
