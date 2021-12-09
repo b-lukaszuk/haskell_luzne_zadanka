@@ -23,8 +23,8 @@ getRndCard = do
 -- but it returns IO Bool
 anyCardEqlPrisId :: Int -> [Int] -> Bool
 anyCardEqlPrisId _ [] = False
-anyCardEqlPrisId prisId (guess:guesses) = if guess == prisId then True
-                                  else anyCardEqlPrisId prisId guesses
+anyCardEqlPrisId prisId (card:cards) = if card == prisId then True
+                                       else anyCardEqlPrisId prisId cards
 
 main :: IO ()
 main = do
