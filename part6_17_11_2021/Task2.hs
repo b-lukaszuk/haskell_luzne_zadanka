@@ -22,8 +22,8 @@ getRndGuesses = do
 -- but it returns IO Bool
 anyGuessEqlPrisId :: Int -> [Int] -> Bool
 anyGuessEqlPrisId _ [] = False
-anyGuessEqlPrisId prisId (g:gs) = if g == prisId then True
-                                  else anyGuessEqlPrisId prisId gs
+anyGuessEqlPrisId prisId (guess:guesses) = if guess == prisId then True
+                                  else anyGuessEqlPrisId prisId guesses
 
 main :: IO ()
 main = do
