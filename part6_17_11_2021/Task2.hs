@@ -17,14 +17,22 @@ getRndCards = do
   _ <- newStdGen
   return $ take noOfGuessesPerPris $ randomRs (0, length(prisoners) - 1) gen
 
--- now use, e.g:
--- fmap (anyCardEqlPrisId (prisoners !! 0)) getRndCards
--- to apply getRndCards to anyCardEqlPrisId
--- but it returns IO Bool
 anyCardEqlPrisId :: Int -> [Card] -> Bool
 anyCardEqlPrisId _ [] = False
 anyCardEqlPrisId prisId (card:cards) = if card == prisId then True
                                        else anyCardEqlPrisId prisId cards
+
+prisonersFoundCards :: [Prisoner] -> [IO Bool]
+prisonersFoundCards [] = []
+prisonersFoundCards (pris:ps) = fmap (anyCardEqlPrisId pris) getRndCards :
+  prisonersFoundCards ps
+
+allPrisFoundCards :: [IO Bool] -> IO Bool
+allPrisFoundCards [] = return True
+allPrisFoundCards (result:results) = do
+  res <- result
+  if not res then return False else allPrisFoundCards results
+
 
 main :: IO ()
 main = do
