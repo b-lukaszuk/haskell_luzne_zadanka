@@ -17,21 +17,21 @@ getRndCards = do
   _ <- newStdGen
   return $ take noOfGuessesPerPris $ randomRs (0, length(prisoners) - 1) gen
 
-anyCardEqlPrisId :: Int -> [Card] -> Bool
-anyCardEqlPrisId _ [] = False
-anyCardEqlPrisId prisId (card:cards) = if card == prisId then True
-                                       else anyCardEqlPrisId prisId cards
+isAnyCardEqlPrisId :: Int -> [Card] -> Bool
+isAnyCardEqlPrisId _ [] = False
+isAnyCardEqlPrisId prisId (card:cards) = if card == prisId then True
+                                         else isAnyCardEqlPrisId prisId cards
 
-prisonersFoundCards :: [Prisoner] -> [IO Bool]
-prisonersFoundCards [] = []
-prisonersFoundCards (pris:ps) = fmap (anyCardEqlPrisId pris) getRndCards :
-  prisonersFoundCards ps
+makePrisLookForLuckyCard :: [Prisoner] -> [IO Bool]
+makePrisLookForLuckyCard [] = []
+makePrisLookForLuckyCard (p:ps) = fmap (isAnyCardEqlPrisId p) getRndCards :
+                                  makePrisLookForLuckyCard ps
 
-allPrisFoundCards :: [IO Bool] -> IO Bool
-allPrisFoundCards [] = return True
-allPrisFoundCards (result:results) = do
+didAllPrisFoundLuckyCard :: [IO Bool] -> IO Bool
+didAllPrisFoundLuckyCard [] = return True
+didAllPrisFoundLuckyCard (result:results) = do
   res <- result
-  if not res then return False else allPrisFoundCards results
+  if not res then return False else didAllPrisFoundLuckyCard results
 
 
 main :: IO ()
