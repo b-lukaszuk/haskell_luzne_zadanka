@@ -21,7 +21,7 @@ getRndCard = do
 -- fmap (anyCardEqlPrisId (prisoners !! 0)) getRndCard
 -- to apply getRndCard to anyCardEqlPrisId
 -- but it returns IO Bool
-anyCardEqlPrisId :: Int -> [Int] -> Bool
+anyCardEqlPrisId :: Int -> [Card] -> Bool
 anyCardEqlPrisId _ [] = False
 anyCardEqlPrisId prisId (card:cards) = if card == prisId then True
                                        else anyCardEqlPrisId prisId cards
