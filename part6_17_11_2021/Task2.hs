@@ -13,7 +13,7 @@ noOfGuessesPerPris = 8
 getRndGuesses :: IO [Int]
 getRndGuesses = do
   gen <- getStdGen
-  gen1 <- newStdGen
+  _ <- newStdGen
   return $ take noOfGuessesPerPris $ randomRs (0, length(prisoners) - 1) gen
 
 -- now use, e.g:
@@ -21,7 +21,7 @@ getRndGuesses = do
 -- to apply getRndGuesses to anyGuessEqlPrisId
 -- but it returns IO Bool
 anyGuessEqlPrisId :: Int -> [Int] -> Bool
-anyGuessEqlPrisId prisId [] = False
+anyGuessEqlPrisId _ [] = False
 anyGuessEqlPrisId prisId (g:gs) = if g == prisId then True
                                   else anyGuessEqlPrisId prisId gs
 
