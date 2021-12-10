@@ -15,6 +15,9 @@ noOfGuessesPerPris = 8
 noOfIter :: Integer
 noOfIter = 10000
 
+noOfCards :: Int
+noOfCards  = 10
+
 getRndCards :: IO [Card]
 getRndCards = do
   gen <- getStdGen
@@ -56,8 +59,10 @@ calcProb noOfSuc total (b:bs) = do
 main :: IO ()
 main = do
     putStrLn "Calculating probability of success for:"
-    putStrLn "10 prisoners, 10 cards, 8 guesses each,"
-    putStrLn "strategy: random, iterations: 10k"
+    printf "%d prisoners, " $ length(prisoners)
+    printf "%d cards, " $ noOfCards
+    printf "%d guesses each\n" $ noOfGuessesPerPris
+    printf "strategy: random, %d iterations\n" $ noOfIter
     putStrLn "Please be patient, this may take a while"
     probRand <- calcProb 0 0 $runNIterRand noOfIter
     printf "p = %.5f\n" $ probRand
