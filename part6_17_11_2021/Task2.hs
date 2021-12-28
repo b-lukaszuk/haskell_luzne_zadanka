@@ -53,11 +53,12 @@ calcProb noOfSuc total (b:bs) = do
 -- interesting,
 -- calculation of probability in Haskell's REPL is faster than in
 -- Python's REPL, ofcourse the results are similar
+-- still, dealing with random numbers in Haskell is (very) strange
 main :: IO ()
 main = do
     putStrLn "Calculating probability of success for:"
     putStrLn "10 prisoners, 10 cards, 8 guesses each,"
-    putStrLn "strategy: random, iterations: 10k"
+    printf "strategy: random, iterations: %d\n" $ noOfIter
     putStrLn "Please be patient, this may take a while"
     probRand <- calcProb 0 0 $runNIterRand noOfIter
     printf "p = %.5f\n" $ probRand
