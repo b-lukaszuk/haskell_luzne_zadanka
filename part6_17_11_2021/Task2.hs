@@ -112,7 +112,8 @@ calcProb noOfSuc total (b:bs) = do
 
 -- interesting,
 -- calculation of probability in Haskell's REPL is faster than in
--- Python's REPL, ofcourse the results are similar
+-- Python's REPL, (like 10 sec. vs. 45 sec)
+-- of course the results are similar
 -- still, dealing with random numbers in Haskell is (very) strange
 main :: IO ()
 main = do
