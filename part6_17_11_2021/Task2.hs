@@ -10,17 +10,17 @@ type Guess = Int
 noOfCards :: Int
 noOfCards = 100
 
-noOfPrisoners :: Int
-noOfPrisoners = 100
+noOfPris :: Int
+noOfPris = 100
 
-prisoners :: [Prisoner]
-prisoners = [0..(noOfPrisoners-1)]
-
-noOfGuessesPerPris :: Int
-noOfGuessesPerPris = 50
+noOfGuesPerPris :: Int
+noOfGuesPerPris = 50
 
 noOfIter :: Integer
 noOfIter = 10000
+
+prisoners :: [Prisoner]
+prisoners = [0..(noOfPris-1)]
 
 -- https://programming-idioms.org/idiom/10/shuffle-a-list/826/haskell
 shuffle :: [a] -> IO [a]
@@ -40,27 +40,27 @@ shuffle x = if length x < 2 then return x else do
 cupboard :: IO [Card]
 cupboard = shuffle [0..(noOfCards - 1)]
 
-getMethodicalCards :: Prisoner -> Guess -> Int -> [Card] -> [Card] -> IO [Card]
-getMethodicalCards _ _ 0 _ acc = return acc
-getMethodicalCards prisId curGuess guessesLeft cards acc =
+getMethodCards :: Prisoner -> Guess -> Int -> [Card] -> [Card] -> IO [Card]
+getMethodCards _ _ 0 _ acc = return acc
+getMethodCards prisId curGuess guessesLeft cards acc =
   let cardInside = cards !! curGuess
   in if prisId == cardInside then return (cardInside : acc)
-    else getMethodicalCards
+    else getMethodCards
          prisId cardInside (guessesLeft - 1) cards (cardInside : acc)
 
 getMethodicalCards' :: Prisoner -> Guess -> Int -> [Card] -> [Card] -> [Card]
 getMethodicalCards' _ _ 0 _ acc = acc
-getMethodicalCards' prisId curGuess guessesLeft cards acc =
-  let cardInside = cards !! curGuess
-  in if prisId == cardInside then (cardInside : acc)
+getMethodicalCards' prisId curGuess guesLeft cards acc =
+  let noOfCard = cards !! curGuess
+  in if prisId == noOfCard then (noOfCard : acc)
     else
-    getMethodicalCards' prisId cardInside (guessesLeft - 1) cards (cardInside : acc)
+    getMethodicalCards' prisId noOfCard (guesLeft - 1) cards (noOfCard : acc)
 
 getRndCards :: IO [Card]
 getRndCards = do
   gen <- getStdGen
   _ <- newStdGen
-  return $ take noOfGuessesPerPris $ randomRs (0, noOfPrisoners - 1) gen
+  return $ take noOfGuesPerPris $ randomRs (0, noOfPris - 1) gen
 
 isAnyCardEqlPrisId :: Prisoner -> [Card] -> Bool
 isAnyCardEqlPrisId _ [] = False
@@ -76,7 +76,7 @@ makePrisLookForLuckyCardRand (p:ps) =
 makePrisLookForLuckyCardMeth :: [Prisoner] -> [Card] -> [IO Bool]
 makePrisLookForLuckyCardMeth [] _ = []
 makePrisLookForLuckyCardMeth (p:ps) cards =
-  fmap (isAnyCardEqlPrisId p) (getMethodicalCards p p noOfGuessesPerPris cards []) :
+  fmap (isAnyCardEqlPrisId p) (getMethodCards p p noOfGuesPerPris cards []) :
   makePrisLookForLuckyCardMeth ps cards
 
 didAllPrisFoundLuckyCard :: [IO Bool] -> IO Bool
@@ -85,11 +85,14 @@ didAllPrisFoundLuckyCard (result:results) = do
   res <- result
   if not res then return False else didAllPrisFoundLuckyCard results
 
+run1IterRand :: IO Bool
+run1IterRand = do
+  didAllPrisFoundLuckyCard (makePrisLookForLuckyCardRand prisoners)
+
 runNIterRand :: Integer -> [IO Bool]
 runNIterRand 0 = []
 runNIterRand n =
-  didAllPrisFoundLuckyCard (makePrisLookForLuckyCardRand prisoners) :
-  runNIterRand (n-1)
+  run1IterRand : runNIterRand (n-1)
 
 run1IterMeth :: IO Bool
 run1IterMeth = do
@@ -99,11 +102,11 @@ run1IterMeth = do
 runNIterMeth :: Integer -> [IO Bool]
 runNIterMeth 0 = []
 runNIterMeth n =
-  run1IterMeth :
-  runNIterMeth (n-1)
+  run1IterMeth : runNIterMeth (n-1)
 
 calcProb :: Integer -> Integer -> [IO Bool] -> IO Double
-calcProb noOfSuc total [] = return ((fromIntegral noOfSuc) / (fromIntegral total))
+calcProb noOfSuc total [] = return (
+  (fromIntegral noOfSuc) / (fromIntegral total))
 calcProb noOfSuc total (b:bs) = do
   res <- b
   if res
@@ -118,9 +121,9 @@ calcProb noOfSuc total (b:bs) = do
 main :: IO ()
 main = do
     putStrLn "Calculating probability of success for:"
-    printf "%d prisoners, " $ noOfPrisoners
+    printf "%d prisoners, " $ noOfPris
     printf "%d cards in cupboard\n" $ noOfCards
-    printf "%d guesses for each prisoner\n" $ noOfGuessesPerPris
+    printf "%d guesses for each prisoner\n" $ noOfGuesPerPris
     putStrLn "======================================="
     printf "strategy: random, iterations: %d\n" $ noOfIter
     putStrLn "Please be patient, this may take a while"
