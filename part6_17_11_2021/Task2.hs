@@ -124,6 +124,15 @@ calcProb noOfSuc total (b:bs) = do
     then calcProb (noOfSuc + 1) (total + 1) bs
     else calcProb noOfSuc (total + 1) bs
 
+displayInfo :: Bool -> IO ()
+displayInfo strategyRand = do
+    putStrLn "======================================="
+    printf "strategy: %s, " $ (strategyRand ? "random" :? "methodical")
+    printf "iterations: %d\n" $ noOfIter
+    putStrLn "Please be patient, this may take a while"
+    prob <- calcProb 0 0 $ (strategyRand ? runNIterRand :? runNIterMeth) noOfIter
+    printf "p = %.5f\n" $ prob
+
 -- interesting,
 -- calculation of probability in Haskell's REPL is faster than in
 -- Python's REPL, (like 10 sec. vs. 45 sec)
@@ -131,19 +140,12 @@ calcProb noOfSuc total (b:bs) = do
 -- still, dealing with random numbers in Haskell is (very) strange
 main :: IO ()
 main = do
+    putStrLn "===="
     putStrLn "Calculating probability of success for:"
     printf "%d prisoners, " $ noOfPris
     printf "%d cards in cupboard\n" $ noOfCards
     printf "%d guesses for each prisoner\n" $ noOfGuesPerPris
-    putStrLn "======================================="
-    printf "strategy: random, iterations: %d\n" $ noOfIter
-    putStrLn "Please be patient, this may take a while"
-    probRand <- calcProb 0 0 $ runNIterRand noOfIter
-    printf "p = %.5f\n" $ probRand
-    putStrLn "======================================="
-    printf "strategy: methodical, iterations: %d\n" $ noOfIter
-    putStrLn "Please be patient, this may take a while"
-    probMeth <- calcProb 0 0 $ runNIterMeth noOfIter
-    printf "p = %.5f\n" $ probMeth
-    putStrLn "======================================="
+    displayInfo True
+    displayInfo False
+    putStrLn "===="
     putStrLn "That's all. Goodbye."
