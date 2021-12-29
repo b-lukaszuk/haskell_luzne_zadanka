@@ -7,6 +7,17 @@ type Prisoner = Int
 type Card = Int
 type Guess = Int
 
+-- https://wiki.haskell.org/Ternary_operator
+data Cond a = a :? a
+
+infixl 0 ?
+infixl 1 :?
+
+(?) :: Bool -> Cond a -> a
+True  ? (x :? _) = x
+False ? (_ :? y) = y
+-- usage: test = 1 < 2 ? "Yes" :? "No
+
 noOfCards :: Int
 noOfCards = 100
 
