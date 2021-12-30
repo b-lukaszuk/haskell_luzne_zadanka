@@ -59,14 +59,6 @@ getMethodCards prisId curGuess guessesLeft cards acc =
     else getMethodCards
          prisId cardInside (guessesLeft - 1) cards (cardInside : acc)
 
-getMethodicalCards' :: Prisoner -> Guess -> Int -> [Card] -> [Card] -> [Card]
-getMethodicalCards' _ _ 0 _ acc = acc
-getMethodicalCards' prisId curGuess guesLeft cards acc =
-  let noOfCard = cards !! curGuess
-  in if prisId == noOfCard then (noOfCard : acc)
-    else
-    getMethodicalCards' prisId noOfCard (guesLeft - 1) cards (noOfCard : acc)
-
 getRndCards :: IO [Card]
 getRndCards = do
   gen <- getStdGen
