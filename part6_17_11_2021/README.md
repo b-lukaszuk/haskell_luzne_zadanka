@@ -5,6 +5,7 @@
 1. [Info](#info)
 2. [Task 1](#task-1)
 3. [Task 2](#task-2)
+4. [Task 3](#task-3)
 
 ---
 
@@ -61,3 +62,33 @@ Simulate several thousand instances of the game where the prisoners use the opti
 - If the card within has his number then he succeeds otherwise he opens the drawer with the same number as that of the revealed card. (until he opens his maximum).
 
 Show and compare the computed probabilities of success for the two strategies.
+
+# Task 3
+
+[Go to: Table of contents](#table-of-contents)
+
+[99 bottles of beer](https://rosettacode.org/wiki/99_bottles_of_beer)
+
+## What to do
+
+Display the complete lyrics for the song: **99 Bottles of Beer on the Wall.**
+
+**The beer song**
+
+The lyrics follow this form:
+
+> 99 bottles of beer on the wall
+> 99 bottles of beer
+> Take one down, pass it around
+> 98 bottles of beer on the wall
+>
+> 98 bottles of beer on the wall
+> 98 bottles of beer
+> Take one down, pass it around
+> 97 bottles of beer on the wall
+
+... and so on, until reaching   0  (zero).
+
+Grammatical support for 1 bottle of beer is optional.
+
+As with any puzzle, try to do it in as creative/concise/comical a way as possible (simple, obvious solutions allowed, too).
