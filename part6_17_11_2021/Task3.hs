@@ -25,6 +25,6 @@ getVerse nOfBott =
 getSong :: [Int] -> String
 getSong lstOfBottles = intercalate "\n\n" $ map getVerse lstOfBottles
 
-main :: IO()
+main :: IO ()
 main = do
   putStrLn $ getSong bottOfBeer
