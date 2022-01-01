@@ -87,7 +87,7 @@ The lyrics follow this form:
 > Take one down, pass it around
 > 97 bottles of beer on the wall
 
-... and so on, until reaching   0  (zero).
+... and so on, until reaching 0 (zero).
 
 Grammatical support for 1 bottle of beer is optional.
 
