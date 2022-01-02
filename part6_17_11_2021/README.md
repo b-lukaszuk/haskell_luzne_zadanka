@@ -6,6 +6,7 @@
 2. [Task 1](#task-1)
 3. [Task 2](#task-2)
 4. [Task 3](#task-3)
+5. [Task 4](#task-4)
 
 ---
 
@@ -94,3 +95,24 @@ Take one down, pass it around
 Grammatical support for 1 bottle of beer is optional.
 
 As with any puzzle, try to do it in as creative/concise/comical a way as possible (simple, obvious solutions allowed, too).
+
+# Task 5
+
+[Go to: Table of contents](#table-of-contents)
+
+Inspired by: [Birthday problem](https://en.wikipedia.org/wiki/Birthday_problem):
+
+## The problem
+
+Let's say there are 30 people at a party. What is the probability that any two individuals celebrate their birthday the same day.
+
+## What to do
+
+Write a computer simulation to calculate the probability specified above (say 10k iterations).
+
+## Assumptions
+
+List of assumptions:
++ every year got exactly 365 days
++ people's births are distributed equaly throughout the year (uniform distribution)
++ use only standard Haskell's libraries (the one you get out of the box)
