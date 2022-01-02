@@ -7,17 +7,6 @@ type Prisoner = Int
 type Card = Int
 type Guess = Int
 
--- https://wiki.haskell.org/Ternary_operator
-data Cond a = a :? a
-
-infixl 0 ?
-infixl 1 :?
-
-(?) :: Bool -> Cond a -> a
-True  ? (x :? _) = x
-False ? (_ :? y) = y
--- usage: test = 1 < 2 ? "Yes" :? "No
-
 noOfCards :: Int
 noOfCards = 100
 
@@ -109,7 +98,7 @@ calcProb noOfSuc total (b:bs) = do
 displayInfo :: Bool -> IO ()
 displayInfo strategyRnd = do
     putStrLn "======================================="
-    printf "strategy: %s, " $ (strategyRnd ? "random" :? "methodical")
+    printf "strategy: %s, " $ if strategyRnd then "random" else "methodical"
     printf "iterations: %d\n" $ noOfIter
     putStrLn "Please be patient, this may take a while"
     prob <- calcProb 0 0 $ runNIter noOfIter strategyRnd
