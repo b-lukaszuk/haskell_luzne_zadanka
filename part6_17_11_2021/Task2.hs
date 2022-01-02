@@ -84,14 +84,12 @@ runNIter n methRnd acc = do
   res <- run1Iter methRnd
   runNIter (n - 1) methRnd (res : acc)
 
-calcProb :: Integer -> Integer -> [IO Bool] -> IO Double
-calcProb noOfSuc total [] = return (
-  (fromIntegral noOfSuc) / (fromIntegral total))
-calcProb noOfSuc total (b:bs) = do
-  res <- b
-  if res
-    then calcProb (noOfSuc + 1) (total + 1) bs
-    else calcProb noOfSuc (total + 1) bs
+sumBool :: [Bool] -> Integer
+sumBool lstOfBool = foldr (\cur acc -> if cur then acc+1 else acc) 0 lstOfBool
+
+avgBool :: [Bool] -> Double
+avgBool lstOfBool = let noOfTrue = sumBool lstOfBool
+  in (fromIntegral noOfTrue) / (fromIntegral $ length lstOfBool)
 
 displayInfo :: Bool -> IO ()
 displayInfo strategyRnd = do
@@ -99,8 +97,8 @@ displayInfo strategyRnd = do
     printf "strategy: %s, " $ if strategyRnd then "random" else "methodical"
     printf "iterations: %d\n" $ noOfIter
     putStrLn "Please be patient, this may take a while"
-    -- prob <- calcProb 0 0 $ runNIter noOfIter strategyRnd
-    -- printf "p = %.5f\n" $ prob
+    resOfTrials <- runNIter noOfIter strategyRnd []
+    printf "p = %.5f\n" $ avgBool resOfTrials
 
 -- interesting,
 -- calculation of probability in Haskell's REPL is faster than in
