@@ -102,7 +102,7 @@ displayInfo strategyRnd = do
 
 -- interesting,
 -- calculation of probability in Haskell's REPL is faster than in
--- Python's REPL, (like 12.5 sec. vs. 45 sec)
+-- Python's REPL, (like 16 sec. vs. 46 sec.)
 -- of course the algorithms and the results are similar
 -- still, dealing with random numbers in Haskell is (very) strange
 main :: IO ()
