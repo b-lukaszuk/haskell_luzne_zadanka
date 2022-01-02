@@ -75,11 +75,11 @@ isAnyCardEqlPrisId _ [] = False
 isAnyCardEqlPrisId prisId (card:cards) = if card == prisId then True
                                          else isAnyCardEqlPrisId prisId cards
 
-makePrisLookForLuckyCardRand :: [Prisoner] -> [Card] -> [IO Bool]
-makePrisLookForLuckyCardRand [] _ = []
-makePrisLookForLuckyCardRand (p:ps) cards =
+makePrisLookForLuckyCardRnd :: [Prisoner] -> [Card] -> [IO Bool]
+makePrisLookForLuckyCardRnd [] _ = []
+makePrisLookForLuckyCardRnd (p:ps) cards =
   fmap (isAnyCardEqlPrisId p) (getRndCards p noOfGuesPerPris cards []) :
-  makePrisLookForLuckyCardRand ps cards
+  makePrisLookForLuckyCardRnd ps cards
 
 makePrisLookForLuckyCardMeth :: [Prisoner] -> [Card] -> [IO Bool]
 makePrisLookForLuckyCardMeth [] _ = []
@@ -93,15 +93,15 @@ didAllPrisFoundLuckyCard (result:results) = do
   res <- result
   if not res then return False else didAllPrisFoundLuckyCard results
 
-run1IterRand :: IO Bool
-run1IterRand = do
+run1IterRnd :: IO Bool
+run1IterRnd = do
   cards <- cupboard
-  didAllPrisFoundLuckyCard (makePrisLookForLuckyCardRand prisoners cards)
+  didAllPrisFoundLuckyCard (makePrisLookForLuckyCardRnd prisoners cards)
 
-runNIterRand :: Integer -> [IO Bool]
-runNIterRand 0 = []
-runNIterRand n =
-  run1IterRand : runNIterRand (n-1)
+runNIterRnd :: Integer -> [IO Bool]
+runNIterRnd 0 = []
+runNIterRnd n =
+  run1IterRnd : runNIterRnd (n-1)
 
 run1IterMeth :: IO Bool
 run1IterMeth = do
@@ -123,12 +123,12 @@ calcProb noOfSuc total (b:bs) = do
     else calcProb noOfSuc (total + 1) bs
 
 displayInfo :: Bool -> IO ()
-displayInfo strategyRand = do
+displayInfo strategyRnd = do
     putStrLn "======================================="
-    printf "strategy: %s, " $ (strategyRand ? "random" :? "methodical")
+    printf "strategy: %s, " $ (strategyRnd ? "random" :? "methodical")
     printf "iterations: %d\n" $ noOfIter
     putStrLn "Please be patient, this may take a while"
-    prob <- calcProb 0 0 $ (strategyRand ? runNIterRand :? runNIterMeth) noOfIter
+    prob <- calcProb 0 0 $ (strategyRnd ? runNIterRnd :? runNIterMeth) noOfIter
     printf "p = %.5f\n" $ prob
 
 -- interesting,
