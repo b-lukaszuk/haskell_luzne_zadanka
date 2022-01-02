@@ -59,11 +59,16 @@ getMethodCards prisId curGuess guessesLeft cards acc =
     else getMethodCards
          prisId cardInside (guessesLeft - 1) cards (cardInside : acc)
 
-getRndCards :: IO [Card]
-getRndCards = do
-  gen <- getStdGen
-  _ <- newStdGen
-  return $ take noOfGuesPerPris $ randomRs (0, noOfPris - 1) gen
+getRndNum :: IO Card
+getRndNum = getStdRandom (randomR (0, noOfCards - 1))
+
+getRndCards :: Prisoner -> Int -> [Card] -> [Card] -> IO [Card]
+getRndCards _ 0 _ acc = return acc
+getRndCards prisId guessesLeft cards acc = do
+  rndIndex <- getRndNum
+  let cardInside = cards !! rndIndex
+  if prisId == cardInside then return (cardInside : acc)
+    else getRndCards prisId (guessesLeft - 1) cards (cardInside : acc)
 
 isAnyCardEqlPrisId :: Prisoner -> [Card] -> Bool
 isAnyCardEqlPrisId _ [] = False
