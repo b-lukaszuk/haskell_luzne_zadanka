@@ -40,35 +40,30 @@ shuffle x = if length x < 2 then return x else do
 cupboard :: IO [Card]
 cupboard = shuffle [0..(noOfCards - 1)]
 
-getMethodCards :: Prisoner -> Guess -> Int -> [Card] -> [Card] -> IO [Card]
-getMethodCards _ _ 0 _ acc = return acc
-getMethodCards prisId curGuess guessesLeft cards acc =
-  let cardInside = cards !! curGuess
-  in if prisId == cardInside then return (cardInside : acc)
-    else getMethodCards
-         prisId cardInside (guessesLeft - 1) cards (cardInside : acc)
-
-getRndNum :: IO Card
+getRndNum :: IO Int
 getRndNum = getStdRandom (randomR (0, noOfCards - 1))
 
-getRndCards :: Prisoner -> Int -> [Card] -> [Card] -> IO [Card]
-getRndCards _ 0 _ acc = return acc
-getRndCards prisId guessesLeft cards acc = do
-  rndIndex <- getRndNum
-  let cardInside = cards !! rndIndex
-  if prisId == cardInside then return (cardInside : acc)
-    else getRndCards prisId (guessesLeft - 1) cards (cardInside : acc)
+getCardIndex :: Int -> Bool -> IO Int
+getCardIndex curGuess methRnd = if methRnd then getRndNum else return curGuess
+
+getCards :: Prisoner -> Guess -> Int -> [Card] -> [Card] -> Bool -> IO [Card]
+getCards _ _ 0 _ acc _ = return acc
+getCards prisId curGuess guessesLeft cards acc methRnd = do
+  cardIndex <- getCardIndex curGuess methRnd
+  let cardIn = cards !! cardIndex
+  if prisId == cardIn then return (cardIn : acc)
+    else getCards prisId cardIn (guessesLeft - 1) cards (cardIn : acc) methRnd
 
 isACardEqlPrisId :: Prisoner -> [Card] -> Bool
 isACardEqlPrisId _ [] = False
--- getRndCards and getMethodCards stop gener cards once they hit lucky card
+-- getCards stops generating when it hit lucky card (lck:cards) or
+-- when reached noOfGuesPerPris (card:cards), anyway need to check fst card only
 isACardEqlPrisId prisId (card:_) = card == prisId
 
 mkPrisLookForLuckyCard :: [Prisoner] -> [Card] -> Bool -> [IO Bool]
 mkPrisLookForLuckyCard [] _ _ = []
 mkPrisLookForLuckyCard (p:ps) cards methRnd =
-  let guesses = if methRnd then (getRndCards p noOfGuesPerPris cards [])
-        else (getMethodCards p p noOfGuesPerPris cards [])
+  let guesses = getCards p p noOfGuesPerPris cards [] methRnd
   in fmap (isACardEqlPrisId p) guesses :
      (mkPrisLookForLuckyCard ps cards methRnd)
 
