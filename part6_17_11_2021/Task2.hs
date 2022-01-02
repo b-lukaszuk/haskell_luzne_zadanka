@@ -75,11 +75,11 @@ isAnyCardEqlPrisId _ [] = False
 isAnyCardEqlPrisId prisId (card:cards) = if card == prisId then True
                                          else isAnyCardEqlPrisId prisId cards
 
-makePrisLookForLuckyCardRand :: [Prisoner] -> [IO Bool]
-makePrisLookForLuckyCardRand [] = []
-makePrisLookForLuckyCardRand (p:ps) =
-  fmap (isAnyCardEqlPrisId p) getRndCards :
-  makePrisLookForLuckyCardRand ps
+makePrisLookForLuckyCardRand :: [Prisoner] -> [Card] -> [IO Bool]
+makePrisLookForLuckyCardRand [] _ = []
+makePrisLookForLuckyCardRand (p:ps) cards =
+  fmap (isAnyCardEqlPrisId p) (getRndCards p noOfGuesPerPris cards []) :
+  makePrisLookForLuckyCardRand ps cards
 
 makePrisLookForLuckyCardMeth :: [Prisoner] -> [Card] -> [IO Bool]
 makePrisLookForLuckyCardMeth [] _ = []
@@ -95,7 +95,8 @@ didAllPrisFoundLuckyCard (result:results) = do
 
 run1IterRand :: IO Bool
 run1IterRand = do
-  didAllPrisFoundLuckyCard (makePrisLookForLuckyCardRand prisoners)
+  cards <- cupboard
+  didAllPrisFoundLuckyCard (makePrisLookForLuckyCardRand prisoners cards)
 
 runNIterRand :: Integer -> [IO Bool]
 runNIterRand 0 = []
