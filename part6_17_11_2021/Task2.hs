@@ -78,9 +78,11 @@ run1Iter methRnd = do
   cards <- cupboard
   didAllPrisFoundLuckyCard $ mkPrisLookForLuckyCard prisoners cards methRnd
 
-runNIter :: Integer -> Bool -> [IO Bool]
-runNIter 0 _ = []
-runNIter n methRnd = (run1Iter methRnd) : (runNIter (n - 1) methRnd)
+runNIter :: Integer -> Bool -> [Bool] -> IO [Bool]
+runNIter 0 _ acc = return acc
+runNIter n methRnd acc = do
+  res <- run1Iter methRnd
+  runNIter (n - 1) methRnd (res : acc)
 
 calcProb :: Integer -> Integer -> [IO Bool] -> IO Double
 calcProb noOfSuc total [] = return (
@@ -97,8 +99,8 @@ displayInfo strategyRnd = do
     printf "strategy: %s, " $ if strategyRnd then "random" else "methodical"
     printf "iterations: %d\n" $ noOfIter
     putStrLn "Please be patient, this may take a while"
-    prob <- calcProb 0 0 $ runNIter noOfIter strategyRnd
-    printf "p = %.5f\n" $ prob
+    -- prob <- calcProb 0 0 $ runNIter noOfIter strategyRnd
+    -- printf "p = %.5f\n" $ prob
 
 -- interesting,
 -- calculation of probability in Haskell's REPL is faster than in
