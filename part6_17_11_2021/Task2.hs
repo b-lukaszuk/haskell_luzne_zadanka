@@ -59,17 +59,18 @@ getRndCards prisId guessesLeft cards acc = do
   if prisId == cardInside then return (cardInside : acc)
     else getRndCards prisId (guessesLeft - 1) cards (cardInside : acc)
 
-isAnyCardEqlPrisId :: Prisoner -> [Card] -> Bool
-isAnyCardEqlPrisId _ [] = False
+isACardEqlPrisId :: Prisoner -> [Card] -> Bool
+isACardEqlPrisId _ [] = False
 -- getRndCards and getMethodCards stop gener cards once they hit lucky card
-isAnyCardEqlPrisId prisId (card:_) = card == prisId
+isACardEqlPrisId prisId (card:_) = card == prisId
 
-makePrisLookForLuckyCard :: [Prisoner] -> [Card] -> Bool -> [IO Bool]
-makePrisLookForLuckyCard [] _ _ = []
-makePrisLookForLuckyCard (p:ps) cards methRnd =
+mkPrisLookForLuckyCard :: [Prisoner] -> [Card] -> Bool -> [IO Bool]
+mkPrisLookForLuckyCard [] _ _ = []
+mkPrisLookForLuckyCard (p:ps) cards methRnd =
   let guesses = if methRnd then (getRndCards p noOfGuesPerPris cards [])
         else (getMethodCards p p noOfGuesPerPris cards [])
-  in fmap (isAnyCardEqlPrisId p) guesses : (makePrisLookForLuckyCard ps cards methRnd)
+  in fmap (isACardEqlPrisId p) guesses :
+     (mkPrisLookForLuckyCard ps cards methRnd)
 
 didAllPrisFoundLuckyCard :: [IO Bool] -> IO Bool
 didAllPrisFoundLuckyCard [] = return True
@@ -80,7 +81,7 @@ didAllPrisFoundLuckyCard (result:results) = do
 run1Iter :: Bool -> IO Bool
 run1Iter methRnd = do
   cards <- cupboard
-  didAllPrisFoundLuckyCard $ makePrisLookForLuckyCard prisoners cards methRnd
+  didAllPrisFoundLuckyCard $ mkPrisLookForLuckyCard prisoners cards methRnd
 
 runNIter :: Integer -> Bool -> [IO Bool]
 runNIter 0 _ = []
@@ -106,15 +107,14 @@ displayInfo strategyRnd = do
 
 -- interesting,
 -- calculation of probability in Haskell's REPL is faster than in
--- Python's REPL, (like 12 sec. vs. 45 sec)
--- of course the results are similar
+-- Python's REPL, (like 12.5 sec. vs. 45 sec)
+-- of course the algorithms and the results are similar
 -- still, dealing with random numbers in Haskell is (very) strange
 main :: IO ()
 main = do
     putStrLn "===="
     putStrLn "Calculating probability of success for:"
-    printf "%d prisoners, " $ noOfPris
-    printf "%d cards in cupboard\n" $ noOfCards
+    printf "%d prisoners, %d cards in cupboard\n" noOfPris noOfCards
     printf "%d guesses for each prisoner\n" $ noOfGuesPerPris
     displayInfo True
     displayInfo False
