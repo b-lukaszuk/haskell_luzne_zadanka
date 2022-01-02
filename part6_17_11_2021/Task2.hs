@@ -72,20 +72,15 @@ getRndCards prisId guessesLeft cards acc = do
 
 isAnyCardEqlPrisId :: Prisoner -> [Card] -> Bool
 isAnyCardEqlPrisId _ [] = False
-isAnyCardEqlPrisId prisId (card:cards) = if card == prisId then True
-                                         else isAnyCardEqlPrisId prisId cards
+-- getRndCards and getMethodCards stop gener cards once they hit lucky card
+isAnyCardEqlPrisId prisId (card:_) = card == prisId
 
-makePrisLookForLuckyCardRnd :: [Prisoner] -> [Card] -> [IO Bool]
-makePrisLookForLuckyCardRnd [] _ = []
-makePrisLookForLuckyCardRnd (p:ps) cards =
-  fmap (isAnyCardEqlPrisId p) (getRndCards p noOfGuesPerPris cards []) :
-  makePrisLookForLuckyCardRnd ps cards
-
-makePrisLookForLuckyCardMeth :: [Prisoner] -> [Card] -> [IO Bool]
-makePrisLookForLuckyCardMeth [] _ = []
-makePrisLookForLuckyCardMeth (p:ps) cards =
-  fmap (isAnyCardEqlPrisId p) (getMethodCards p p noOfGuesPerPris cards []) :
-  makePrisLookForLuckyCardMeth ps cards
+makePrisLookForLuckyCard :: [Prisoner] -> [Card] -> Bool -> [IO Bool]
+makePrisLookForLuckyCard [] _ _ = []
+makePrisLookForLuckyCard (p:ps) cards methRnd =
+  let guesses = if methRnd then (getRndCards p noOfGuesPerPris cards [])
+        else (getMethodCards p p noOfGuesPerPris cards [])
+  in fmap (isAnyCardEqlPrisId p) guesses : (makePrisLookForLuckyCard ps cards methRnd)
 
 didAllPrisFoundLuckyCard :: [IO Bool] -> IO Bool
 didAllPrisFoundLuckyCard [] = return True
@@ -93,25 +88,14 @@ didAllPrisFoundLuckyCard (result:results) = do
   res <- result
   if not res then return False else didAllPrisFoundLuckyCard results
 
-run1IterRnd :: IO Bool
-run1IterRnd = do
+run1Iter :: Bool -> IO Bool
+run1Iter methRnd = do
   cards <- cupboard
-  didAllPrisFoundLuckyCard (makePrisLookForLuckyCardRnd prisoners cards)
+  didAllPrisFoundLuckyCard $ makePrisLookForLuckyCard prisoners cards methRnd
 
-runNIterRnd :: Integer -> [IO Bool]
-runNIterRnd 0 = []
-runNIterRnd n =
-  run1IterRnd : runNIterRnd (n-1)
-
-run1IterMeth :: IO Bool
-run1IterMeth = do
-  cards <- cupboard
-  didAllPrisFoundLuckyCard (makePrisLookForLuckyCardMeth prisoners cards)
-
-runNIterMeth :: Integer -> [IO Bool]
-runNIterMeth 0 = []
-runNIterMeth n =
-  run1IterMeth : runNIterMeth (n-1)
+runNIter :: Integer -> Bool -> [IO Bool]
+runNIter 0 _ = []
+runNIter n methRnd = (run1Iter methRnd) : (runNIter (n - 1) methRnd)
 
 calcProb :: Integer -> Integer -> [IO Bool] -> IO Double
 calcProb noOfSuc total [] = return (
@@ -128,12 +112,12 @@ displayInfo strategyRnd = do
     printf "strategy: %s, " $ (strategyRnd ? "random" :? "methodical")
     printf "iterations: %d\n" $ noOfIter
     putStrLn "Please be patient, this may take a while"
-    prob <- calcProb 0 0 $ (strategyRnd ? runNIterRnd :? runNIterMeth) noOfIter
+    prob <- calcProb 0 0 $ runNIter noOfIter strategyRnd
     printf "p = %.5f\n" $ prob
 
 -- interesting,
 -- calculation of probability in Haskell's REPL is faster than in
--- Python's REPL, (like 10 sec. vs. 45 sec)
+-- Python's REPL, (like 12 sec. vs. 45 sec)
 -- of course the results are similar
 -- still, dealing with random numbers in Haskell is (very) strange
 main :: IO ()
