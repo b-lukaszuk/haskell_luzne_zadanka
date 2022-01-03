@@ -96,7 +96,7 @@ Grammatical support for 1 bottle of beer is optional.
 
 As with any puzzle, try to do it in as creative/concise/comical a way as possible (simple, obvious solutions allowed, too).
 
-# Task 5
+# Task 4
 
 [Go to: Table of contents](#table-of-contents)
 
