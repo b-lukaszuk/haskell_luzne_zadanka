@@ -144,7 +144,7 @@ The required output is one integer: the sum of A and B.
 Example
 
 <pre>
-input  |	output
+input  |    output
  2 2   |       4
  3 2   |       5
 </pre>
