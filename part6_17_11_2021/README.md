@@ -146,3 +146,13 @@ Example
 input  |	output
  2 2   |       4
  3 2   |       5
+
+ ## Running program
+
+ ```bash
+ runhaskell Task5.hs 2 3
+ ```
+
+ ## Additional info
+
+ Does not check its input for corectness. Takes only the first two args.
