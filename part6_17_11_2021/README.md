@@ -7,6 +7,7 @@
 3. [Task 2](#task-2)
 4. [Task 3](#task-3)
 5. [Task 4](#task-4)
+6. [Task 5](#task-5)
 
 ---
 
@@ -116,3 +117,32 @@ List of assumptions:
 + every year got exactly 365 days
 + people's births are distributed equaly throughout the year (uniform distribution)
 + use only standard Haskell's libraries (the one you get out of the box)
+
+
+# Task 5
+
+[Go to: Table of contents](#table-of-contents)
+
+[A+B](https://rosettacode.org/wiki/A%2BB):
+
+## Description
+
+A+B ─ a classic problem in programming contests, it's given so contestants can gain familiarity with the online judging system being used.
+
+Given two integers, A and B.
+
+Their sum needs to be calculated.
+
+Input data
+Two integers are written in the input stream, separated by space(s):
+
+(-1000 <= A,B >= +1000)
+
+Output data
+The required output is one integer: the sum of A and B.
+
+Example
+
+input  |	output
+ 2 2   |       4
+ 3 2   |       5
