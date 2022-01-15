@@ -15,7 +15,7 @@ Tasks from [Rosetta Code. Category: Programming Tasks](https://rosettacode.org/w
 
 [Go to: Table of contents](#table-of-contents)
 
-[Akermann function](https://rosettacode.org/wiki/Ackermann_function):
+Write [Akermann function](https://rosettacode.org/wiki/Ackermann_function):
 
 ## Description
 
@@ -31,9 +31,9 @@ Write a function which returns the value of A(m, n). Arbitrary precision is pref
 
 ## Warning
 
-**It may feeze teh computer, e.g. A(4 ,2) is an integer of 19,729 decimal digits**
+**It may feeze the computer (or rather the program itself may freeze), e.g. A(4 ,2) is an integer of 19,729 decimal digits**
 
-Here, program uses safe inputs (A(3, 0) = 5 and A(3, 2) = 29).
+Here, the program uses safe inputs (A(3, 0) = 5 and A(3, 2) = 29).
 
 Before evoking the functions with some numbers, check for safety, e.g. with [this wikipedia page](https://en.wikipedia.org/wiki/Ackermann_function#Table_of_values).
 
