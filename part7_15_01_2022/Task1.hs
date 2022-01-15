@@ -15,6 +15,5 @@ main = do
   putStrLn "Program for calculating Ackermann function"
   putStrLn "IT MAY FREEZE THE COMPUTER!, or rather the program, e.g."
   putStrLn "ackr 4 2, is an integer of 19,729 decimal digits"
-  putStrLn "For bigger args, like: ackr 4 2, please compile first"
   putStrLn $ "ackr 3 0 = " ++ (show $ ackr 3 0) -- that one is safe
   putStrLn $ "ackr 3 2 = " ++ (show $ ackr 3 2) -- that one as well
