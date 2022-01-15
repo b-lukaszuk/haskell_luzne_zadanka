@@ -1,8 +1,10 @@
 module Task1 where
 
 -- for non negative integers (args)
--- for relatively small numbers, otherwise you should compile it
--- otherwise it freezes the program
+-- for relatively small numbers
+-- otherwise the program/computer may freeze
+-- check for arguments safety:
+-- https://en.wikipedia.org/wiki/Ackermann_function#Table_of_values
 ackr:: Integer -> Integer -> Integer
 ackr 0 n = n + 1
 ackr m 0 = ackr (m - 1) 1
