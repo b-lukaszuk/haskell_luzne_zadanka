@@ -50,7 +50,7 @@ ghc -main-is Task1 Task1.hs
 
 [Go to: Table of contents](#table-of-contents)
 
-Write [Align columns](https://rosettacode.org/wiki/Align_columns):
+Write [Align columns](https://rosettacode.org/wiki/Align_columns)
 
 ## Description
 
@@ -78,7 +78,7 @@ Note that:
 
 [Go to: Table of contents](#table-of-contents)
 
-Write [Anagrams](https://rosettacode.org/wiki/Align_columns):
+Write [Anagrams](https://rosettacode.org/wiki/Anagrams)
 
 ## Description
 
