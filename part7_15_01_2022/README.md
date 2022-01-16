@@ -4,6 +4,8 @@
 
 1. [Info](#info)
 2. [Task 1](#task-1)
+3. [Task 2](#task-2)
+4. [Task 3](#task-3)
 
 ---
 
@@ -43,3 +45,44 @@ Before evoking the functions with some numbers, check for safety, e.g. with [thi
 ghc -main-is Task1 Task1.hs
 # otherwise ghc will create no executable (because no Main.hs here)
 ```
+
+# Task 2
+
+[Go to: Table of contents](#table-of-contents)
+
+Write [Align columns](https://rosettacode.org/wiki/Align_columns):
+
+## Description
+
+Use the following text to test your programs:
+
+<pre>
+Given$a$text$file$of$many$lines,$where$fields$within$a$line$
+are$delineated$by$a$single$'dollar'$character,$write$a$program
+that$aligns$each$column$of$fields$by$ensuring$that$words$in$each$
+column$are$separated$by$at$least$one$space.
+Further,$allow$for$each$word$in$a$column$to$be$either$left$
+justified,$right$justified,$or$center$justified$within$its$column.
+</pre>
+
+Note that:
+
+1. The example input texts lines may, or may not, have trailing dollar characters.
+2. All columns should share the same alignment.
+3. Consecutive space characters produced adjacent to the end of lines are insignificant for the purposes of the task.
+4. Output text will be viewed in a mono-spaced font on a plain text editor or basic terminal.
+5. The minimum space between columns should be computed from the text and not hard-coded.
+6. It is not a requirement to add separating characters between or around columns.
+
+# Task 3
+
+[Go to: Table of contents](#table-of-contents)
+
+Write [Anagrams](https://rosettacode.org/wiki/Align_columns):
+
+## Description
+
+When two or more words are composed of the same characters, but in a different order, they are called [anagrams](https://en.wikipedia.org/wiki/Anagram).
+
+Using the word list at   http://wiki.puzzlers.org/pub/wordlists/unixdict.txt,
+find the sets of words that share the same characters that contain the most words in them.
