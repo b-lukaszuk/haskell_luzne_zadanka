@@ -17,7 +17,7 @@ Tasks from [Rosetta Code. Category: Programming Tasks](https://rosettacode.org/w
 
 [Go to: Table of contents](#table-of-contents)
 
-Write [Akermann function](https://rosettacode.org/wiki/Ackermann_function):
+Write [Akermann function](https://rosettacode.org/wiki/Ackermann_function)
 
 ## Description
 
