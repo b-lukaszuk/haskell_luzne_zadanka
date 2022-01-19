@@ -24,3 +24,12 @@ getElt ind defVal lst = if null lst then defVal
 
 getElts :: Int -> Int -> [[Int]] -> [Int]
 getElts ind defVal lstOfLsts = map (getElt ind defVal) lstOfLsts
+
+getMaxLenOfEachCol text =
+  let wordsLens = getWordsLens $ getWords text
+      colsInRows = getNoOfColsInRow wordsLens
+      noOfCols = maximum colsInRows
+      noOfCharsInCols = foldr (\ind acc ->
+                                 (maximum (getElts ind 0 wordsLens)) : acc)
+                        [] [0..(noOfCols - 1)]
+  in noOfCharsInCols
