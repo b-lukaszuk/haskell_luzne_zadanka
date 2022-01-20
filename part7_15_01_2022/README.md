@@ -74,6 +74,10 @@ Note that:
 5. The minimum space between columns should be computed from the text and not hard-coded.
 6. It is not a requirement to add separating characters between or around columns.
 
+## My Comments
+
+I'm not sure how to interpret the point 5 above in the context of the whole task.
+
 # Task 3
 
 [Go to: Table of contents](#table-of-contents)
