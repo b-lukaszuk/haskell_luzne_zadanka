@@ -18,7 +18,7 @@ getNoOfColsInRow :: [[Int]] -> [Int]
 getNoOfColsInRow wordsLens = map length wordsLens
 
 getElt :: Int -> Int -> [Int] -> Int
-getElt ind defVal [] = defVal
+getElt _ defVal [] = defVal
 getElt 0 _ lst = head lst
 getElt ind defVal lst = getElt (ind - 1) defVal (tail lst)
 
