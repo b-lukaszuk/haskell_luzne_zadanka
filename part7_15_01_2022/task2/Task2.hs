@@ -8,8 +8,8 @@ lpad 0 text _ = text
 lpad finalLen text lPad = if (length text) > finalLen then text
                           else lpad (finalLen - 1) (lPad ++ text) lPad
 
-getWords :: String -> [[String]]
-getWords someTxt = map (splitOn "$") $ lines someTxt
+getWords :: String -> String -> [[String]]
+getWords sep someTxt = map (splitOn sep) $ lines someTxt
 
 getWordsLens :: [[String]] -> [[Int]]
 getWordsLens wrds = map (map length) $ wrds
@@ -33,9 +33,9 @@ getMaxesAtInds :: [Int] -> [[Int]] -> [Int]
 getMaxesAtInds inds lstOfLsts =
   foldr (\ind acc -> (getMaximumOfEltsAtInd ind 0 lstOfLsts) : acc) [] inds
 
-getMaxLenOfEachCol :: String -> [Int]
-getMaxLenOfEachCol text =
-  let wordsLens = getWordsLens $ getWords text
+getMaxLenOfEachCol :: String -> String -> [Int]
+getMaxLenOfEachCol sep text =
+  let wordsLens = getWordsLens $ getWords "$" text
       colsInRows = getNoOfColsInRow wordsLens
       noOfCols = maximum colsInRows
       noOfCharsInCols = getMaxesAtInds [0..(noOfCols - 1)] wordsLens
