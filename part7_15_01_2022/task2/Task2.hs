@@ -7,7 +7,12 @@ x = "Given$a$text$file$of$many$lines,$where$fields$within$a$line$ \nare$delineat
 lpad :: String -> Int -> String -> String
 lpad _ 0 text = text
 lpad lPad finalLen text = if (length text) >= finalLen then text
-                          else lpad lPad(finalLen - 1) (lPad ++ text)
+                          else lpad lPad (finalLen - 1) (lPad ++ text)
+
+rpad :: String -> Int -> String -> String
+rpad _ 0 text = text
+rpad rPad finalLen text = if (length text) >= finalLen then text
+                          else rpad rPad (finalLen - 1) (text ++ rPad)
 
 getWords :: String -> String -> [[String]]
 getWords sep someTxt = map (splitOn sep) $ lines someTxt
@@ -42,7 +47,7 @@ getMaxLenOfEachCol sep text =
       noOfCharsInCols = getMaxesAtInds [0..(noOfCols - 1)] wordsLens
   in noOfCharsInCols
 
-getColString :: [String] -> [Int] -> String
-getColString wordsList colLensList =
+getColString :: [Int] -> [String] -> String
+getColString colLensList wordsList =
   let colsPadded = zipWith (lpad " ") colLensList wordsList
-  in intercalate "\t" colsPadded
+  in intercalate "" colsPadded
