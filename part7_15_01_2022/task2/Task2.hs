@@ -2,6 +2,9 @@ module Task2 where
 import Data.List.Split (splitOn)
 import Data.List (intercalate)
 
+fileName :: String
+fileName = "./text_to_use.txt"
+
 rpad :: String -> Int -> String -> String
 rpad _ 0 text = text
 rpad rPad finalLen text = if (length text) >= finalLen then text
@@ -50,3 +53,13 @@ getPaddedText sep text =
   let lstOfLstWords = getWords sep text
       colLens = map (+3) $ getMaxLenOfEachCol sep text
   in intercalate "\n" $ map (getColString colLens) lstOfLstWords
+
+main :: IO ()
+main = do
+  putStrLn "Reading $ delimited text from './test_to_use.txt'"
+  textToTransform <- readFile fileName
+  putStrLn "after putting the text in columns we got:"
+  putStrLn "========================================="
+  putStrLn $ getPaddedText "$" textToTransform
+  putStrLn "========================================="
+  putStrLn "That's all. Goodbye."
