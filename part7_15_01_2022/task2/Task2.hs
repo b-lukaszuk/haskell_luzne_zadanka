@@ -29,11 +29,13 @@ getMaximumOfEltsAtInd :: Int -> Int -> [[Int]] -> Int
 getMaximumOfEltsAtInd ind defVal lstOfLsts =
   maximum $ getElts ind defVal lstOfLsts
 
+getMaxesAtInds :: [Int] -> [[Int]] -> [Int]
+getMaxesAtInds inds lstOfLsts =
+  foldr (\ind acc -> (getMaximumOfEltsAtInd ind 0 lstOfLsts) : acc) [] inds
+
 getMaxLenOfEachCol text =
   let wordsLens = getWordsLens $ getWords text
       colsInRows = getNoOfColsInRow wordsLens
       noOfCols = maximum colsInRows
-      noOfCharsInCols = foldr (\ind acc ->
-                                 (getMaximumOfEltsAtInd ind 0 wordsLens) : acc)
-                        [] [0..(noOfCols - 1)]
+      noOfCharsInCols = getMaxesAtInds [0..(noOfCols - 1)] wordsLens
   in noOfCharsInCols
