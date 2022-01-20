@@ -49,5 +49,5 @@ getMaxLenOfEachCol sep text =
 
 getColString :: [Int] -> [String] -> String
 getColString colLensList wordsList =
-  let colsPadded = zipWith (lpad " ") colLensList wordsList
+  let colsPadded = zipWith (rpad " ") colLensList wordsList
   in intercalate "" colsPadded
