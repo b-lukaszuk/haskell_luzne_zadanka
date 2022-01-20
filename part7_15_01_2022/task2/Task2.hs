@@ -35,7 +35,7 @@ getMaxesAtInds inds lstOfLsts =
 
 getMaxLenOfEachCol :: String -> String -> [Int]
 getMaxLenOfEachCol sep text =
-  let wordsLens = getWordsLens $ getWords "$" text
+  let wordsLens = getWordsLens $ getWords sep text
       colsInRows = getNoOfColsInRow wordsLens
       noOfCols = maximum colsInRows
       noOfCharsInCols = getMaxesAtInds [0..(noOfCols - 1)] wordsLens
