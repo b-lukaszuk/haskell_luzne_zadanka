@@ -33,6 +33,7 @@ getMaxesAtInds :: [Int] -> [[Int]] -> [Int]
 getMaxesAtInds inds lstOfLsts =
   foldr (\ind acc -> (getMaximumOfEltsAtInd ind 0 lstOfLsts) : acc) [] inds
 
+getMaxLenOfEachCol :: String -> [Int]
 getMaxLenOfEachCol text =
   let wordsLens = getWordsLens $ getWords text
       colsInRows = getNoOfColsInRow wordsLens
