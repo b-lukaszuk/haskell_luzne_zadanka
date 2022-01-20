@@ -2,13 +2,6 @@ module Task2 where
 import Data.List.Split (splitOn)
 import Data.List (intercalate)
 
-x = "Given$a$text$file$of$many$lines,$where$fields$within$a$line$ \nare$delineated$by$a$single$'dollar'$character,$write$a$program \nthat$aligns$each$column$of$fields$by$ensuring$that$words$in$each$ \ncolumn$are$separated$by$at$least$one$space. \nFurther,$allow$for$each$word$in$a$column$to$be$either$left$ \njustified,$right$justified,$or$center$justified$within$its$column."
-
-lpad :: String -> Int -> String -> String
-lpad _ 0 text = text
-lpad lPad finalLen text = if (length text) >= finalLen then text
-                          else lpad lPad finalLen (lPad ++ text)
-
 rpad :: String -> Int -> String -> String
 rpad _ 0 text = text
 rpad rPad finalLen text = if (length text) >= finalLen then text
@@ -51,3 +44,9 @@ getColString :: [Int] -> [String] -> String
 getColString colLensList wordsList =
   let colsPadded = zipWith (rpad " ") colLensList wordsList
   in intercalate "" colsPadded
+
+getPaddedText :: String -> String -> String
+getPaddedText sep text =
+  let lstOfLstWords = getWords sep text
+      colLens = map (+3) $ getMaxLenOfEachCol sep text
+  in intercalate "\n" $ map (getColString colLens) lstOfLstWords
