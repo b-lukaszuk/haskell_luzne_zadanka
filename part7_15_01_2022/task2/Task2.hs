@@ -56,7 +56,7 @@ getPaddedText sep text =
 
 main :: IO ()
 main = do
-  putStrLn "Reading $ delimited text from './test_to_use.txt'"
+  putStrLn $ "Reading $ delimited text from '" ++ fileName ++ "'"
   textToTransform <- readFile fileName
   putStrLn "after putting the text in columns we got:"
   putStrLn "========================================="
