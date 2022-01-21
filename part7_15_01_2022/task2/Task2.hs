@@ -58,23 +58,33 @@ getMaxLenOfEachCol sep text =
       noOfCharsInCols = getMaxesAtInds [0..(noOfCols - 1)] wordsLens
   in noOfCharsInCols
 
-getColString :: [Int] -> [String] -> String
-getColString colLensList wordsList =
-  let colsPadded = zipWith (rpad " ") colLensList wordsList
+getColString :: (String -> Int -> String -> String) ->
+  [Int] -> [String] -> String
+getColString padFn colLensList wordsList =
+  let colsPadded = zipWith (padFn " ") colLensList wordsList
   in intercalate "" colsPadded
 
-getPaddedText :: String -> String -> String
-getPaddedText sep text =
+getPaddedText :: String -> (String -> Int -> String -> String)
+  -> String -> String
+getPaddedText sep padFn text =
   let lstOfLstWords = getWords sep text
       colLens = map (+3) $ getMaxLenOfEachCol sep text
-  in intercalate "\n" $ map (getColString colLens) lstOfLstWords
+  in intercalate "\n" $ map (getColString padFn colLens) lstOfLstWords
 
 main :: IO ()
 main = do
   putStrLn $ "Reading $ delimited text from '" ++ fileName ++ "'"
   textToTransform <- readFile fileName
-  putStrLn "after putting the text in columns we got:"
+  putStrLn "\nafter putting the text in columns (r-just) we got:"
   putStrLn "========================================="
-  putStrLn $ getPaddedText "$" textToTransform
+  putStrLn $ getPaddedText "$" lpad textToTransform
   putStrLn "========================================="
-  putStrLn "That's all. Goodbye."
+  putStrLn "\nafter putting the text in columns (l-just) we got:"
+  putStrLn "========================================="
+  putStrLn $ getPaddedText "$" rpad textToTransform
+  putStrLn "========================================="
+  putStrLn "\nafter putting the text in columns (c-just) we got:"
+  putStrLn "========================================="
+  putStrLn $ getPaddedText "$" cpad textToTransform
+  putStrLn "========================================="
+  putStrLn "\nThat's all. Goodbye."
