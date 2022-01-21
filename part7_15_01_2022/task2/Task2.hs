@@ -10,6 +10,21 @@ rpad _ 0 text = text
 rpad rPad finalLen text = if (length text) >= finalLen then text
                           else rpad rPad finalLen (text ++ rPad)
 
+lpad :: String -> Int -> String -> String
+lpad _ 0 text = text
+lpad lPad finalLen text = if (length text) >= finalLen then text
+                          else lpad lPad finalLen (lPad ++ text)
+
+-- if odd number of pads needs to be added (cannot split evenly on both sides)
+-- then it adds one more pad on the left
+cpad :: String -> Int -> String -> String
+cpad pad finalLen text =
+  let textLen = length text
+      lPadLen = round (fromIntegral (finalLen - textLen) / 2)
+      lPadFinalLen = textLen + lPadLen
+      lPaddedText = lpad pad lPadFinalLen text
+  in rpad pad finalLen lPaddedText
+
 getWords :: String -> String -> [[String]]
 getWords sep someTxt = map (splitOn sep) $ lines someTxt
 
