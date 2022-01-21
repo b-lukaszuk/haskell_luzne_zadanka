@@ -68,7 +68,7 @@ getPaddedText :: String -> (String -> Int -> String -> String)
   -> String -> String
 getPaddedText sep padFn text =
   let lstOfLstWords = getWords sep text
-      colLens = map (+3) $ getMaxLenOfEachCol sep text
+      colLens = map (+4) $ getMaxLenOfEachCol sep text
   in intercalate "\n" $ map (getColString padFn colLens) lstOfLstWords
 
 main :: IO ()
