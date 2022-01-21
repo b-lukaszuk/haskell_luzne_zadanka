@@ -7,13 +7,13 @@ fileName = "./text_to_use.txt"
 
 rpad :: String -> Int -> String -> String
 rpad _ 0 text = text
-rpad rPad finalLen text = if (length text) >= finalLen then text
-                          else rpad rPad finalLen (text ++ rPad)
+rpad pad finalLen text = if (length text) >= finalLen then text
+                          else rpad pad finalLen (text ++ pad)
 
 lpad :: String -> Int -> String -> String
 lpad _ 0 text = text
-lpad lPad finalLen text = if (length text) >= finalLen then text
-                          else lpad lPad finalLen (lPad ++ text)
+lpad pad finalLen text = if (length text) >= finalLen then text
+                          else lpad pad finalLen (pad ++ text)
 
 -- if odd number of pads needs to be added (cannot split evenly on both sides)
 -- then it adds one more pad on the left
