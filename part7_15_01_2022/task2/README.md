@@ -1,7 +1,5 @@
 # Task 2
 
-[Go to: Table of contents](#table-of-contents)
-
 Write [Align columns](https://rosettacode.org/wiki/Align_columns)
 
 ## Description
