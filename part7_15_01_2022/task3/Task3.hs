@@ -3,6 +3,9 @@ module Task3 where
 import Data.Char (toLower)
 import Data.List (sort)
 
+fileName :: String
+fileName = "./unixdict.txt"
+
 toLowerAndSort :: String -> String
 toLowerAndSort text = sort $ map toLower text
 
@@ -26,3 +29,13 @@ getMostAnagrams curMost dict =
   in if (length newAnagrams) > (length curMost)
      then getMostAnagrams newAnagrams newDict
      else getMostAnagrams curMost newDict
+
+main :: IO ()
+main = do
+  putStrLn $ "Reading $ list of words from text from '" ++ fileName ++ "'"
+  dict <- readFile fileName
+  putStrLn "Looking for the greatest number of anagrams in the red dictionary"
+  putStrLn "PLEASE BE PATIENT THIS MAY TAKE SOME TIME"
+  putStrLn "Result:"
+  putStrLn $ show $ getMostAnagrams [] (lines dict)
+  putStrLn "\nThat's all. Goodbye."
