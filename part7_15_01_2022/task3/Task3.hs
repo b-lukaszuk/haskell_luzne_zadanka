@@ -30,6 +30,7 @@ getMostAnagrams curMost dict =
      then getMostAnagrams newAnagrams newDict
      else getMostAnagrams curMost newDict
 
+-- it takes around 60 sec to execute
 main :: IO ()
 main = do
   putStrLn $ "Reading $ list of words from text from '" ++ fileName ++ "'"
