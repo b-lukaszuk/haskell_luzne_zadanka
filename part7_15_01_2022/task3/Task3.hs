@@ -33,7 +33,7 @@ getMostAnagrams curMost dict =
 -- it takes around 60 sec to execute
 main :: IO ()
 main = do
-  putStrLn $ "Reading $ list of words from text from '" ++ fileName ++ "'"
+  putStrLn $ "Reading list of words from '" ++ fileName ++ "'"
   dict <- readFile fileName
   putStrLn "Looking for the greatest number of anagrams in the red dictionary"
   putStrLn "PLEASE BE PATIENT THIS MAY TAKE SOME TIME"
