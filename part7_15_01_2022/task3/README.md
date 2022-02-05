@@ -11,4 +11,4 @@ find the sets of words that share the same characters that contain the most word
 
 ## Additional info
 
-It takes around 60 sec to execute (on my laptop)
+It takes around 0.243 sec to execute (on my laptop)
