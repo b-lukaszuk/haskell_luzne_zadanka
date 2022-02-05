@@ -1,42 +1,48 @@
 module Task3 where
 
 import Data.Char (toLower)
-import Data.List (sort)
+import Data.List (groupBy, sort, sortBy)
 
 fileName :: String
 fileName = "./unixdict.txt"
 
-toLowerAndSort :: String -> String
-toLowerAndSort text = sort $ map toLower text
+getKey :: String -> String
+getKey wrd = sort $ map toLower wrd
 
-isAnagram :: String -> String -> Bool
-isAnagram word1 word2 =
-  let w1 = toLowerAndSort word1
-      w2 = toLowerAndSort word2
-  in w1 == w2
+getKeyVals :: [String] -> [(String, String)]
+getKeyVals wrds = zip (map getKey wrds) wrds
 
-getAnagramsOfWord :: String -> [String] -> [String]
-getAnagramsOfWord aWord dict = filter (\item -> isAnagram aWord item) dict
+dictSorter :: (String, String) -> (String, String) -> Ordering
+dictSorter (k1, _) (k2, _) = compare k1 k2
 
-remAnagramsOfWord :: String -> [String] -> [String]
-remAnagramsOfWord aWord dict = filter (\item -> not $ isAnagram aWord item) dict
+getKeysValsSorted :: [String] -> [(String, String)]
+getKeysValsSorted wrds = sortBy dictSorter $ getKeyVals wrds
 
-getMostAnagrams :: [String] -> [String] -> [String]
-getMostAnagrams curMost [] = curMost
-getMostAnagrams curMost dict =
-  let newAnagrams = getAnagramsOfWord (head dict) dict
-      newDict = remAnagramsOfWord (head dict) dict
-  in if (length newAnagrams) > (length curMost)
-     then getMostAnagrams newAnagrams newDict
-     else getMostAnagrams curMost newDict
+dictGrouper :: (String, String) -> (String, String) -> Bool
+dictGrouper (k1, _) (k2, _) = k1 == k2
 
--- it takes around 60 sec to execute
+getKeysValsSortedGrouped :: [String] -> [[(String, String)]]
+getKeysValsSortedGrouped wrds = groupBy dictGrouper $ getKeysValsSorted wrds
+
+getWordsOfGroupedDicts :: [[(String, String)]] -> [[String]]
+getWordsOfGroupedDicts dicts = map (map (\(_, v) -> v)) dicts
+
+getMaxLen :: [[String]] -> Int
+getMaxLen anagrams = maximum $ map length anagrams
+
+getMaxAnagrams :: [String] -> [[String]]
+getMaxAnagrams wrds =
+  let anagrams = getWordsOfGroupedDicts $ getKeysValsSortedGrouped wrds
+      maxLen = getMaxLen anagrams
+  in filter (\subLst -> length subLst == maxLen) anagrams
+
+-- it takes around 0.243 sec to execute (there is still place for improvement)
 main :: IO ()
 main = do
   putStrLn $ "Reading list of words from '" ++ fileName ++ "'"
-  dict <- readFile fileName
+  lstOfWords <- readFile fileName
   putStrLn "Looking for the greatest number of anagrams in the red dictionary"
   putStrLn "PLEASE BE PATIENT THIS MAY TAKE SOME TIME"
-  putStrLn "Result:"
-  putStrLn $ show $ getMostAnagrams [] (lines dict)
+  putStrLn "\nResult:"
+  mapM_ print $ getMaxAnagrams $ lines lstOfWords
   putStrLn "\nThat's all. Goodbye."
