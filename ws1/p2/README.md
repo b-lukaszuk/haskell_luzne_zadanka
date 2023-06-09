@@ -4,7 +4,7 @@ Solving some tasks in Haskell 'at a whim'.
 
 ## Info dodatkowe
 
-Some tasks from [99 Problems (solved) in OCaml](https://v2.ocaml.org/learn/tutorials/99problems.html) solved with Haskell [ to give it (the language and functional programming) another try].
+Some tasks from [99 Problems (solved) in OCaml](https://v2.ocaml.org/learn/tutorials/99problems.html) solved with Haskell [to give it (the language and functional programming) another try].
 
 # Problem
 
