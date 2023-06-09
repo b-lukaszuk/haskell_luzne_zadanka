@@ -12,7 +12,7 @@
 --                             version with foldl                            --
 -------------------------------------------------------------------------------
 revList2 :: [a] -> [a]
--- the code below is shorter equivalent to
+-- the code below is shorter equivalent of
 -- revList2 = foldl (\acc cur -> cur : acc) []
 revList2 = foldl (flip (:)) []
 
