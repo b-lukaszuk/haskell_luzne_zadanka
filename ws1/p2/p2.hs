@@ -16,3 +16,4 @@ main = do
   let ls = map getList [0 .. 5]
   print "Getting last two element of a list examples"
   mapM_ (print . getExampleInfo) ls
+  print "That's all. Goodbye!"

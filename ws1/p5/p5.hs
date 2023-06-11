@@ -29,3 +29,4 @@ main = do
   let ls = map getList [0 .. 5]
   print "Reversing a list examples"
   mapM_ (print . getExampleInfo) ls
+  print "That's all. Goodbye!"

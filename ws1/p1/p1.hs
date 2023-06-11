@@ -24,3 +24,4 @@ main = do
   print $ show l1 ++ " => " ++ show (getLast l1)
   print $ show l2 ++ " => " ++ show (getLast' l2)
   print $ show l3 ++ " => " ++ show (getLast'' l3)
+  print "That's all. Goodbye!"

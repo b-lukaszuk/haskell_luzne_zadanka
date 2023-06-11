@@ -9,3 +9,4 @@ main = do
   let ls = ["peter", "abba", "civic", "madam", "radar", "jerry"]
   print "Testing lists for being palindromes examples"
   mapM_ (print . getExampleInfo) ls
+  print "That's all. Goodbye!"

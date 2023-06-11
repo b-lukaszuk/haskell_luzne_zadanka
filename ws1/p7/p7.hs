@@ -21,3 +21,4 @@ main = do
   print "Flattening list of lists example"
   print $ getExampleInfo lol1
   print $ getExampleInfo lol2
+  print "That's all. Goodbye!"

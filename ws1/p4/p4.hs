@@ -18,3 +18,4 @@ main = do
   let ls = map getList [0 .. 5]
   print "Getting length of a list examples"
   mapM_ (print . getExampleInfo) ls
+  print "That's all. Goodbye!"
