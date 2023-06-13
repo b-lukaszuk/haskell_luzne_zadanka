@@ -19,8 +19,8 @@ main :: IO ()
 main = do
   let l1 = [True, True, True, False, False, True, False, False, False, False]
   let l2 = [1, 2, 2, 3, 4, 4, 5, 6, 6, 6, 7, 7] :: [Int]
-  putStrLn "Packing consecutive duplicates of list elements into sublists."
-  putStrLn "Examples:"
+  putStrLn "Modified run-length encoding of a list."
+  putStrLn "Examples:\n"
   putStrLn $ getExampleInfo l1
-  putStrLn $ getExampleInfo l2
-  putStrLn "That's all. Goodbye!"
+  putStrLn $ "\n" ++ getExampleInfo l2
+  putStrLn "\nThat's all. Goodbye!"

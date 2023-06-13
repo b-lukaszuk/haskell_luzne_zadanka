@@ -9,14 +9,14 @@ encodeRunLength :: (Eq a) => [a] -> [(Int, a)]
 encodeRunLength = foldr group []
 
 getExampleInfo :: (Eq a, Show a) => [a] -> String
-getExampleInfo l = show l ++ " => " ++ show (encodeRunLength l)
+getExampleInfo l = show l ++ " =>\n" ++ show (encodeRunLength l)
 
 main :: IO ()
 main = do
   let l1 = [True, True, True, False, False, True, False, False, False, False]
   let l2 = [1, 2, 2, 3, 4, 4, 5, 6, 6, 6, 7, 7] :: [Int]
-  print "Packing consecutive duplicates of list elements into sublists."
-  print "Examples:"
-  print $ getExampleInfo l1
-  print $ getExampleInfo l2
-  print "That's all. Goodbye!"
+  putStrLn "Run-length encoding of a list."
+  putStrLn "Examples:\n"
+  putStrLn $ getExampleInfo l1
+  putStrLn $ "\n" ++ getExampleInfo l2
+  putStrLn "\nThat's all. Goodbye!"
