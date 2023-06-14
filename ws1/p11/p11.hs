@@ -1,12 +1,18 @@
-data OneMany a = One a | Many {count::Int, val::a} deriving Show
+data OneMany a
+  = One a
+  | Many
+      { count :: Int
+      , val   :: a
+      }
+  deriving (Show)
 
 group :: (Eq a) => a -> [OneMany a] -> [OneMany a]
 group y [] = [One y]
 group y l@(One x:xs)
-  | y == x = Many {count=2, val=y} : xs
+  | y == x = Many {count = 2, val = y} : xs
   | otherwise = One y : l
 group y l@(Many c v:xs)
-  | y == v = Many {count=c+1, val=v} : xs
+  | y == v = Many {count = c + 1, val = v} : xs
   | otherwise = One y : l
 
 encodeRunLength :: (Eq a) => [a] -> [OneMany a]
