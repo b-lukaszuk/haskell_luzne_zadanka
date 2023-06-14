@@ -33,7 +33,7 @@ main = do
         , Many {count = 3, val = 6}
         , Many {count = 2, val = 7}
         ] :: [OneMany Int]
-  putStrLn "Modified run-length encoding of a list."
+  putStrLn "Decoding run-length encoded of a list."
   putStrLn "Examples:\n"
   putStrLn $ getExampleInfo l1
   putStrLn $ "\n" ++ getExampleInfo l2
