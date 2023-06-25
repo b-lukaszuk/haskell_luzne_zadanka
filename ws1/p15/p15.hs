@@ -7,7 +7,7 @@ mult _ []         = []
 mult times (x:xs) = mult' times x [] ++ mult times xs
 
 getExampleInfo :: (Show a) => Int -> [a] -> String
-getExampleInfo t l = show l ++ " times " ++ show t ++ "=> " ++ show (mult t l)
+getExampleInfo t l = show l ++ " times " ++ show t ++ " => " ++ show (mult t l)
 
 main :: IO ()
 main = do
