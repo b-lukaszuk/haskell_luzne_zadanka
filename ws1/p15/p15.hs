@@ -1,7 +1,9 @@
+-- requirement times >= 0
 mult' :: Int -> a -> [a] -> [a]
 mult' 0 _ acc       = acc
 mult' times elt acc = mult' (times - 1) elt (elt:acc)
 
+-- requirement times >= 1
 mult :: Int -> [a] -> [a]
 mult _ []         = []
 mult times (x:xs) = mult' times x [] ++ mult times xs
