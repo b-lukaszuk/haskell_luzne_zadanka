@@ -22,11 +22,11 @@ getExampleInfo n l =
 
 main :: IO ()
 main = do
-  putStrLn "Deliting every n-th element of a list."
+  putStrLn "Splitting list at n-th element."
   putStrLn "Examples:\n"
   let l1 = ['a'..'k']
-  let l2 = [1..12]
-  let l3 = [1..4]
+  let l2 = [1..12] :: [Int]
+  let l3 = [1..4] :: [Int]
   putStrLn $ getExampleInfo 2 l1
   putStrLn $ getExampleInfo 9 l2
   putStrLn $ getExampleInfo 5 l3

@@ -1,3 +1,5 @@
+-- I could have just used the build-in concat function, but that's like cheating
+
 -------------------------------------------------------------------------------
 --                   flattens list of lists with recursion                   --
 -------------------------------------------------------------------------------

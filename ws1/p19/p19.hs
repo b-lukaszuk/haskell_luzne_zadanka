@@ -12,8 +12,8 @@ main = do
   putStrLn "Examples:\n"
   let l1 = ['a'..'h']
   let l2 = ['a'..'h']
-  let l3 = [1..5]
-  let l4 = [1..4]
+  let l3 = [1..5] :: [Int]
+  let l4 = [1..4] :: [Int]
   putStrLn $ getExampleInfo l1 3
   putStrLn $ getExampleInfo l2 $ negate 2
   putStrLn $ getExampleInfo l3 0

@@ -22,7 +22,7 @@ main = do
   putStrLn "Duplicating elements of a list."
   putStrLn "Examples:\n"
   let l1 = ["a", "b", "c", "c", "d"]
-  let l2 = [1..4]
+  let l2 = [1..4] :: [Int]
   putStrLn $ getExampleInfo l1
   putStrLn $ getExampleInfo l2
   putStrLn "\nThat's all. Goodbye!"

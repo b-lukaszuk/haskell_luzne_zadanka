@@ -18,7 +18,7 @@ main = do
   putStrLn "Deliting every n-th element of a list."
   putStrLn "Examples:\n"
   let l1 = ['a'..'k']
-  let l2 = [1..12]
+  let l2 = [1..12] :: [Int]
   putStrLn $ getExampleInfo 2 l1
   putStrLn $ getExampleInfo 3 l2
   putStrLn "\nThat's all. Goodbye!"

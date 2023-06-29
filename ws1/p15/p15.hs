@@ -16,7 +16,7 @@ main = do
   putStrLn "Multiplying elements of a list n times."
   putStrLn "Examples:\n"
   let l1 = ['a'..'c']
-  let l2 = [2..4]
+  let l2 = [2..4] :: [Int]
   putStrLn $ getExampleInfo 3 l1
   putStrLn $ getExampleInfo 4 l2
   putStrLn "\nThat's all. Goodbye!"

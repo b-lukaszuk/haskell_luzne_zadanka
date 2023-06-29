@@ -12,8 +12,8 @@ main = do
   putStrLn "Slicing lists (0 based indexing, inclusing-inclusing)."
   putStrLn "Examples:\n"
   let l1 = ['a'..'j']
-  let l2 = [1..12]
-  let l3 = [1..4]
+  let l2 = [1..12] :: [Int]
+  let l3 = [1..4] :: [Int]
   putStrLn $ getExampleInfo l1 2 6
   putStrLn $ getExampleInfo l2 0 4
   putStrLn $ getExampleInfo l3 2 7
