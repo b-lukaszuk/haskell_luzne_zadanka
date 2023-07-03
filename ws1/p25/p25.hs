@@ -1,4 +1,19 @@
+-- import qualified Data.List     as L
 import qualified System.Random as R
+
+-- solution based on p24 ---
+-- -- n must be >= 1 and <= upTo
+-- getNRands :: (R.RandomGen g) => g -> Int -> Int -> [Int]
+-- getNRands gen n upToExcl = take n $ L.nub $ R.randomRs (0, upToExcl - 1) gen
+
+-- -- inds must be from 0 to (length xs) - 1
+-- getEltsAtInds :: [Int] -> [a] -> [a]
+-- getEltsAtInds inds xs = map (\ind -> xs !!ind) inds
+
+-- shuffle' :: (R.RandomGen g) => g -> [a] -> [a]
+-- shuffle' g xs = getEltsAtInds (getNRands g len len) xs
+--   where len = length xs
+-- solution based on p24 ---
 
 -- https://programming-idioms.org/idiom/10/shuffle-a-list/826/haskell
 -- modified by me
