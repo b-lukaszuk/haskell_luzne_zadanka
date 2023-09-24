@@ -6,7 +6,7 @@ The tasks are from [99 Problems (solved) in OCaml](https://v2.ocaml.org/learn/tu
 
 # Problem
 
-Group the elements of a set into disjoint subsets. (medium)
+Group the elements of a set into [disjoint subsets](https://en.wikipedia.org/wiki/Disjoint_sets). (medium)
 
 1. In how many ways can a group of 9 people work in 3 disjoint subgroups of 2, 3 and 4 persons? Write a function that generates all the possibilities and returns them in a list.
 
