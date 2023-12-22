@@ -33,3 +33,23 @@ getSumOfSquaresOfBigNums x y z
   | (x < y) && (x < z) = sumOfSquares y z
   | (y < x) && (y < z) = sumOfSquares x z
   | otherwise = sumOfSquares x y
+
+
+-- Example: Square Roots by Newton's Method
+getAvg :: Fractional a => a -> a -> a
+getAvg x y = (x + y) / 2
+
+improve :: Fractional a => a -> a -> a
+improve guess x = getAvg guess (x / guess)
+
+isGoodEnough :: (Ord a, Fractional a) => a -> a -> Bool
+isGoodEnough guess x = (abs ((square guess) - x)) < 0.001
+
+getSqrtIter' :: (Ord a, Fractional a) => a -> a -> a
+getSqrtIter' guess x =
+  if (isGoodEnough guess x)
+  then guess
+  else getSqrtIter' (improve guess x) x
+
+getSqrtIter :: (Ord a, Fractional a) => a -> a
+getSqrtIter x = getSqrtIter' 1 x
