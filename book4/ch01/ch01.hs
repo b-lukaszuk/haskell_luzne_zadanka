@@ -53,3 +53,15 @@ getSqrtIter' guess x =
 
 getSqrtIter :: (Ord a, Fractional a) => a -> a
 getSqrtIter x = getSqrtIter' 1 x
+
+--  1.2.1 Linear Recursion and Iteration
+factorial :: Integer -> Integer
+factorial n = if (n <= 0) then 1 else n * factorial (n-1)
+
+factIter :: Integer -> Integer -> Integer -> Integer
+factIter product counter maxCount
+  | counter > maxCount = product
+  | otherwise = factIter (counter * product) (counter + 1) maxCount
+
+factorial' :: Integer -> Integer
+factorial' n = factIter 1 1 n
