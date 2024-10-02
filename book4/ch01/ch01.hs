@@ -54,6 +54,26 @@ getSqrtIter' guess x =
 getSqrtIter :: (Ord a, Fractional a) => a -> a
 getSqrtIter x = getSqrtIter' 1 x
 
+-- exercise 1.8. Newton's method for cube roots
+cube :: Num a => a -> a
+cube x = x * x * x
+
+improveCbrt :: Fractional a => a -> a -> a
+improveCbrt guess x = numerator / 3
+  where numerator = (x / square guess) + 2 * guess
+
+isGoodEnoughCbrt :: (Ord a, Fractional a) => a -> a -> Bool
+isGoodEnoughCbrt guess x = (abs ((cube guess) - x)) < 0.001
+
+getCbrtIter' :: (Ord a, Fractional a) => a -> a -> a
+getCbrtIter' guess x =
+  if (isGoodEnoughCbrt guess x)
+  then guess
+  else getCbrtIter' (improveCbrt guess x) x
+
+getCbrtIter :: (Ord a, Fractional a) => a -> a
+getCbrtIter x = getCbrtIter' 1 x
+
 --  1.2.1 Linear Recursion and Iteration
 factorial :: Integer -> Integer
 factorial n = if (n <= 0) then 1 else n * factorial (n-1)
