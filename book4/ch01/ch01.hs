@@ -39,17 +39,17 @@ getSumOfSquaresOfBigNums x y z
 getAvg :: Fractional a => a -> a -> a
 getAvg x y = (x + y) / 2
 
-improve :: Fractional a => a -> a -> a
-improve guess x = getAvg guess (x / guess)
+improveSqrt :: Fractional a => a -> a -> a
+improveSqrt guess x = getAvg guess (x / guess)
 
-isGoodEnough :: (Ord a, Fractional a) => a -> a -> Bool
-isGoodEnough guess x = (abs ((square guess) - x)) < 0.001
+isGoodEnoughSqrt :: (Ord a, Fractional a) => a -> a -> Bool
+isGoodEnoughSqrt guess x = (abs ((square guess) - x)) < 0.001
 
 getSqrtIter' :: (Ord a, Fractional a) => a -> a -> a
 getSqrtIter' guess x =
-  if (isGoodEnough guess x)
+  if (isGoodEnoughSqrt guess x)
   then guess
-  else getSqrtIter' (improve guess x) x
+  else getSqrtIter' (improveSqrt guess x) x
 
 getSqrtIter :: (Ord a, Fractional a) => a -> a
 getSqrtIter x = getSqrtIter' 1 x
