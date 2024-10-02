@@ -85,3 +85,11 @@ factIter product counter maxCount
 
 factorial' :: Integer -> Integer
 factorial' n = factIter 1 1 n
+
+-- exercise 1.10. Ackermann's function
+-- m and n are >= 0
+-- computationally expensive, recommendation use with: m <= 3, n <= 4
+ackermann m n
+  | m == 0 = n + 1
+  | n == 0 = ackermann (m - 1) 1
+  | otherwise = ackermann (m - 1) (ackermann m (n - 1))
