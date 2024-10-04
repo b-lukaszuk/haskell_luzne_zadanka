@@ -1,6 +1,8 @@
 -------------------------------------------------------------------------------
 --                   Building Abstractions with Procedures                   --
 -------------------------------------------------------------------------------
+import Numeric.Natural
+
 -- Naming and the Environment
 circumference :: Floating a => a -> a
 circumference r = 2 * pi * r
@@ -75,21 +77,21 @@ getCbrtIter :: (Ord a, Fractional a) => a -> a
 getCbrtIter x = getCbrtIter' 1 x
 
 --  1.2.1 Linear Recursion and Iteration
-factorial :: Integer -> Integer
+factorial :: Natural -> Natural
 factorial n = if (n <= 0) then 1 else n * factorial (n-1)
 
-factIter :: Integer -> Integer -> Integer -> Integer
+factIter :: Natural -> Natural -> Natural -> Natural
 factIter product counter maxCount
   | counter > maxCount = product
   | otherwise = factIter (counter * product) (counter + 1) maxCount
 
-factorial' :: Integer -> Integer
+factorial' :: Natural -> Natural
 factorial' n = factIter 1 1 n
 
 -- exercise 1.10. Ackermann's function
 -- m and n are >= 0
 -- computationally expensive, recommendation use with: m <= 3, n <= 4
-ackermann :: Integer -> Integer -> Integer
+ackermann :: Natural -> Natural -> Natural
 ackermann m n
   | m == 0 = n + 1
   | n == 0 = ackermann (m - 1) 1
@@ -97,17 +99,17 @@ ackermann m n
 
 
 -- 1.2.2 Tree Recursion
-fib :: Integer -> Integer
+fib :: Natural -> Natural
 fib n
   | n == 0 = 0
   | n == 1 = 1
   | otherwise = fib (n-1) + fib (n-2)
 
 
-fibIter' :: Integer -> Integer -> Integer -> Integer
+fibIter' :: Natural -> Natural -> Natural -> Natural
 fibIter' a b count
   | count == 0 = b
   | otherwise = fibIter' (a + b) a (count-1)
 
-fibIter :: Integer -> Integer
+fibIter :: Natural -> Natural
 fibIter n = fibIter' 1 0 n
