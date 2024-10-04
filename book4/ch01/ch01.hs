@@ -93,3 +93,20 @@ ackermann m n
   | m == 0 = n + 1
   | n == 0 = ackermann (m - 1) 1
   | otherwise = ackermann (m - 1) (ackermann m (n - 1))
+
+
+-- 1.2.2 Tree Recursion
+fib :: Integer -> Integer
+fib n
+  | n == 0 = 0
+  | n == 1 = 1
+  | otherwise = fib (n-1) + fib (n-2)
+
+
+fibIter' :: Integer -> Integer -> Integer -> Integer
+fibIter' a b count
+  | count == 0 = b
+  | otherwise = fibIter' (a + b) a (count-1)
+
+fibIter :: Integer -> Integer
+fibIter n = fibIter' 1 0 n
