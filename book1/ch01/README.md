@@ -21,7 +21,7 @@ $\lambda xy.xxy$ (the same formula different letters).
 
 <br>
 
-$\lambda xyz.zx == \lambda tos.st$
+$\lambda xyz.zx$ answer: $\lambda tos.st$
 
 Rationale: The same formula, different letters.
 
