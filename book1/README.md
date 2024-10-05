@@ -8,4 +8,4 @@ Zadanka z ksiazki:
 
 "Haskell. Programming from first principles" by C. Allen, J. Moronuki
 
-## Taken for personal use only
+Used for eductaional purposes.
