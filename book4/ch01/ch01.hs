@@ -132,3 +132,10 @@ cc amount kindsOfCoins
 
 countChange :: Int -> Int
 countChange amount = cc amount 5
+
+-- ex 1.11
+-- recursive process
+e111 :: Natural -> Natural
+e111 n
+  | (n < 3) = n
+  | otherwise = e111 (n-1) + 2 * e111(n-1) + 3 * e111(n-3)
