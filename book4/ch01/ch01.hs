@@ -139,3 +139,16 @@ e111 :: Natural -> Natural
 e111 n
   | (n < 3) = n
   | otherwise = e111 (n-1) + 2 * e111(n-1) + 3 * e111(n-3)
+
+-- ex 1.12
+getConseqPairs :: [a] -> [[a]]
+getConseqPairs [] = []
+getConseqPairs [x] = []
+getConseqPairs (x:xs) = [x : head xs : []] ++ getConseqPairs xs
+
+-- Pascal's triangle recursive process
+getPascTriangleRow 0 = [1]
+getPascTriangleRow 1 = [1, 1]
+getPascTriangleRow level = 1 : middle ++ [1]
+  where middle = map sum $ getConseqPairs $ getPascTriangleRow (level - 1)
+
