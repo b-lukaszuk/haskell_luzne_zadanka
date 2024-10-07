@@ -147,6 +147,7 @@ getConseqPairs [x] = []
 getConseqPairs (x:xs) = [x : head xs : []] ++ getConseqPairs xs
 
 -- Pascal's triangle recursive process
+getPascTriangleRow :: Natural ->[Int]
 getPascTriangleRow 0 = [1]
 getPascTriangleRow 1 = [1, 1]
 getPascTriangleRow level = 1 : middle ++ [1]
