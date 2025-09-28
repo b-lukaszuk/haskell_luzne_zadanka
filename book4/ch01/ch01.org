@@ -1,0 +1,17 @@
+#+STARTUP: overview
+#+STARTUP: indent
+
+* Building Abstractions with procedures
+** The Elements of Programming
+*** Expressions
+
+#+BEGIN_SRC haskell
+
+  [486, 137 + 349, 1000 - 334, 5 * 99, 10 / 5, 2.7 + 10]
+
+#+END_SRC
+
+#+RESULTS:
+| 486.0 | 486.0 | 666.0 | 495.0 | 2.0 |
+
+etc.
