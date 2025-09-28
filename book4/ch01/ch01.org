@@ -1,9 +1,9 @@
 #+STARTUP: overview
 #+STARTUP: indent
 
-* Building Abstractions with procedures
-** The Elements of Programming
-*** Expressions
+* 1. Building Abstractions with procedures
+** 1.1 The Elements of Programming
+*** 1.1.1 Expressions
 
 #+BEGIN_SRC haskell
 
@@ -15,3 +15,17 @@
 | 486.0 | 486.0 | 666.0 | 495.0 | 2.0 |
 
 etc.
+
+*** 1.1.2 Naming and the Environment
+
+#+BEGIN_SRC haskell
+
+  circumference :: Floating a => a -> a
+  circumference r = 2 * pi * r
+
+  circumference 10
+
+#+END_SRC
+
+#+RESULTS:
+: 62.83185307179586
