@@ -11,9 +11,6 @@
 
 #+END_SRC
 
-#+RESULTS:
-| 486.0 | 486.0 | 666.0 | 495.0 | 2.0 | 12.7 |
-
 etc.
 
 *** 1.1.2 Naming and the Environment
@@ -26,9 +23,6 @@ etc.
   map circumference [10, 50]
 
 #+END_SRC
-
-#+RESULTS:
-| 62.83185307179586 | 314.1592653589793 |
 
 *** 1.1.4 Compound Procedures
 
@@ -43,9 +37,6 @@ Square number
 
 #+END_SRC
 
-#+RESULTS:
-| 441 | 49 | 81 |
-
 Sum of Squares
 
 #+BEGIN_SRC haskell :session s1 :results value
@@ -56,9 +47,6 @@ Sum of Squares
   sumOfSquares 3 4
 
 #+END_SRC
-
-#+RESULTS:
-: 25
 
 Further procedure
 
@@ -71,5 +59,29 @@ Further procedure
 
 #+END_SRC
 
-#+RESULTS:
-: 136
+*** 1.1.6 Conditional Expressions and Predicates
+
+Version 1
+
+#+BEGIN_SRC haskell :session s1 :results value
+
+ myAbs :: (Ord a, Num a) => a -> a
+ myAbs x
+   | x > 0 = x
+   | x == 0 = 0
+   | otherwise = negate x
+
+ map myAbs [-5..5]
+
+#+END_SRC
+
+Version 2
+
+#+BEGIN_SRC haskell :session s1 :results value
+
+ myAbs' :: (Ord a, Num a) => a -> a
+ myAbs' x = if (x < 0) then negate x else x
+
+ map myAbs' [-5..5]
+
+#+END_SRC
