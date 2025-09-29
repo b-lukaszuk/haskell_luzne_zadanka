@@ -23,12 +23,12 @@ etc.
   circumference :: Floating a => a -> a
   circumference r = 2 * pi * r
 
-  circumference 10
+  map circumference [10, 50]
 
 #+END_SRC
 
 #+RESULTS:
-: 62.83185307179586
+| 62.83185307179586 | 314.1592653589793 |
 
 *** 1.1.4 Compound Procedures
 
@@ -39,12 +39,12 @@ Square number
   square :: Num a => a -> a
   square x = x * x
 
-  square 21
+  map square [21, 2+5, square 3]
 
 #+END_SRC
 
 #+RESULTS:
-: 441
+| 441 | 49 | 81 |
 
 Sum of Squares
 
