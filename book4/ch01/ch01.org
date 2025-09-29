@@ -5,20 +5,20 @@
 ** 1.1 The Elements of Programming
 *** 1.1.1 Expressions
 
-#+BEGIN_SRC haskell
+#+BEGIN_SRC haskell :session s1 :results value
 
   [486, 137 + 349, 1000 - 334, 5 * 99, 10 / 5, 2.7 + 10]
 
 #+END_SRC
 
 #+RESULTS:
-| 486.0 | 486.0 | 666.0 | 495.0 | 2.0 |
+| 486.0 | 486.0 | 666.0 | 495.0 | 2.0 | 12.7 |
 
 etc.
 
 *** 1.1.2 Naming and the Environment
 
-#+BEGIN_SRC haskell
+#+BEGIN_SRC haskell :session s1 :results value
 
   circumference :: Floating a => a -> a
   circumference r = 2 * pi * r
@@ -29,3 +29,47 @@ etc.
 
 #+RESULTS:
 : 62.83185307179586
+
+*** 1.1.4 Compound Procedures
+
+Square number
+
+#+BEGIN_SRC haskell :session s1 :results value
+
+  square :: Num a => a -> a
+  square x = x * x
+
+  square 21
+
+#+END_SRC
+
+#+RESULTS:
+: 441
+
+Sum of Squares
+
+#+BEGIN_SRC haskell :session s1 :results value
+
+  sumOfSquares :: Num a => a -> a -> a
+  sumOfSquares x y = (square x) + (square y)
+
+  sumOfSquares 3 4
+
+#+END_SRC
+
+#+RESULTS:
+: 25
+
+Further procedure
+
+#+BEGIN_SRC haskell :session s1 :results value
+
+  f :: Num a => a -> a
+  f a = sumOfSquares (a + 1) (a * 2)
+
+  f 5
+
+#+END_SRC
+
+#+RESULTS:
+: 136
