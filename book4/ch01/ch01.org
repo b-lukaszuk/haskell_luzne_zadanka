@@ -112,6 +112,26 @@ Version 2
 
 #+END_SRC
 
+** 1.2 Procedures and the Process They Generate
+*** 1.2.1 Linear Recursion and Iteration
+
+#+BEGIN_SRC haskell :results value
+
+ factorial :: Natural -> Natural
+ factorial n = if (n <= 0) then 1 else n * factorial (n-1)
+
+ factIter :: Natural -> Natural -> Natural -> Natural
+ factIter product counter maxCount
+   | counter > maxCount = product
+   | otherwise = factIter (counter * product) (counter + 1) maxCount
+
+ factorial' :: Natural -> Natural
+ factorial' n = factIter 1 1 n
+
+ factorial' 5
+
+#+END_SRC
+
 ** Exercises
 *** Ex. 1.3.
 Define a procedure that takes three numbers as arguments and returns the sum of
@@ -135,25 +155,25 @@ Newton's method for cube roots.
 
 #+BEGIN_SRC haskell :results value
 
-cube :: Num a => a -> a
-cube x = x * x * x
+ cube :: Num a => a -> a
+ cube x = x * x * x
 
-improveCbrt :: Fractional a => a -> a -> a
-improveCbrt guess x = numerator / 3
-  where numerator = (x / square guess) + 2 * guess
+ improveCbrt :: Fractional a => a -> a -> a
+ improveCbrt guess x = numerator / 3
+   where numerator = (x / square guess) + 2 * guess
 
-isGoodEnoughCbrt :: (Ord a, Fractional a) => a -> a -> Bool
-isGoodEnoughCbrt guess x = (abs ((cube guess) - x)) < 0.001
+ isGoodEnoughCbrt :: (Ord a, Fractional a) => a -> a -> Bool
+ isGoodEnoughCbrt guess x = (abs ((cube guess) - x)) < 0.001
 
-getCbrtIter' :: (Ord a, Fractional a) => a -> a -> a
-getCbrtIter' guess x =
-  if (isGoodEnoughCbrt guess x)
-  then guess
-  else getCbrtIter' (improveCbrt guess x) x
+ getCbrtIter' :: (Ord a, Fractional a) => a -> a -> a
+ getCbrtIter' guess x =
+   if (isGoodEnoughCbrt guess x)
+   then guess
+   else getCbrtIter' (improveCbrt guess x) x
 
-getCbrtIter :: (Ord a, Fractional a) => a -> a
-getCbrtIter x = getCbrtIter' 1 x
+ getCbrtIter :: (Ord a, Fractional a) => a -> a
+ getCbrtIter x = getCbrtIter' 1 x
 
-getCbrtIter 27
+ getCbrtIter 27
 
 #+END_SRC
