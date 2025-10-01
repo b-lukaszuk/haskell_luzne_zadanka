@@ -128,3 +128,32 @@ the squares of the two larger numbers.
   getSumOfSquaresOfBigNums 2 3 4
 
 #+END_SRC
+
+*** Ex. 1.8.
+
+Newton's method for cube roots.
+
+#+BEGIN_SRC haskell :results value
+
+cube :: Num a => a -> a
+cube x = x * x * x
+
+improveCbrt :: Fractional a => a -> a -> a
+improveCbrt guess x = numerator / 3
+  where numerator = (x / square guess) + 2 * guess
+
+isGoodEnoughCbrt :: (Ord a, Fractional a) => a -> a -> Bool
+isGoodEnoughCbrt guess x = (abs ((cube guess) - x)) < 0.001
+
+getCbrtIter' :: (Ord a, Fractional a) => a -> a -> a
+getCbrtIter' guess x =
+  if (isGoodEnoughCbrt guess x)
+  then guess
+  else getCbrtIter' (improveCbrt guess x) x
+
+getCbrtIter :: (Ord a, Fractional a) => a -> a
+getCbrtIter x = getCbrtIter' 1 x
+
+getCbrtIter 27
+
+#+END_SRC
