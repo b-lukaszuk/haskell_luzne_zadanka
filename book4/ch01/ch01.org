@@ -116,6 +116,7 @@ Version 2
 *** 1.2.1 Linear Recursion and Iteration
 
 #+BEGIN_SRC haskell :results value
+ import           Numeric.Natural
 
  factorial :: Natural -> Natural
  factorial n = if (n <= 0) then 1 else n * factorial (n-1)
@@ -183,6 +184,8 @@ Newton's method for cube roots.
 Ackermann's function.
 
 #+BEGIN_SRC haskell :results value
+
+  import           Numeric.Natural
 
   -- m and n are >= 0
   -- computationally expensive, recommendation use with: m <= 3, n <= 4
