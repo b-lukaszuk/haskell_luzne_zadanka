@@ -133,7 +133,7 @@ Version 2
 #+END_SRC
 
 ** Exercises
-*** Ex. 1.3.
+*** Ex. 1.3
 Define a procedure that takes three numbers as arguments and returns the sum of
 the squares of the two larger numbers.
 
@@ -149,7 +149,7 @@ the squares of the two larger numbers.
 
 #+END_SRC
 
-*** Ex. 1.8.
+*** Ex. 1.8
 
 Newton's method for cube roots.
 
@@ -175,5 +175,23 @@ Newton's method for cube roots.
  getCbrtIter x = getCbrtIter' 1 x
 
  getCbrtIter 27
+
+#+END_SRC
+
+*** Ex. 1.10
+
+Ackermann's function.
+
+#+BEGIN_SRC haskell :results value
+
+  -- m and n are >= 0
+  -- computationally expensive, recommendation use with: m <= 3, n <= 4
+  ackermann :: Natural -> Natural -> Natural
+  ackermann m n
+    | m == 0 = n + 1
+    | n == 0 = ackermann (m - 1) 1
+    | otherwise = ackermann (m - 1) (ackermann m (n - 1))
+
+  ackermann 3 4
 
 #+END_SRC
