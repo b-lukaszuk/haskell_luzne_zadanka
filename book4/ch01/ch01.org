@@ -266,3 +266,58 @@ Recursive process
   e111 12
 
 #+END_SRC
+
+*** Ex. 1.12
+
+Pascal's triangle
+
+#+BEGIN_SRC haskell :results value
+
+  getConseqPairs :: [a] -> [[a]]
+  getConseqPairs []     = []
+  getConseqPairs [x]    = []
+  getConseqPairs (x:xs) = [x : head xs : []] ++ getConseqPairs xs
+
+  -- Pascal's triangle recursive process
+  -- levels are 0 indexed, don't use negative levels
+  getPascTriangleRow :: Int ->[Int]
+  getPascTriangleRow 0 = [1]
+  getPascTriangleRow 1 = [1, 1]
+  getPascTriangleRow level = 1 : middle ++ [1]
+    where middle = map sum $ getConseqPairs $ getPascTriangleRow (level - 1)
+
+  -- levels are 0 indexed, don't use negative levels
+  getPascTriangle :: Int -> [[Int]]
+  getPascTriangle maxLevel = map getPascTriangleRow [0..maxLevel]
+
+  getMaxNumWidth :: [Int] -> Int
+  getMaxNumWidth row = maximum . map length $ map show row
+
+  getMaxNumLen :: [[Int]] -> Int
+  getMaxNumLen triangle = getMaxNumWidth $ last triangle
+
+  getNumStr :: Int -> Int -> String
+  getNumStr n defWidth = if diff == 0 then numStr else numStr ++ pad
+    where numStr = show n
+          diff = defWidth - length numStr
+          pad = replicate diff ' '
+
+  showRow :: Int -> Int -> [Int] -> String
+  showRow defNumWidth defRowWidth row = pad ++ core ++ pad
+    where core = intercalate " " $ map (\n -> getNumStr n defNumWidth) row
+          diff = (defRowWidth - length core) `div` 2
+          pad = replicate diff ' '
+
+  -- levels are 0 indexed, don't use negative levels
+  -- at maxLevel = 15 maxRow is ~80 columns long
+  printPascTriangle :: Int -> IO ()
+  printPascTriangle maxLevel = putStrLn $ intercalate "\n" $
+    map (\row -> showRow maxNumWidth lastRowWidth row) $ triangle
+    where
+      triangle = getPascTriangle maxLevel
+      maxNumWidth = getMaxNumLen triangle
+      lastRowWidth = (maxLevel + 1) * maxNumWidth + maxLevel
+
+  printPascTriangle 8
+
+#+END_SRC
