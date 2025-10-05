@@ -7,9 +7,12 @@
 
 #+BEGIN_SRC haskell :results value
 
-  [486, 137 + 349, 1000 - 334, 5 * 99, 10 / 5, 2.7 + 10]
+[486, 137 + 349, 1000 - 334, 5 * 99, 10 / 5, 2.7 + 10]
 
 #+END_SRC
+
+#+RESULTS:
+| 486.0 | 486.0 | 666.0 | 495.0 | 2.0 | 12.7 |
 
 etc.
 
@@ -17,12 +20,17 @@ etc.
 
 #+BEGIN_SRC haskell :results value
 
-  circumference :: Floating a => a -> a
-  circumference r = 2 * pi * r
+:{
+circumference :: Floating a => a -> a
+circumference r = 2 * pi * r
+:}
 
-  map circumference [10, 50]
+map circumference [10, 50]
 
 #+END_SRC
+
+#+RESULTS:
+| 62.83185307179586 | 314.1592653589793 |
 
 *** 1.1.4 Compound Procedures
 
@@ -30,34 +38,57 @@ Square number
 
 #+BEGIN_SRC haskell :results value
 
-  square :: Num a => a -> a
-  square x = x * x
+:{
+square :: Num a => a -> a
+square x = x * x
+:}
 
-  map square [21, 2+5, square 3]
+map square [21, 2+5, square 3]
 
 #+END_SRC
+
+#+RESULTS:
+| 441 | 49 | 81 |
 
 Sum of Squares
 
 #+BEGIN_SRC haskell :results value
 
- sumOfSquares :: Num a => a -> a -> a
- sumOfSquares x y = (square x) + (square y)
+:{
+square :: Num a => a -> a
+square x = x * x
 
- sumOfSquares 3 4
+sumOfSquares :: Num a => a -> a -> a
+sumOfSquares x y = (square x) + (square y)
+:}
+
+sumOfSquares 3 4
 
 #+END_SRC
+
+#+RESULTS:
+: 25
 
 Further procedure
 
 #+BEGIN_SRC haskell :results value
 
-  f :: Num a => a -> a
-  f a = sumOfSquares (a + 1) (a * 2)
+:{
+square :: Num a => a -> a
+square x = x * x
 
-  f 5
+sumOfSquares :: Num a => a -> a -> a
+sumOfSquares x y = (square x) + (square y)
+
+f :: Num a => a -> a
+f a = sumOfSquares (a + 1) (a * 2)
+:}
+f 5
 
 #+END_SRC
+
+#+RESULTS:
+: 136
 
 *** 1.1.6 Conditional Expressions and Predicates
 
@@ -65,124 +96,169 @@ Version 1
 
 #+BEGIN_SRC haskell :results value
 
- myAbs :: (Ord a, Num a) => a -> a
- myAbs x
-   | x > 0 = x
-   | x == 0 = 0
-   | otherwise = negate x
+:{
+myAbs :: (Ord a, Num a) => a -> a
+myAbs x
+  | x > 0 = x
+  | x == 0 = 0
+  | otherwise = negate x
+:}
 
- map myAbs [-5..5]
+map myAbs [-5..5]
 
 #+END_SRC
+
+#+RESULTS:
+| 5 | 4 | 3 | 2 | 1 | 0 | 1 | 2 | 3 | 4 | 5 |
 
 Version 2
 
 #+BEGIN_SRC haskell :results value
 
- myAbs' :: (Ord a, Num a) => a -> a
- myAbs' x = if (x < 0) then negate x else x
+:{
+myAbs' :: (Ord a, Num a) => a -> a
+myAbs' x = if (x < 0) then negate x else x
+:}
 
- map myAbs' [-5..5]
+map myAbs' [-5..5]
 
 #+END_SRC
+
+#+RESULTS:
+| 5 | 4 | 3 | 2 | 1 | 0 | 1 | 2 | 3 | 4 | 5 |
 
 *** 1.1.7 Example: Square Roots by Newton's Method
 
 #+BEGIN_SRC haskell :results value
 
- getAvg :: Fractional a => a -> a -> a
- getAvg x y = (x + y) / 2
+:{
+square :: Num a => a -> a
+square x = x * x
 
- improveSqrt :: Fractional a => a -> a -> a
- improveSqrt guess x = getAvg guess (x / guess)
+getAvg :: Fractional a => a -> a -> a
+getAvg x y = (x + y) / 2
 
- isGoodEnoughSqrt :: (Ord a, Fractional a) => a -> a -> Bool
- isGoodEnoughSqrt guess x = (abs ((square guess) - x)) < 0.001
+improveSqrt :: Fractional a => a -> a -> a
+improveSqrt guess x = getAvg guess (x / guess)
 
- getSqrtIter' :: (Ord a, Fractional a) => a -> a -> a
- getSqrtIter' guess x =
-   if (isGoodEnoughSqrt guess x)
-   then guess
-   else getSqrtIter' (improveSqrt guess x) x
+isGoodEnoughSqrt :: (Ord a, Fractional a) => a -> a -> Bool
+isGoodEnoughSqrt guess x = (abs ((square guess) - x)) < 0.001
 
- getSqrtIter :: (Ord a, Fractional a) => a -> a
- getSqrtIter x = getSqrtIter' 1 x
+getSqrtIter' :: (Ord a, Fractional a) => a -> a -> a
+getSqrtIter' guess x =
+  if (isGoodEnoughSqrt guess x)
+  then guess
+  else getSqrtIter' (improveSqrt guess x) x
 
- map getSqrtIter [4..9]
+getSqrtIter :: (Ord a, Fractional a) => a -> a
+getSqrtIter x = getSqrtIter' 1 x
+
+round' :: Double -> Integer -> Double
+round' num precision = (fromIntegral . round $ num * f) / f
+    where f = 10^precision
+:}
+
+round2 :: Double -> Double
+round2 num = round' num 2
+
+map (round2 . getSqrtIter) [4..9]
 
 #+END_SRC
+
+#+RESULTS:
+| 2.0 | 2.24 | 2.45 | 2.65 | 2.83 | 3.0 |
 
 ** 1.2 Procedures and the Process They Generate
 *** 1.2.1 Linear Recursion and Iteration
 
 #+BEGIN_SRC haskell :results value
- import           Numeric.Natural
 
- factorial :: Natural -> Natural
- factorial n = if (n <= 0) then 1 else n * factorial (n-1)
+:{
+import           Numeric.Natural
 
- factIter :: Natural -> Natural -> Natural -> Natural
- factIter product counter maxCount
-   | counter > maxCount = product
-   | otherwise = factIter (counter * product) (counter + 1) maxCount
+factorial :: Natural -> Natural
+factorial n = if (n <= 0) then 1 else n * factorial (n-1)
 
- factorial' :: Natural -> Natural
- factorial' n = factIter 1 1 n
+factIter :: Natural -> Natural -> Natural -> Natural
+factIter product counter maxCount
+  | counter > maxCount = product
+  | otherwise = factIter (counter * product) (counter + 1) maxCount
 
- factorial' 5
+factorial' :: Natural -> Natural
+factorial' n = factIter 1 1 n
+ :}
+
+factorial' 5
 
 #+END_SRC
+
+#+RESULTS:
+: 120
 
 *** 1.2.2 Tree Recursion
 
 #+BEGIN_SRC haskell :results value
- import           Numeric.Natural
 
- fib :: Natural -> Natural
- fib n
-   | n == 0 = 0
-   | n == 1 = 1
-   | otherwise = fib (n-1) + fib (n-2)
+:{
+import           Numeric.Natural
+
+fib :: Natural -> Natural
+fib n
+  | n == 0 = 0
+  | n == 1 = 1
+  | otherwise = fib (n-1) + fib (n-2)
 
 
- fibIter' :: Natural -> Natural -> Natural -> Natural
- fibIter' a b count
-   | count == 0 = b
-   | otherwise = fibIter' (a + b) a (count-1)
+fibIter' :: Natural -> Natural -> Natural -> Natural
+fibIter' a b count
+  | count == 0 = b
+  | otherwise = fibIter' (a + b) a (count-1)
 
- fibIter :: Natural -> Natural
- fibIter n = fibIter' 1 0 n
+fibIter :: Natural -> Natural
+fibIter n = fibIter' 1 0 n
+:}
 
- -- fib 31 -- takes like 5 sec. to execute
- fibIter 31 -- takes < 1 sec. to execute
+-- fib 31 -- takes like 5 sec. to execute
+-- fibIter 31 -- takes < 1 sec. to execute
+
+[fib 10, fibIter 10]
 
 #+END_SRC
+
+#+RESULTS:
+| 55 | 55 |
 
 *** Example: Counting change
 
 #+BEGIN_SRC haskell :results value
 
- firstDenomination :: Int -> Int
- firstDenomination 1            = 1
- firstDenomination 2            = 5
- firstDenomination 3            = 10
- firstDenomination 4            = 25
- firstDenomination 5            = 50
- firstDenomination kindsOfCoins = 50 -- should never happen
+:{
+firstDenomination :: Int -> Int
+firstDenomination 1            = 1
+firstDenomination 2            = 5
+firstDenomination 3            = 10
+firstDenomination 4            = 25
+firstDenomination 5            = 50
+firstDenomination kindsOfCoins = 50 -- should never happen
 
- cc :: Int -> Int -> Int
- cc 0 _ = 1
- cc amount kindsOfCoins
-   | (amount < 0) || (kindsOfCoins == 0) = 0
-   | otherwise = cc amount (kindsOfCoins - 1) +
-                 cc (amount - firstDenomination kindsOfCoins) kindsOfCoins
+-- can't use Natural, must allow for underflow (amount < 0)
+cc :: Int -> Int -> Int
+cc 0 _ = 1
+cc amount kindsOfCoins
+  | (amount < 0) || (kindsOfCoins == 0) = 0
+  | otherwise = cc amount (kindsOfCoins - 1) +
+                cc (amount - firstDenomination kindsOfCoins) kindsOfCoins
 
- countChange :: Int -> Int
- countChange amount = cc amount 5
+countChange :: Int -> Int
+countChange amount = cc amount 5
+:}
 
- countChange 100
+countChange 100
 
 #+END_SRC
+
+#+RESULTS:
+: 292
 
 ** Exercises
 *** Ex. 1.3
@@ -191,15 +267,26 @@ the squares of the two larger numbers.
 
 #+BEGIN_SRC haskell :results value
 
-  getSumOfSquaresOfBigNums :: (Ord a, Num a) => a -> a -> a -> a
-  getSumOfSquaresOfBigNums x y z
-    | (x < y) && (x < z) = sumOfSquares y z
-    | (y < x) && (y < z) = sumOfSquares x z
-    | otherwise = sumOfSquares x y
+:{
+square :: Num a => a -> a
+square x = x * x
 
-  getSumOfSquaresOfBigNums 2 3 4
+sumOfSquares :: Num a => a -> a -> a
+sumOfSquares x y = (square x) + (square y)
+
+getSumOfSquaresOfBigNums :: (Ord a, Num a) => a -> a -> a -> a
+getSumOfSquaresOfBigNums x y z
+  | (x < y) && (x < z) = sumOfSquares y z
+  | (y < x) && (y < z) = sumOfSquares x z
+  | otherwise = sumOfSquares x y
+:}
+
+getSumOfSquaresOfBigNums 2 3 4
 
 #+END_SRC
+
+#+RESULTS:
+: 25
 
 *** Ex. 1.8
 
@@ -207,28 +294,36 @@ Newton's method for cube roots.
 
 #+BEGIN_SRC haskell :results value
 
- cube :: Num a => a -> a
- cube x = x * x * x
+:{
+square :: Num a => a -> a
+square x = x * x
 
- improveCbrt :: Fractional a => a -> a -> a
- improveCbrt guess x = numerator / 3
-   where numerator = (x / square guess) + 2 * guess
+cube :: Num a => a -> a
+cube x = x * x * x
 
- isGoodEnoughCbrt :: (Ord a, Fractional a) => a -> a -> Bool
- isGoodEnoughCbrt guess x = (abs ((cube guess) - x)) < 0.001
+improveCbrt :: Fractional a => a -> a -> a
+improveCbrt guess x = numerator / 3
+  where numerator = (x / square guess) + 2 * guess
 
- getCbrtIter' :: (Ord a, Fractional a) => a -> a -> a
- getCbrtIter' guess x =
-   if (isGoodEnoughCbrt guess x)
-   then guess
-   else getCbrtIter' (improveCbrt guess x) x
+isGoodEnoughCbrt :: (Ord a, Fractional a) => a -> a -> Bool
+isGoodEnoughCbrt guess x = (abs ((cube guess) - x)) < 0.001
 
- getCbrtIter :: (Ord a, Fractional a) => a -> a
- getCbrtIter x = getCbrtIter' 1 x
+getCbrtIter' :: (Ord a, Fractional a) => a -> a -> a
+getCbrtIter' guess x =
+  if (isGoodEnoughCbrt guess x)
+  then guess
+  else getCbrtIter' (improveCbrt guess x) x
 
- getCbrtIter 27
+getCbrtIter :: (Ord a, Fractional a) => a -> a
+getCbrtIter x = getCbrtIter' 1 x
+:}
+
+getCbrtIter 27
 
 #+END_SRC
+
+#+RESULTS:
+: 3.0000005410641766
 
 *** Ex. 1.10
 
@@ -236,19 +331,24 @@ Ackermann's function.
 
 #+BEGIN_SRC haskell :results value
 
-  import           Numeric.Natural
+:{
+import           Numeric.Natural
 
-  -- m and n are >= 0
-  -- computationally expensive, recommendation use with: m <= 3, n <= 4
-  ackermann :: Natural -> Natural -> Natural
-  ackermann m n
-    | m == 0 = n + 1
-    | n == 0 = ackermann (m - 1) 1
-    | otherwise = ackermann (m - 1) (ackermann m (n - 1))
+-- m and n are >= 0
+-- computationally expensive, recommendation use with: m <= 3, n <= 4
+ackermann :: Natural -> Natural -> Natural
+ackermann m n
+  | m == 0 = n + 1
+  | n == 0 = ackermann (m - 1) 1
+  | otherwise = ackermann (m - 1) (ackermann m (n - 1))
+:}
 
-  ackermann 3 4
+ackermann 3 4
 
 #+END_SRC
+
+#+RESULTS:
+: 125
 
 *** Ex. 1.11
 
@@ -256,68 +356,94 @@ Recursive process
 
 #+BEGIN_SRC haskell :results value
 
-  import           Numeric.Natural
+:{
+import           Numeric.Natural
 
-  e111 :: Natural -> Natural
-  e111 n
-    | (n < 3) = n
-    | otherwise = e111 (n-1) + 2 * e111(n-1) + 3 * e111(n-3)
+e111 :: Natural -> Natural
+e111 n
+  | (n < 3) = n
+  | otherwise = e111 (n-1) + 2 * e111(n-1) + 3 * e111(n-3)
+:}
 
-  e111 12
+e111 12
 
 #+END_SRC
+
+#+RESULTS:
+: 279855
 
 *** Ex. 1.12
 
 Pascal's triangle
 
-#+BEGIN_SRC haskell :results value
+#+BEGIN_SRC haskell :results output
 
-  getConseqPairs :: [a] -> [[a]]
-  getConseqPairs []     = []
-  getConseqPairs [x]    = []
-  getConseqPairs (x:xs) = [x : head xs : []] ++ getConseqPairs xs
+:{
+import           Data.List       (intercalate)
 
-  -- Pascal's triangle recursive process
-  -- levels are 0 indexed, don't use negative levels
-  getPascTriangleRow :: Int ->[Int]
-  getPascTriangleRow 0 = [1]
-  getPascTriangleRow 1 = [1, 1]
-  getPascTriangleRow level = 1 : middle ++ [1]
-    where middle = map sum $ getConseqPairs $ getPascTriangleRow (level - 1)
+getConseqPairs :: [a] -> [[a]]
+getConseqPairs []     = []
+getConseqPairs [x]    = []
+getConseqPairs (x:xs) = [x : head xs : []] ++ getConseqPairs xs
 
-  -- levels are 0 indexed, don't use negative levels
-  getPascTriangle :: Int -> [[Int]]
-  getPascTriangle maxLevel = map getPascTriangleRow [0..maxLevel]
+-- Pascal's triangle recursive process
+-- levels are 0 indexed, don't use negative levels
+getPascTriangleRow :: Int ->[Int]
+getPascTriangleRow 0 = [1]
+getPascTriangleRow 1 = [1, 1]
+getPascTriangleRow level = 1 : middle ++ [1]
+  where middle = map sum $ getConseqPairs $ getPascTriangleRow (level - 1)
 
-  getMaxNumWidth :: [Int] -> Int
-  getMaxNumWidth row = maximum . map length $ map show row
+-- levels are 0 indexed, don't use negative levels
+getPascTriangle :: Int -> [[Int]]
+getPascTriangle maxLevel = map getPascTriangleRow [0..maxLevel]
 
-  getMaxNumLen :: [[Int]] -> Int
-  getMaxNumLen triangle = getMaxNumWidth $ last triangle
+getMaxNumWidth :: [Int] -> Int
+getMaxNumWidth row = maximum . map length $ map show row
 
-  getNumStr :: Int -> Int -> String
-  getNumStr n defWidth = if diff == 0 then numStr else numStr ++ pad
-    where numStr = show n
-          diff = defWidth - length numStr
-          pad = replicate diff ' '
+getMaxNumLen :: [[Int]] -> Int
+getMaxNumLen triangle = getMaxNumWidth $ last triangle
 
-  showRow :: Int -> Int -> [Int] -> String
-  showRow defNumWidth defRowWidth row = pad ++ core ++ pad
-    where core = intercalate " " $ map (\n -> getNumStr n defNumWidth) row
-          diff = (defRowWidth - length core) `div` 2
-          pad = replicate diff ' '
+getNumStr :: Int -> Int -> String
+getNumStr n defWidth = if diff == 0 then numStr else numStr ++ pad
+  where numStr = show n
+        diff = defWidth - length numStr
+        pad = replicate diff ' '
 
-  -- levels are 0 indexed, don't use negative levels
-  -- at maxLevel = 15 maxRow is ~80 columns long
-  printPascTriangle :: Int -> IO ()
-  printPascTriangle maxLevel = putStrLn $ intercalate "\n" $
-    map (\row -> showRow maxNumWidth lastRowWidth row) $ triangle
-    where
-      triangle = getPascTriangle maxLevel
-      maxNumWidth = getMaxNumLen triangle
-      lastRowWidth = (maxLevel + 1) * maxNumWidth + maxLevel
+showRow :: Int -> Int -> [Int] -> String
+showRow defNumWidth defRowWidth row = pad ++ core ++ pad
+  where core = intercalate " " $ map (\n -> getNumStr n defNumWidth) row
+        diff = (defRowWidth - length core) `div` 2
+        pad = replicate diff ' '
 
-  printPascTriangle 8
+-- at maxLevel = 15 maxRow is ~80 columns long
+printPascTriangle :: Int -> IO ()
+printPascTriangle maxLevel
+  | maxLevel < 0 || maxLevel > 15 = error "maxLevel must be in range [0-15]"
+  | otherwise = putStrLn $ triangleToPrint
+  where
+    triangle = getPascTriangle maxLevel
+    maxNumWidth = getMaxNumLen triangle
+    lastRowWidth = (maxLevel + 1) * maxNumWidth + maxLevel
+    triangleToPrint = intercalate "\n" $
+      map (\row -> showRow maxNumWidth lastRowWidth row) $ triangle
+    :}
+
+printPascTriangle 8
 
 #+END_SRC
+
+#+RESULTS:
+:             1
+:           1  1
+:          1  2  1
+:        1  3  3  1
+:       1  4  6  4  1
+:     1  5  10 10 5  1
+:    1  6  15 20 15 6  1
+:  1  7  21 35 35 21 7  1
+: 1  8  28 56 70 56 28 8  1
+
+* Note
+You may need to surround the code snippets to be treated as a whole with `:{` and `:}`
+[[https://emacs.stackexchange.com/questions/48446/haskell-code-execution-in-org-mode-give-error-but-in-hs-file-the-code-is-good-a][Explanation]]
