@@ -447,3 +447,6 @@ printPascTriangle 8
 * Note
 You may need to surround the code snippets to be treated as a whole with `:{` and `:}`
 [[https://emacs.stackexchange.com/questions/48446/haskell-code-execution-in-org-mode-give-error-but-in-hs-file-the-code-is-good-a][Explanation]]
+
+* Warning
+The content of this file may be incorrect, erroneous and/or harmful. Use it at Your own risk.
