@@ -42,6 +42,6 @@ c = [[-1, 3, 5], [5, 5, 2]]
 d :: Matrix
 d = [[3, 4], [3, -2], [4, -2]]
 
--- copy-past to ghci:
+-- uncomment appropriate line below and copy-paste the snippet to ghci (REPL):
 -- multiply a b
 -- multiply c d

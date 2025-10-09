@@ -73,5 +73,5 @@ a = [[1, 1], [1, negate 1]] -- left site of equations (bat + ball)
 b :: Matrix
 b = [[1.1], [1.0]] -- right site of equations (sums)
 
--- copy-past to ghci:
+-- uncomment and copy-paste the below snippet to ghci (REPL):
 -- map (map round2) $ getPrices a b
