@@ -10,11 +10,15 @@ change2Snake (x:xs)
 -- map change2Snake ["helloWorld", "niceToMeetYou", "translateToEnglish"]
 
 
+change2Camel' :: String -> Bool -> String
+change2Camel' [] _ = []
+change2Camel' (x:xs) True = C.toUpper x : change2Camel' xs False
+change2Camel' (x:xs) False
+  | x == '_' = change2Camel' xs True
+  | otherwise = x : change2Camel' xs False
+
 change2Camel :: String -> String
-change2Camel []     = []
-change2Camel (x:xs)
-  | x == '_' = (C.toUpper $ head xs) : (change2Camel $ tail xs)
-  | otherwise = x: change2Camel xs
+change2Camel snakeCasedWord     = change2Camel' snakeCasedWord False
 
 -- uncomment appropriate line below and copy-paste the snippet to ghci (REPL):
 -- map change2Camel ["hello_world", "nice_to_meet_you", "translate_to_english"]
