@@ -19,3 +19,16 @@ getFactorial n = getFactorial' n 1
 
 -- uncomment and type the below into the ghci (REPL)
 -- map getFactorial [1..10]
+
+
+getFib' :: Int -> Int -> Int -> Int
+getFib' a b n
+  | n < 0 = undefined
+  | n < 1 = b
+  | otherwise = getFib' b (b+a) (n-1)
+
+getFib :: Int -> Int
+getFib n = getFib' 1 0 n
+
+-- uncomment and type the below into the ghci (REPL)
+-- map getFib [0..19]
