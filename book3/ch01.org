@@ -1,0 +1,28 @@
+#+STARTUP: overview
+#+STARTUP: indent
+
+* Chapter 1. Getting Started
+** A simple program
+
+[[https://book.realworldhaskell.org/read/getting-started.html#id577314][Original problem]]
+
+#+BEGIN_SRC haskell :results value
+
+:{
+linesCount :: String -> Int
+linesCount input = length $ lines input
+:}
+
+linesCount "hello\nthere\nHaskell\nenthusiasts"
+
+#+END_SRC
+
+#+RESULTS:
+: 4
+
+* Note
+You may need to surround the code snippets to be treated as a whole with `:{` and `:}`
+[[https://emacs.stackexchange.com/questions/48446/haskell-code-execution-in-org-mode-give-error-but-in-hs-file-the-code-is-good-a][Explanation]]
+
+* Warning
+The content of this file may be incorrect, erroneous and/or harmful. Use it at Your own risk.
