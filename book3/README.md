@@ -1,7 +1,6 @@
 # Description
 
-Selected bits/tasks from [Real World Haskell](http://book.realworldhaskell.org/read/),
-by Bryan O'Sullivan, Don Stewart, and John Goerzen.
+Selected bits/tasks from [Real World Haskell](http://book.realworldhaskell.org/read/) by Bryan O'Sullivan, Don Stewart, and John Goerzen.
 
 Taken for personal (educational) use only.
 
