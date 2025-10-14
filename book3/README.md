@@ -1,11 +1,14 @@
-# Info
+# Description
 
-Robienie zadanek (niektorych) z Haskella w wolnej chwili/chwilach.
+Selected bits/tasks from [Real World Haskell](http://book.realworldhaskell.org/read/),
+by Bryan O'Sullivan, Don Stewart, and John Goerzen.
 
-## Info dodatkowe
+Taken for personal (educational) use only.
 
-Zadanka z ksiazki:
+The book is available freely under [CC BY-NC 3.0](https://creativecommons.org/licenses/by-nc/3.0/).
 
-[Real World Haskell](http://book.realworldhaskell.org/read/) by Bryan O'Sullivan, Don Stewart, and John Goerzen
+The bits will be solved 'at a whim' and may be modified.
 
-## Taken for personal (educational) use only
+# Additional info
+
+**The content of this folder may be incorrect, erroneous and/or harmful. Use it at Your own risk.**
