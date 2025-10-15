@@ -2,6 +2,7 @@
 #+STARTUP: indent
 
 * Chapter 1. Getting Started
+[[https://book.realworldhaskell.org/read/getting-started.html][Chapter online]]
 ** A simple program
 
 [[https://book.realworldhaskell.org/read/getting-started.html#id577314][Original problem]]
