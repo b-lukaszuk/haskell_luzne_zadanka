@@ -1,3 +1,6 @@
+import Control.Concurrent (threadDelay)
+import Control.Monad (forM_)
+
 getProgressBar :: Int -> String -> String
 getProgressBar perc fan
   | perc < 0 || perc > 100 = undefined
@@ -8,11 +11,15 @@ getProgressBar perc fan
         q = maxNumOfChars - p
         qs = take q $ repeat '.'
 
-animateProgressBar :: [String]
-animateProgressBar = [getProgressBar p f | p <- percs, f <- fans]
-  where
-    percs = [0..100]
-    fans = (take $ length percs) $ ["\\", "-", "/", "-"]
+animate1Frame :: Int -> String -> IO ()
+animate1Frame perc fan = do
+  print $ getProgressBar perc fan
+  threadDelay $ 200 * 1000
 
-main = do
-  mapM_ putStrLn animateProgressBar
+fans :: [String]
+fans = ["\\", "-", "/", "-"]
+
+main :: IO()
+main = forM_ [0..100] $ \i -> do
+  animate1Frame i (fans !! (mod i $ length fans))
+
