@@ -1,5 +1,6 @@
-import Control.Concurrent (threadDelay)
-import Control.Monad (forM_)
+import           Control.Concurrent (threadDelay)
+import           Control.Monad      (forM_)
+import           Data.Char          (isSpace, toLower)
 
 getProgressBar :: Int -> String -> String
 getProgressBar perc fan
@@ -11,10 +12,13 @@ getProgressBar perc fan
         q = maxNumOfChars - p
         qs = take q $ repeat '.'
 
+strip :: String -> String
+strip s = filter (not . isSpace) s
+
 -- the terminal must support ANSI escape codes
 -- https://en.wikipedia.org/wiki/ANSI_escape_code
-clear1Line :: IO ()
-clear1Line = do
+clearPrevLine :: IO ()
+clearPrevLine = do
     -- "\033[xxxA" - xxx moves cursor up xxx lines
     -- in haskell you use hex code instead of octal, hence "\033" is "\x1b"
     putStr "\x1b[A"
@@ -25,14 +29,20 @@ animate1Frame :: Int -> String -> IO ()
 animate1Frame perc fan = do
   putStrLn $ getProgressBar perc fan
   threadDelay $ 150 * 1000 -- delay: 150 ms
-  clear1Line
-
-fans :: [String]
-fans = ["\\", "-", "/", "-"]
+  clearPrevLine
 
 -- run program from shell with: runhaskell progress_bar.hs
 main :: IO()
 main = do
-  forM_ [0..100] $ \i -> do
-    animate1Frame i (fans !! (mod i $ length fans))
-  putStrLn $ getProgressBar 100 (fans !! 0)
+  putStrLn $ "Toy program."
+  putStrLn $ "It animates a progress bar."
+  putStrLn $ "Note: your terminal must support ANSI escape codes.\n"
+  putStrLn $ "Continue with the animation? [Y/n]"
+  fans <- return ["\\", "-", "/", "-"]
+  choice <- getLine
+  if (map toLower $ strip choice) `elem` ["y", "yes", ""]
+    then do
+    forM_ [0..100] $ \i -> animate1Frame i (fans !! (mod i $ length fans))
+    putStrLn $ getProgressBar 100 (fans !! 0)
+  else putStr $ ""
+  putStrLn $ "\nThat's all. Goodbye!"
