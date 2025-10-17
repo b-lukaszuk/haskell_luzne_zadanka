@@ -12,8 +12,8 @@ getProgressBar perc fan
         q = maxNumOfChars - p
         qs = take q $ repeat '.'
 
-strip :: String -> String
-strip s = filter (not . isSpace) s
+remWhiteSpace :: String -> String
+remWhiteSpace s = filter (not . isSpace) s
 
 -- the terminal must support ANSI escape codes
 -- https://en.wikipedia.org/wiki/ANSI_escape_code
@@ -40,7 +40,7 @@ main = do
   putStrLn $ "Continue with the animation? [Y/n]"
   fans <- return ["\\", "-", "/", "-"]
   choice <- getLine
-  if (map toLower $ strip choice) `elem` ["y", "yes", ""]
+  if (map toLower $ remWhiteSpace choice) `elem` ["y", "yes", ""]
     then do
     forM_ [0..100] $ \i -> animate1Frame i (fans !! (mod i $ length fans))
     putStrLn $ getProgressBar 100 (fans !! 0)
