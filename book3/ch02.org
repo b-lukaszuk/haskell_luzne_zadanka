@@ -2,13 +2,14 @@
 #+STARTUP: indent
 
 * Chapter 2. Types and Functions
-[[https://book.realworldhaskell.org/read/types-and-functions.html][Chapter Online]]
+[[https://book.realworldhaskell.org/read/types-and-functions.html][Chapter Online]].
+
 * Exercises
 ** Exercise 2
 Write a function `lastButOne`, that return the element before the last.
 
 Notice: `lastButOne` written with elements from Ch02 and Ch01 of the book.
-For lists with less 2 elements it will return an error/exception.
+For lists with less than 2 elements it will return an error/exception.
 
 #+BEGIN_SRC haskell :results value
 
@@ -27,8 +28,7 @@ map lastButOne $ map (\n -> [1..n]) [2..10]
 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
 
 * Note
-You may need to surround the code snippets to be treated as a whole with `:{` and `:}`
-[[https://emacs.stackexchange.com/questions/48446/haskell-code-execution-in-org-mode-give-error-but-in-hs-file-the-code-is-good-a][Explanation]]
+You may need to surround the code snippets to be treated as a whole with `:{` and `:}`. [[https://emacs.stackexchange.com/questions/48446/haskell-code-execution-in-org-mode-give-error-but-in-hs-file-the-code-is-good-a][Explanation]].
 
 * Warning
 The content of this file may be incorrect, erroneous and/or harmful. Use it at Your own risk.
