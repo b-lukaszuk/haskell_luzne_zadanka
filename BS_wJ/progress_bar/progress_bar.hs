@@ -22,7 +22,7 @@ clearPrevLine :: IO ()
 clearPrevLine = do
     -- "\033[xxxA" - xxx moves cursor up xxx lines
     -- in haskell you use hex code instead of octal, hence "\033" is "\x1b"
-    putStr "\x1b[A"
+    putStr "\x1b[1A"
     -- clears from cursor position till end of display
     putStr "\x1b[J"
 
@@ -39,13 +39,14 @@ main = do
   putStrLn $ "It animates a progress bar."
   putStrLn $ "Note: your terminal must support ANSI escape codes.\n"
   putStrLn $ "Continue with the animation? [Y/n]"
+  choice <- getLine
   fans <- return ["\\", "-", "/", "-"]
   g <- getStdGen
-  delays <- return $ take 101 $ (randomRs (100, 250) g)
-  choice <- getLine
+  percentages <- return [0..100]
+  delays <- return $ take (length percentages) $ (randomRs (100, 250) g)
   if (map toLower $ remWhiteSpace choice) `elem` ["y", "yes", ""]
     then do
-    forM_ [0..100] $ \i ->
+    forM_ percentages $ \i ->
       animate1Frame i (delays !! i) (fans !! (mod i $ length fans))
     putStrLn $ getProgressBar 100 (fans !! 0)
   else putStr $ ""
