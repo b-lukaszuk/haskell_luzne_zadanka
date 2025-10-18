@@ -1,6 +1,7 @@
 import           Control.Concurrent (threadDelay)
 import           Control.Monad      (forM_)
 import           Data.Char          (isSpace, toLower)
+import           System.Random      (getStdGen, randomRs)
 
 getProgressBar :: Int -> String -> String
 getProgressBar perc fan
@@ -25,10 +26,10 @@ clearPrevLine = do
     -- clears from cursor position till end of display
     putStr "\x1b[J"
 
-animate1Frame :: Int -> String -> IO ()
-animate1Frame perc fan = do
+animate1Frame :: Int -> Int -> String -> IO ()
+animate1Frame perc delayMs fan = do
   putStrLn $ getProgressBar perc fan
-  threadDelay $ 150 * 1000 -- delay: 150 ms
+  threadDelay $ delayMs * 1000 -- threadDelay operate in microseconds
   clearPrevLine
 
 -- run program from shell with: runhaskell progress_bar.hs
@@ -39,10 +40,13 @@ main = do
   putStrLn $ "Note: your terminal must support ANSI escape codes.\n"
   putStrLn $ "Continue with the animation? [Y/n]"
   fans <- return ["\\", "-", "/", "-"]
+  g <- getStdGen
+  delays <- return $ take 101 $ (randomRs (100, 250) g)
   choice <- getLine
   if (map toLower $ remWhiteSpace choice) `elem` ["y", "yes", ""]
     then do
-    forM_ [0..100] $ \i -> animate1Frame i (fans !! (mod i $ length fans))
+    forM_ [0..100] $ \i ->
+      animate1Frame i (delays !! i) (fans !! (mod i $ length fans))
     putStrLn $ getProgressBar 100 (fans !! 0)
   else putStr $ ""
   putStrLn $ "\nThat's all. Goodbye!"
