@@ -6,10 +6,10 @@
 
 * Exercises
 ** Exercise 1
-[[https://book.realworldhaskell.org/read/defining-types-streamlining-functions.html#id585938][Link to exercises]]
+Exercise 1 from [[https://book.realworldhaskell.org/read/defining-types-streamlining-functions.html#id585938][the exercises]].
 
 *** Problem
-Examine a type `List` below
+Examine the type `List` below
 
 #+BEGIN_SRC haskell :results value
 
@@ -28,7 +28,7 @@ fromList []     = Nil
 #+RESULTS:
 | Cons | t | (Cons o (Cons m Nil)) | Cons | 1 | (Cons 2 Nil) |
 
-Write the converse of `fromList` for the List type: a function that takes a
+Write the converse of `fromList` for the `List` type: a function that takes a
 `List a` and generates a `[a]`.
 
 *** Solution
@@ -47,7 +47,7 @@ fromHs2Cl (x:xs) = Cons x (fromHs2Cl xs)
 
 fromCl2Hs :: ClList a -> [a]
 fromCl2Hs Nil         = []
-fromCl2Hs (Cons a as) = a : fromCl2Hs as
+fromCl2Hs (Cons x xs) = x : fromCl2Hs xs
 :}
 
 (fromCl2Hs $ fromHs2Cl "tom", fromCl2Hs $ fromHs2Cl [1..2])
