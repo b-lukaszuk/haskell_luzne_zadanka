@@ -5,15 +5,30 @@
 [[https://book.realworldhaskell.org/read/defining-types-streamlining-functions.html][Chapter Online]].
 
 * Exercises
+** Exercise 1
+[[https://book.realworldhaskell.org/read/defining-types-streamlining-functions.html#id585938][Link to exercises]]
+
+Examine a type `List` below
 
 #+BEGIN_SRC haskell :results value
 
-  "the exercises go here"
+:{
+data List a = Cons a (List a) | Nil
+  deriving (Show)
+
+fromList (x:xs) = Cons x (fromList xs)
+fromList []     = Nil
+:}
+
+fromList "tom"
 
 #+END_SRC
 
 #+RESULTS:
-: the exercises go here
+: Cons 't' (Cons 'o' (Cons 'm' Nil))
+
+Write the converse of `fromList` for the List type: a function that takes a
+`List a` and generates a `[a]`.
 
 * Note
 You may need to surround the code snippets to be treated as a whole with `:{` and `:}`. [[https://emacs.stackexchange.com/questions/48446/haskell-code-execution-in-org-mode-give-error-but-in-hs-file-the-code-is-good-a][Explanation]].
