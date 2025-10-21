@@ -151,11 +151,12 @@ simpleTree
 : Node (Just 5) (Just (Node (Just 2) Nothing Nothing)) (Just (Node (Just 6) Nothing Nothing))
 
 ** Exercise 3
-Actually it's exercise 1 from [[https://book.realworldhaskell.org/read/defining-types-streamlining-functions.html#id587860][the exercises]].
+Actually it's exercise 1 and 2 from [[https://book.realworldhaskell.org/read/defining-types-streamlining-functions.html#id587860][the exercises]].
 
 *** Problem
 Write a function that computes the number of elements in a list. To test it,
 ensure that it gives the same answers as the standard `length` function.
+Add type to your function.
 
 *** Solution
 **** Example 1
@@ -190,11 +191,11 @@ len' (x:xs) acc = len' xs (acc + 1)
 len :: [a] -> Int
 len xs = len' xs 0
 
-eqGoodLength :: [a] -> Bool
-eqGoodLength xs = (length xs) == (len xs)
+doesWorkAsLength :: [a] -> Bool
+doesWorkAsLength xs = (length xs) == (len xs)
 :}
 
-map eqGoodLength $ [] : map (\n -> [1..n]) [1..10]
+map doesWorkAsLength $ [] : map (\n -> [1..n]) [1..10]
 
 #+END_SRC
 
@@ -213,17 +214,16 @@ len' (x:xs) acc = len' xs (acc + 1)
 len :: [a] -> Int
 len xs = len' xs 0
 
-eqGoodLength :: [a] -> Bool
-eqGoodLength xs = (length xs) == (len xs)
+doesWorkAsLength :: [a] -> Bool
+doesWorkAsLength xs = (length xs) == (len xs)
 :}
 
-and $ map eqGoodLength $ [] : map (\n -> [1..n]) [1..10]
+and $ map doesWorkAsLength $ [] : map (\n -> [1..n]) [1..10]
 
 #+END_SRC
 
 #+RESULTS:
 : True
-
 
 ** Exercise 4
 Actually it's exercise 3 from [[https://book.realworldhaskell.org/read/defining-types-streamlining-functions.html#id587860][the exercises]].
