@@ -258,6 +258,21 @@ Turn a list into a palindrome, i.e. it should read the same both backwards and
 forwards. For example, given the list [1,2,3], your function should return
 [1,2,3,3,2,1].
 
+*** Solution
+
+#+BEGIN_SRC haskell :results value
+
+:{
+list2palindrome :: [a] -> [a]
+list2palindrome xs = xs ++ reverse xs
+:}
+
+list2palindrome [1..3]
+
+#+END_SRC
+
+#+RESULTS:
+| 1 | 2 | 3 | 3 | 2 | 1 |
 * Note
 You may need to surround the code snippets with `:{` and `:}`. [[https://emacs.stackexchange.com/questions/48446/haskell-code-execution-in-org-mode-give-error-but-in-hs-file-the-code-is-good-a][Explanation]].
 
