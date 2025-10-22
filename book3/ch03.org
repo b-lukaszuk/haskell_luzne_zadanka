@@ -250,6 +250,14 @@ map getAvg $ map (\n -> [1..n]) [1..10]
 #+RESULTS:
 | 1.0 | 1.5 | 2.0 | 2.5 | 3.0 | 3.5 | 4.0 | 4.5 | 5.0 | 5.5 |
 
+** Exercise 5
+Actually it's exercise 4 from [[https://book.realworldhaskell.org/read/defining-types-streamlining-functions.html#id587860][the exercises]].
+
+*** Problem
+Turn a list into a palindrome, i.e. it should read the same both backwards and
+forwards. For example, given the list [1,2,3], your function should return
+[1,2,3,3,2,1].
+
 * Note
 You may need to surround the code snippets with `:{` and `:}`. [[https://emacs.stackexchange.com/questions/48446/haskell-code-execution-in-org-mode-give-error-but-in-hs-file-the-code-is-good-a][Explanation]].
 
