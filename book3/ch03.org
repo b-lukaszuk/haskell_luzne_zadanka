@@ -263,11 +263,11 @@ forwards. For example, given the list [1,2,3], your function should return
 #+BEGIN_SRC haskell :results value
 
 :{
-list2palindrome :: [a] -> [a]
-list2palindrome xs = xs ++ reverse xs
+turnList2palindrome :: [a] -> [a]
+turnList2palindrome xs = xs ++ reverse xs
 :}
 
-list2palindrome [1..3]
+turnList2palindrome [1..3]
 
 #+END_SRC
 
