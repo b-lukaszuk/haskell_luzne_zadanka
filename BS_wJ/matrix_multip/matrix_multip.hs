@@ -10,18 +10,18 @@ instance {-# OVERLAPPING #-} Show Matrix where
   show m = mat2str m
 
 getCol :: Matrix -> Int -> [Int]
-getCol mat n = map (\row -> row !! n) mat
+getCol mat n = map (!! n) mat
 
 getCols' :: Matrix -> Int -> [[Int]]
 getCols' mat n
   | n < 0 = []
-  | otherwise = (getCol mat n) : getCols' mat (n-1)
+  | otherwise = getCol mat n : getCols' mat (n-1)
 
 getNCols :: Matrix -> Int
 getNCols m = length $ head m
 
 getCols :: Matrix -> [[Int]]
-getCols mat = reverse $ getCols' mat $ (getNCols mat - 1)
+getCols mat = reverse $ getCols' mat (getNCols mat - 1)
 
 getDotProd :: [Int] -> [Int] -> Int
 getDotProd row col = sum $ zipWith (*) row col
