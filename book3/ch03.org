@@ -280,13 +280,61 @@ Actually it's exercise 5 from [[https://book.realworldhaskell.org/read/defining-
 Write a function that determines whether its input list is a palindrome.
 
 *** Solution
+
 **** Example 1
 
 #+BEGIN_SRC haskell :results value
 
 :{
+-- insted of built-in reverse
+rev' :: [a] -> [a] -> [a]
+rev' [] sx     = sx
+rev' (x:xs) sx = rev' xs $ x:sx
+
+-- insted of built-in reverse
+rev :: [a] -> [a]
+rev xs = rev' xs []
+
+areEqual :: (Eq a) => [a] -> [a] -> Bool
+areEqual [] [] = True
+areEqual [] ys = False
+areEqual xs [] = False
+areEqual (x:xs) (y:ys)
+  | x /= y = False
+  | otherwise = areEqual xs ys
+
 isPalindrome :: (Eq a) => [a] -> Bool
-isPalindrome xs = and $ zipWith (==) xs $ reverse xs
+isPalindrome xs = areEqual xs $ rev xs
+:}
+
+map isPalindrome [[True, False, True], [False], [False, True, True]]
+
+#+END_SRC
+
+#+RESULTS:
+| True | True | False |
+
+**** Example 2
+
+#+BEGIN_SRC haskell :results value
+
+:{
+-- insted of built-in reverse
+rev :: [a] -> [a]
+rev xs = foldl (flip (:)) [] xs
+-- or even
+-- rev = foldl (flip (:)) []
+
+areEqual :: (Eq a) => [a] -> [a] -> Bool
+areEqual [] [] = True
+areEqual [] ys = False
+areEqual xs [] = False
+areEqual (x:xs) (y:ys)
+  | x /= y = False
+  | otherwise = areEqual xs ys
+
+isPalindrome :: (Eq a) => [a] -> Bool
+isPalindrome xs = areEqual xs $ rev xs
 :}
 
 map isPalindrome ["abccba", "abcba", "abcda"]
@@ -296,7 +344,7 @@ map isPalindrome ["abccba", "abcba", "abcda"]
 #+RESULTS:
 | True | True | False |
 
-**** Example 2
+**** Example 3
 
 #+BEGIN_SRC haskell :results value
 
