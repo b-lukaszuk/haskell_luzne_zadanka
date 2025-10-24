@@ -1,10 +1,10 @@
-data Sphere = Sphere {radius :: Double} deriving (Show)
+newtype Sphere = Sphere {radius :: Double} deriving (Show)
 
 getVolume :: Sphere -> Double
-getVolume s = (4/3) * pi * (radius s)^3
+getVolume s = (4/3) * pi * radius s^3
 
 getSurfaceArea :: Sphere -> Double
-getSurfaceArea s = 4 * pi * (radius s)^2
+getSurfaceArea s = 4 * pi * radius s^2
 
 getSphere :: Double -> Sphere
 getSphere volume = Sphere $ (volume/(4/3)/pi)**(1/3)
@@ -18,7 +18,7 @@ round2 num = round' num 2
 
 refSphere = Sphere 10
 nDrops = 1:[4,8..12]
-totalVolumes = take (length nDrops) $ repeat $ getVolume refSphere
+totalVolumes = replicate (length nDrops) (getVolume refSphere)
 individualVolumes = zipWith (/) totalVolumes nDrops
 spheres = map getSphere individualVolumes
 individualSurfaceAreas = map getSurfaceArea spheres
