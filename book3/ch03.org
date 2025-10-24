@@ -240,7 +240,7 @@ number.
 
 :{
 getAvg :: [Double] -> Double
-getAvg xs = (sum xs) / (fromIntegral $ length xs)
+getAvg xs = sum xs / fromIntegral  (length xs)
 :}
 
 map getAvg $ map (\n -> [1..n]) [1..10]
