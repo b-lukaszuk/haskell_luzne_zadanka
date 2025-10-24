@@ -260,6 +260,33 @@ forwards. For example, given the list [1,2,3], your function should return
 
 *** Solution
 
+**** Example 1
+
+#+BEGIN_SRC haskell :results value
+
+:{
+-- insted of built-in reverse
+rev' :: [a] -> [a] -> [a]
+rev' [] sx     = sx
+rev' (x:xs) sx = rev' xs $ x:sx
+
+-- insted of built-in reverse
+rev :: [a] -> [a]
+rev xs = rev' xs []
+
+turnList2palindrome :: [a] -> [a]
+turnList2palindrome xs = xs ++ rev xs
+:}
+
+turnList2palindrome [3,2..1]
+
+#+END_SRC
+
+#+RESULTS:
+| 3 | 2 | 1 | 1 | 2 | 3 |
+
+**** Example 2
+
 #+BEGIN_SRC haskell :results value
 
 :{
@@ -273,6 +300,7 @@ turnList2palindrome [1..3]
 
 #+RESULTS:
 | 1 | 2 | 3 | 3 | 2 | 1 |
+
 ** Exercise 6
 Actually it's exercise 5 from [[https://book.realworldhaskell.org/read/defining-types-streamlining-functions.html#id587860][the exercises]].
 
