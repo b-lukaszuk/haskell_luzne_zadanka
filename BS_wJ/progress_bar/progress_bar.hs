@@ -9,12 +9,12 @@ getProgressBar perc fan
   | otherwise = ps ++ qs ++ " " ++ show perc ++ "%" ++ " " ++ fan
   where maxNumOfChars = 50
         p = round (fromIntegral perc / (100 / fromIntegral maxNumOfChars))
-        ps = take p $ repeat '|'
+        ps = replicate p '|'
         q = maxNumOfChars - p
-        qs = take q $ repeat '.'
+        qs = replicate q '.'
 
 remWhiteSpace :: String -> String
-remWhiteSpace s = filter (not . isSpace) s
+remWhiteSpace = filter (not . isSpace)
 
 -- the terminal must support ANSI escape codes
 -- https://en.wikipedia.org/wiki/ANSI_escape_code
@@ -35,19 +35,19 @@ animate1Frame perc delayMs fan = do
 -- run program from shell with: runhaskell progress_bar.hs
 main :: IO()
 main = do
-  putStrLn $ "Toy program."
-  putStrLn $ "It animates a progress bar."
-  putStrLn $ "Note: your terminal must support ANSI escape codes.\n"
-  putStrLn $ "Continue with the animation? [Y/n]"
+  putStrLn "Toy program."
+  putStrLn "It animates a progress bar."
+  putStrLn "Note: your terminal must support ANSI escape codes.\n"
+  putStrLn "Continue with the animation? [Y/n]"
   choice <- getLine
-  fans <- return ["\\", "-", "/", "-"]
   g <- getStdGen
-  percentages <- return [0..100]
-  delays <- return $ take (length percentages) $ (randomRs (100, 250) g)
-  if (map toLower $ remWhiteSpace choice) `elem` ["y", "yes", ""]
+  let fans = ["\\", "-", "/", "-"]
+      percentages = [0..100]
+      delays = take (length percentages) $ randomRs (100, 250) g
+  if map toLower (remWhiteSpace choice) `elem` ["y", "yes", ""]
     then do
     forM_ percentages $ \i ->
-      animate1Frame i (delays !! i) (fans !! (mod i $ length fans))
-    putStrLn $ getProgressBar 100 (fans !! 0)
-  else putStr $ ""
-  putStrLn $ "\nThat's all. Goodbye!"
+      animate1Frame i (delays !! i) (fans !! mod i (length fans))
+    putStrLn $ getProgressBar 100 $ head fans
+  else putStr ""
+  putStrLn "\nThat's all. Goodbye!"
