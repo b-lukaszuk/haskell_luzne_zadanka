@@ -5,6 +5,8 @@ import           Numeric.Natural
 recSum :: (Num a) => [a] -> a
 recSum []     = 0
 recSum (x:xs) = x + recSum xs
+-- or
+-- recSum xs     = foldr (+) 0 xs
 
 -- uncomment and type the below into the ghci (REPL)
 -- map recSum [[1], [1..3], [1..100]]
@@ -32,6 +34,8 @@ getFib' a b n
 
 getFib :: Natural -> Natural
 getFib n = getFib' 1 0 n
+-- or
+-- getFib = getFib' 1 0
 
 -- uncomment and type the below into the ghci (REPL)
 -- map getFib [0..19]
