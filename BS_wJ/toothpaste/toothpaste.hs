@@ -4,7 +4,7 @@ data Cylinder = Cylinder {radius  :: Double
 
 
 getVolume :: Cylinder -> Double
-getVolume c = height c * pi * (radius c)^2
+getVolume c = height c * pi * radius c^2
 
 round' :: Double -> Integer -> Double
 round' num precision = (fromIntegral . round $ num * f) / f
@@ -18,6 +18,8 @@ getChangedCylinder dr dh c = Cylinder (radius c + dr) $ height c + dh
 
 getChangedCylinders :: Double -> Double -> [Cylinder] -> [Cylinder]
 getChangedCylinders dr dh cs = map (getChangedCylinder dr dh) cs
+-- or
+-- getChangedCylinders dr dh    = map (getChangedCylinder dr dh)
 
 getVolumeRatio :: Cylinder -> Cylinder -> Double
 getVolumeRatio c1 c2 = getVolume c2 / getVolume c1
