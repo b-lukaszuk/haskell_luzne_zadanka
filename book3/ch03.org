@@ -463,6 +463,29 @@ sortLstsByLen ["jerry", "tom", "&"]
 #+RESULTS:
 | & | tom | jerry |
 
+** Exercise 8
+Actually it's exercise 7 from [[https://book.realworldhaskell.org/read/defining-types-streamlining-functions.html#id587860][the exercises]].
+
+*** Problem
+
+Define a function that joins a list of lists together using a separator value.
+
+```
+intersperse :: a -> \[[a]\] -> [a]
+```
+
+The separator should appear between elements of the list, but should not follow
+the last element. Your function should behave as follows.
+
+```
+ghci> intersperse ',' []
+""
+ghci> intersperse ',' ["foo"]
+"foo"
+ghci> intersperse ',' ["foo","bar","baz","quux"]
+"foo,bar,baz,quux"
+```
+
 * Note
 You may need to surround the code snippets with `:{` and `:}`. [[https://emacs.stackexchange.com/questions/48446/haskell-code-execution-in-org-mode-give-error-but-in-hs-file-the-code-is-good-a][Explanation]].
 
