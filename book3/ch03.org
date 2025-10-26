@@ -32,6 +32,7 @@ Write the converse of `fromList` for the `List` type: a function that takes a
 `List a` and generates a `[a]`.
 
 *** Solution
+**** Example 1
 
 #+BEGIN_SRC haskell :results value
 
@@ -44,6 +45,31 @@ data ClList a = Cons a (ClList a) | Nil
 fromHs2Cl :: [a] -> ClList a
 fromHs2Cl []     = Nil
 fromHs2Cl (x:xs) = Cons x (fromHs2Cl xs)
+
+fromCl2Hs :: ClList a -> [a]
+fromCl2Hs Nil         = []
+fromCl2Hs (Cons x xs) = x : fromCl2Hs xs
+:}
+
+(fromCl2Hs $ fromHs2Cl "tom", fromCl2Hs $ fromHs2Cl [1..2])
+
+#+END_SRC
+
+#+RESULTS:
+| tom | (1 2) |
+
+**** Example 2
+
+#+BEGIN_SRC haskell :results value
+
+:{
+-- Cl - Common Lisp style list
+-- Hs - Haskell style list
+data ClList a = Cons a (ClList a) | Nil
+  deriving (Show)
+
+fromHs2Cl :: [a] -> ClList a
+fromHs2Cl xs = foldr (\cur acc -> Cons cur acc) Nil xs
 
 fromCl2Hs :: ClList a -> [a]
 fromCl2Hs Nil         = []
