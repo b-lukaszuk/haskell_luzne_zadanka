@@ -170,6 +170,9 @@ len' (x:xs) acc = len' xs (acc + 1)
 
 len :: [a] -> Int
 len xs = len' xs 0
+
+doesWorkAsLength :: [a] -> Bool
+doesWorkAsLength xs = length xs == len xs
 :}
 
 map len $ [] : map (\n -> [1..n]) [1..10]
@@ -184,15 +187,11 @@ map len $ [] : map (\n -> [1..n]) [1..10]
 #+BEGIN_SRC haskell :results value
 
 :{
-len' :: [a] -> Int -> Int
-len' [] acc     = acc
-len' (x:xs) acc = len' xs (acc + 1)
-
 len :: [a] -> Int
-len xs = len' xs 0
+len xs = foldl (\acc _ -> acc + 1) 0 xs
 
 doesWorkAsLength :: [a] -> Bool
-doesWorkAsLength xs = (length xs) == (len xs)
+doesWorkAsLength xs = length xs == len xs
 :}
 
 map doesWorkAsLength $ [] : map (\n -> [1..n]) [1..10]
@@ -207,15 +206,11 @@ map doesWorkAsLength $ [] : map (\n -> [1..n]) [1..10]
 #+BEGIN_SRC haskell :results value
 
 :{
-len' :: [a] -> Int -> Int
-len' [] acc     = acc
-len' (x:xs) acc = len' xs (acc + 1)
-
 len :: [a] -> Int
-len xs = len' xs 0
+len = foldl (\acc _ -> acc + 1) 0
 
 doesWorkAsLength :: [a] -> Bool
-doesWorkAsLength xs = (length xs) == (len xs)
+doesWorkAsLength xs = length xs == len xs
 :}
 
 and $ map doesWorkAsLength $ [] : map (\n -> [1..n]) [1..10]
