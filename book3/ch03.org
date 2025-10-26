@@ -486,6 +486,46 @@ ghci> intersperse ',' ["foo","bar","baz","quux"]
 "foo,bar,baz,quux"
 ```
 
+*** Solution
+
+**** Example 1
+
+#+BEGIN_SRC haskell :results value
+
+:{
+intersperse' :: [[a]] -> [a] -> a -> [a]
+intersperse' [] acc _       = acc
+intersperse' (x:xs) [] sep  = intersperse' xs x sep
+intersperse' (x:xs) acc sep = intersperse' xs (acc <> [sep] <> x) sep
+
+intersperse :: a -> [[a]] -> [a]
+intersperse sep xs = intersperse' xs [] sep
+:}
+
+(intersperse ',' ["foo"], intersperse ',' ["foo","bar","baz","quux"], intersperse ',' [])
+
+#+END_SRC
+
+#+RESULTS:
+| foo | foo,bar,baz,quux |   |
+
+**** Example 2
+
+#+BEGIN_SRC haskell :results value
+
+:{
+intersperse :: a -> [[a]] -> [a]
+intersperse sep [] = []
+intersperse sep xs = foldl1 (\acc cur -> acc <> [sep] <> cur) xs
+:}
+
+(intersperse ',' ["foo"], intersperse ',' ["foo","bar","baz","quux"], intersperse ',' [])
+
+#+END_SRC
+
+#+RESULTS:
+| foo | foo,bar,baz,quux |   |
+
 * Note
 You may need to surround the code snippets with `:{` and `:}`. [[https://emacs.stackexchange.com/questions/48446/haskell-code-execution-in-org-mode-give-error-but-in-hs-file-the-code-is-good-a][Explanation]].
 
