@@ -479,11 +479,17 @@ the last element. Your function should behave as follows.
 
 ```
 ghci> intersperse ',' []
+
 ""
+
 ghci> intersperse ',' ["foo"]
+
 "foo"
+
 ghci> intersperse ',' ["foo","bar","baz","quux"]
+
 "foo,bar,baz,quux"
+
 ```
 
 *** Solution
