@@ -22,7 +22,8 @@ getMaxNumLen xs = maximum $ map getNumLen xs
 
 center :: (Show a) => a -> Int -> String
 center x toLen = replicate leftSpaceLen ' ' ++ s ++ replicate rightSpaceLen ' '
-  where s = show x
+  where ss = show x
+        s = if '"' `elem` ss then read ss :: String else ss
         len = length s
         diff = toLen - len
         leftSpaceLen = diff `div` 2
@@ -36,12 +37,15 @@ getFmtRow row numLen rowLen = center formattedRow rowLen
 fmtRow :: (Show a) => Int -> Int -> [a] -> String
 fmtRow numLen rowLen row = getFmtRow row numLen rowLen
 
+change'2space :: String -> String
+change'2space xs = map (\c -> if c == '\'' then ' ' else c) xs
+
 getFmtPascTriangle :: Int -> Int -> String
 getFmtPascTriangle n k
   | n < 0 || k < 0 = error "n and k must be >= 0"
   | n > 10 || k > 10 = error "n and k must be <= 10"
   | n < k = error "n must be >= k"
-  | otherwise = result
+  | otherwise = change'2space result
     where triangle = getPascalTriangle n
           lastRow = last triangle
           maxNumWidth = 1 + getMaxNumLen lastRow
@@ -49,10 +53,12 @@ getFmtPascTriangle n k
           rowFormatter :: (Show a) => [a] -> String
           rowFormatter = fmtRow maxNumWidth lastRowWidth
           formattedTriangle = intercalate "\n" $ map rowFormatter triangle
-          indicators = replicate k ' ' ++ "^" ++ replicate (n-k-1) ' '
+          ctr = flip center maxNumWidth
+          lpad = replicate k $ ctr " "
+          rpad = replicate (n-k) $ ctr " "
+          indicator = [center "^" maxNumWidth]
+          indicators = lpad ++ indicator ++ rpad
           result = formattedTriangle ++ "\n" ++ rowFormatter indicators
 
-
-main :: IO ()
-main = do
-  putStrLn $ getFmtPascTriangle 9 5
+-- to see the triangle type in ghci, e.g.:
+-- putStrLn $ getFmtPascTriangle 9 5
